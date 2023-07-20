@@ -1,0 +1,1406 @@
+package Clases;
+
+import Ventanas.Index;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GradientPaint;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+public class Paciente {
+
+    int id = -1;
+    String codigo, nombres, apellidos, tipoDocumento,dni, genero, fechaCreacion, fechaNacimiento, telefono,telefonoOpcional, correo, nacionalidad, condicionMigratoria,
+            departamento, provincia, distrito, grupoVulnerable, discapacidad, redSoporte, nombreRedSoporte, srqIngreso, observacion, proyecto, motivoConsulta, acciones;
+    String modalidad,detalleDerivado,detalleOtroTelefono,contactoRedSoporte;
+    int totalSesiones;
+    String sql;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+    ArrayList<RegistroPaciente> registros = new ArrayList();
+    ArrayList<SRQ18> srq18s = new ArrayList();
+    ArrayList<IndiceBienestar> indices = new ArrayList();
+    ArrayList<NotaEvolucion> notas = new ArrayList();
+    
+    public Paciente() {
+
+    }
+
+    public Paciente(int id, String codigo, String nombres, String apellidos,String dni, String tipoDocumentoxdni, String genero, String fechaCreacion, String fechaNacimiento, String telefono,String telefonoOpcional, String correo, String nacionalidad, String condicionMigratoria, String departamento, String provincia, String distrito, String grupoVulnerable, String discapacidad, String reSoporte, String nombreRedSoporte, String srqIngreso, String observacion, String proyecto, String motivoConsulta, String acciones, int totalSesiones, String modalidad,String detalleDerivado,String detalleOtroTelefono,String contactoRedSoporte) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.dni=dni;
+        this.tipoDocumento = tipoDocumentoxdni;
+        this.genero = genero;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.telefonoOpcional=telefonoOpcional;
+        this.correo = correo;
+        this.nacionalidad = nacionalidad;
+        this.condicionMigratoria = condicionMigratoria;
+        this.departamento = departamento;
+        this.provincia = provincia;
+        this.distrito = distrito;
+        this.grupoVulnerable = grupoVulnerable;
+        this.discapacidad = discapacidad;
+        this.redSoporte = reSoporte;
+        this.nombreRedSoporte = nombreRedSoporte;
+        this.srqIngreso = srqIngreso;
+        this.observacion = observacion;
+        this.proyecto = proyecto;
+        this.motivoConsulta = motivoConsulta;
+        this.acciones = acciones;
+        this.totalSesiones = totalSesiones;
+        this.modalidad=modalidad;
+        this.detalleDerivado=detalleDerivado;
+        this.detalleOtroTelefono=detalleOtroTelefono;
+        this.contactoRedSoporte=contactoRedSoporte;
+    }
+
+   
+
+    public ArrayList ListarPacienteconRegistros() {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientes` ()";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Paciente pacienteTemp = new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),
+                        rs.getString("dni"),rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                       rs.getString("telefonoOpcional"), rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                                                          //rs.getInt("idRP")
+                RegistroPaciente rp = new RegistroPaciente(rs.getInt("idRP"), rs.getInt("idPaciente"),
+                        rs.getInt("idUsuario"), rs.getInt("idUsuarioAsignado"), rs.getString("fecha"),
+                        rs.getString("accion"), rs.getString("observacion"), rs.getString("fechaAsignadaRP"),
+                        rs.getString("estado"));
+
+                if(lista.isEmpty()){
+                   pacienteTemp.addRegistro(rp);
+                   lista.add(pacienteTemp);
+                }else{
+                    if(lista.contains(pacienteTemp)){
+                        int  index = lista.indexOf(pacienteTemp);
+                        if(!lista.get(index).getRegistros().contains(rp)){
+                            lista.get(index).addRegistro(rp);
+                        }
+                    }else{
+                         pacienteTemp.addRegistro(rp);
+                         lista.add(pacienteTemp);
+                    }
+                }
+                
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+      public ArrayList ListarPacienteconNotasEvolucion() {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getNotaEvolucion` ()";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Paciente pacienteTemp = new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),
+                        rs.getString("dni"),rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                                                          
+                 NotaEvolucion nota = new NotaEvolucion(
+                rs.getInt("idNota"),rs.getInt("idPacienteNota"),rs.getInt("idTerapeutaNota"),
+                        rs.getString("fechaNota"),rs.getString("observacionNota"),rs.getString("sintomas"),
+                        rs.getString("relaciones"),rs.getString("limites"),rs.getString("ansiedad"),
+                        rs.getString("manejoAgresion"),rs.getString("funcionalidad"),
+                        rs.getString("trabajoTerapeutico"),rs.getString("estadoNota")
+                );
+
+                if(lista.isEmpty()){
+                   pacienteTemp.addNotaEvolucion(nota);
+                   lista.add(pacienteTemp);
+                }else{
+                    if(lista.contains(pacienteTemp)){
+                        int  index = lista.indexOf(pacienteTemp);
+                        if(!lista.get(index).getNotas().contains(nota)){
+                            lista.get(index).addNotaEvolucion(nota);
+                        }
+                    }else{
+                         pacienteTemp.addNotaEvolucion(nota);
+                         lista.add(pacienteTemp);
+                    }
+                }
+                
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+    public int newPaciente(String nombrex, String apellidosx, String tipoDocumentox, String dnix, String generox, String fechaNacimientox, int totalSesiones,
+            String telefonox,String telefonoOpcionalx, String correox, String nacionalidadx, String condicionMigratoriax, String departamentox, String provinciax, String distritox,
+            String grupoVulnerablex, String discapacidadx, String redSoportex, String nombreRedSoportex, String srqIngresox, String observacionx,
+            String proyectox, String motivoConsultax, String accionesx, String codigox,String modalidadx,String detalleDerivadox,String detalleOtroTelefonox, String contactoRedSoportex) {
+        int valor = 0;
+        sql = "call  `sp.newPaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, nombrex);
+            pst.setString(2, apellidosx);
+            pst.setString(3, tipoDocumentox);
+            pst.setString(4, dnix);
+            pst.setString(5, generox);
+            pst.setString(6, fechaNacimientox);
+            pst.setInt(7, totalSesiones);
+            pst.setString(8, telefonox);
+            pst.setString(9, telefonoOpcionalx);
+            pst.setString(10, correox);
+            pst.setString(11, nacionalidadx);
+            pst.setString(12, condicionMigratoriax);
+            pst.setString(13, departamentox);
+            pst.setString(14, provinciax);
+            pst.setString(15, distritox);
+            pst.setString(16, grupoVulnerablex);
+            pst.setString(17, discapacidadx);
+            pst.setString(18, redSoportex);
+            pst.setString(19, nombreRedSoportex);
+            pst.setString(20, srqIngresox);
+            pst.setString(21, observacionx);
+            pst.setString(22, proyectox);
+            pst.setString(23, motivoConsultax);
+            pst.setString(24, accionesx);
+            pst.setString(25, codigox);
+            pst.setString(26, modalidadx);
+            pst.setString(27, detalleDerivadox);
+            pst.setString(28,detalleOtroTelefonox);
+            pst.setString(29,contactoRedSoportex);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                valor=rs.getInt("@idInsertado");
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+        return valor;
+    }
+
+    public ChartPanel getGraficoPacientes() {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        ArrayList<Paciente> pacientes = (ArrayList) new Paciente().ListarPacienteconNotasEvolucion().clone();
+        ArrayList<Integer> meses = new ArrayList();
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        for(Paciente paciente:pacientes){
+                int mes = Integer.parseInt(paciente.getFechaCreacion().substring(5, 7));
+                int valor = meses.get(mes-1)+1;
+                meses.add(mes-1,valor);
+        }
+        for(int i=0; i<meses.size();i++){
+            dataset.setValue(meses.get(i), "Pacientes Registrados",new tools().getMes(i+1));
+        }
+        
+        
+        JFreeChart chart = ChartFactory.createBarChart3D("Cantidad de Pacientes Registrados por Mes",
+                "Meses del año " , "Número de Pacientes",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 20));
+        chart.getTitle().setPaint(Color.BLACK);
+
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.blue);
+        p.setRangeGridlinesVisible(true);
+        p.setRangeGridlinePaint(Color.BLACK);
+        BarRenderer renderer =(BarRenderer) p.getRenderer();
+        renderer.setDrawBarOutline(false);
+        GradientPaint gp0 = new GradientPaint(0.0f,0.0f,Color.blue,0.0f,0.0f,new Color(51,51,64));
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+
+    }
+    public ChartPanel getGraficoSesiones() {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        ArrayList<NotaEvolucion> notas = (ArrayList) new NotaEvolucion().ListarxNota().clone();
+        ArrayList<Integer> meses = new ArrayList();
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        for(NotaEvolucion nota:notas){
+                int mes = Integer.parseInt(nota.getFechaNota().substring(5, 7));
+                int valor = meses.get(mes-1)+1;
+                meses.add(mes-1,valor);
+        }
+        for(int i=0; i<meses.size();i++){
+            dataset.setValue(meses.get(i), "Sesiones Realizadas",new tools().getMes(i+1));
+        }
+        
+        
+        JFreeChart chart = ChartFactory.createBarChart3D("Cantidad de sesiones realizadas por mes",
+                "Meses del año " , "Número de sesiones",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 20));
+        chart.getTitle().setPaint(Color.BLACK);
+
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.blue);
+        p.setRangeGridlinesVisible(true);
+        p.setRangeGridlinePaint(Color.BLACK);
+        BarRenderer renderer =(BarRenderer) p.getRenderer();
+        renderer.setDrawBarOutline(false);
+        GradientPaint gp0 = new GradientPaint(0.0f,0.0f,Color.blue,0.0f,0.0f,new Color(51,51,64));
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+
+    }
+    public ChartPanel getGraficoPacientexGeneroyAno(String generox, String fecha01, String fecha02) {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+       
+        
+        ArrayList<Paciente> pacientes
+       = (ArrayList) new Paciente().getPacientexFechaCreacionyGenero(generox,fecha01, fecha02).clone();
+        
+        ArrayList<Integer> meses = new ArrayList();
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        
+        ArrayList<String> generos = new ArrayList();
+        for(Paciente paciente:pacientes){
+                if(!generos.contains(paciente.getGenero())){
+                    generos.add(paciente.getGenero());
+                }
+            }
+       
+                
+        for(int i=0; i<meses.size();i++){
+            int contador=0;
+            for(String genero:generos){
+                contador=0;
+                for(Paciente paciente:pacientes){
+                    int mes = Integer.parseInt(paciente.getFechaCreacion().substring(5, 7));
+                        if(paciente.getGenero().equalsIgnoreCase(genero) && 
+                           Float.compare((i+1),mes)==0 ){
+                            contador++;
+                        }
+                 }
+                dataset.setValue(contador, genero,new tools().getMes(i+1));
+            }
+        }
+        JFreeChart chart = ChartFactory.createBarChart3D("Registro de Pacientes por Mes y Genero",
+                "Meses del año " , "Cantidad de Pacientes por Genero",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 20));
+        chart.getTitle().setPaint(Color.BLACK);
+
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.blue);
+        p.setRangeGridlinesVisible(true);
+        p.setRangeGridlinePaint(Color.BLACK);
+        BarRenderer renderer =(BarRenderer) p.getRenderer();
+        renderer.setDrawBarOutline(false);
+        GradientPaint gp0 = new GradientPaint(0.0f,0.0f,Color.blue,0.0f,0.0f,new Color(51,51,64));
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+
+    }
+    public ChartPanel getGraficoPacientexProyectoyAno(String proyectox, String fecha01, String fecha02) {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+       
+        
+        ArrayList<Paciente> pacientes
+       = (ArrayList) new Paciente().getPacientexProyecto(proyectox,fecha01, fecha02).clone();
+        
+        ArrayList<Integer> meses = new ArrayList();
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        
+        ArrayList<String> proyectos = new ArrayList();
+        for(Paciente paciente:pacientes){
+                if(!proyectos.contains(paciente.getProyecto())){
+                    proyectos.add(paciente.getProyecto());
+                }
+            }
+       
+                
+        for(int i=0; i<meses.size();i++){
+            int contador=0;
+            for(String genero:proyectos){
+                contador=0;
+                for(Paciente paciente:pacientes){
+                    int mes = Integer.parseInt(paciente.getFechaCreacion().substring(5, 7));
+                        if(paciente.getGenero().equalsIgnoreCase(genero) && 
+                           Float.compare((i+1),mes)==0 ){
+                            contador++;
+                        }
+                 }
+                dataset.setValue(contador, genero,new tools().getMes(i+1));
+            }
+        }
+        JFreeChart chart = ChartFactory.createBarChart3D("Registro de Pacientes por Mes y Genero",
+                "Meses del año " , "Cantidad de Pacientes por Genero",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 20));
+        chart.getTitle().setPaint(Color.BLACK);
+
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.blue);
+        p.setRangeGridlinesVisible(true);
+        p.setRangeGridlinePaint(Color.BLACK);
+        BarRenderer renderer =(BarRenderer) p.getRenderer();
+        renderer.setDrawBarOutline(false);
+        GradientPaint gp0 = new GradientPaint(0.0f,0.0f,Color.blue,0.0f,0.0f,new Color(51,51,64));
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+
+    }
+    
+    public ChartPanel getGraficoPacienteConIntencionSuicida( String fecha01, String fecha02) {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        ArrayList<SRQ18> srqs
+       = (ArrayList) new SRQ18().ListaSRQ18conPacienteyTerapeutaxRango(fecha01, fecha02).clone();
+        
+        ArrayList<Integer> meses = new ArrayList();
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        
+        for(int i=0; i<meses.size();i++){
+            int contador=0;
+                for(SRQ18 srq:srqs){
+                    int mes = Integer.parseInt(srq.getFechaSrq().substring(5, 7));
+                        if(srq.getQ17().equalsIgnoreCase("si") && 
+                           Float.compare((i+1),mes)==0){
+                            contador++;
+                        }
+                 }
+                dataset.setValue(contador, "Pacientes",new tools().getMes(i+1));
+        }
+        JFreeChart chart = ChartFactory.createBarChart3D("Pacientes con intencion suicida",
+                "Meses del año " , "Cantidad de Pacientes",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 20));
+        chart.getTitle().setPaint(Color.BLACK);
+
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.blue);
+        p.setRangeGridlinesVisible(true);
+        p.setRangeGridlinePaint(Color.BLACK);
+        BarRenderer renderer =(BarRenderer) p.getRenderer();
+        renderer.setDrawBarOutline(false);
+        GradientPaint gp0 = new GradientPaint(0.0f,0.0f,Color.blue,0.0f,0.0f,new Color(51,51,64));
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+
+    }
+
+
+
+    public ChartPanel getGraficoPacientexGrupoVulnerableyAno(String grupox, String fecha01, String fecha02) {
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+       
+        
+        ArrayList<Paciente> pacientes
+       = (ArrayList) new Paciente().getPacientexGrupoVulnerable(grupox,fecha01, fecha02).clone();
+        
+        ArrayList<Integer> meses = new ArrayList();
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);meses.add(0);
+        
+        ArrayList<String> grupos = new ArrayList();
+        for(Paciente paciente:pacientes){
+                if(!grupos.contains(paciente.getProyecto())){
+                    grupos.add(paciente.getProyecto());
+                }
+            }
+       
+                
+        for(int i=0; i<meses.size();i++){
+            int contador=0;
+            for(String grupo:grupos){
+                contador=0;
+                for(Paciente paciente:pacientes){
+                    int mes = Integer.parseInt(paciente.getFechaCreacion().substring(5, 7));
+                        if(paciente.getGenero().equalsIgnoreCase(grupo) && 
+                           Float.compare((i+1),mes)==0 ){
+                            contador++;
+                        }
+                 }
+                dataset.setValue(contador, grupo,new tools().getMes(i+1));
+            }
+        }
+        JFreeChart chart = ChartFactory.createBarChart3D("Registro de Pacientes por Mes y Grupo Vulnerable",
+                "Meses del año " , "Cantidad de Pacientes por Genero",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
+
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 20));
+        chart.getTitle().setPaint(Color.BLACK);
+
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.blue);
+        p.setRangeGridlinesVisible(true);
+        p.setRangeGridlinePaint(Color.BLACK);
+        BarRenderer renderer =(BarRenderer) p.getRenderer();
+        renderer.setDrawBarOutline(false);
+        GradientPaint gp0 = new GradientPaint(0.0f,0.0f,Color.blue,0.0f,0.0f,new Color(51,51,64));
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+
+    }
+    public ArrayList getPacientexFechaCreacion(String fechax) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexFechaCreacion` (?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, fechax);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),
+                        rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+public ArrayList getPacientexFechaCreacion(String fecha01, String fecha02) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientesxRangoFecha` (?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, fecha01);
+            pst.setString(2, fecha02);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Paciente pacienteTemp = new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+            
+             NotaEvolucion nota = new NotaEvolucion(
+                rs.getInt("idNota"),rs.getInt("idPacienteNota"),rs.getInt("idTerapeutaNota"),
+                        rs.getString("fechaNota"),rs.getString("observacionNota"),rs.getString("sintomas"),
+                        rs.getString("relaciones"),rs.getString("limites"),rs.getString("ansiedad"),
+                        rs.getString("manejoAgresion"),rs.getString("funcionalidad"),
+                        rs.getString("trabajoTerapeutico"),rs.getString("estadoNota")
+                );
+
+                if(lista.isEmpty()){
+                   pacienteTemp.addNotaEvolucion(nota);
+                   lista.add(pacienteTemp);
+                }else{
+                    if(lista.contains(pacienteTemp)){
+                        int  index = lista.indexOf(pacienteTemp);
+                        if(!lista.get(index).getNotas().contains(nota)){
+                            lista.get(index).addNotaEvolucion(nota);
+                        }
+                    }else{
+                         pacienteTemp.addNotaEvolucion(nota);
+                         lista.add(pacienteTemp);
+                    }
+                }
+            
+            
+            
+            
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01, String fecha02) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientesxRangoySexo` (?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, generox);
+            pst.setString(2, fecha01);
+            pst.setString(3, fecha02);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+    public ArrayList getPacientexNombre(String valorx) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexNombre` (?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, valorx);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexGenero(String generox) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexGenero` (?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, generox);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexGrupoVulnerable(String grupox, String fecha01,String fecha02) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexGrupoVulnerable` (?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, grupox);
+            pst.setString(2, grupox);
+            pst.setString(3, grupox);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexFechaNacimiento(String fechax) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexFechaNacimiento` (?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, fechax);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexFechaNacimientoRango(String fecha01, String fecha02) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexFechaNacimientoRango` (?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, fecha01);
+            pst.setString(2, fecha02);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexProyecto(String proyectox,String fecha01, String fecha02) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexProyecto` (?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, proyectox);
+            pst.setString(2, fecha01);
+            pst.setString(3, fecha02);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexRedSoporte(String redSoportex) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexRedSoporte` (?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setString(1, redSoportex);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public ArrayList getPacientexTotalSesiones(int total01, int total02) {
+        ArrayList<Paciente> lista = new ArrayList();
+
+        sql = "call `sp.getPacientexTotalSesiones` (?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setInt(1, total01);
+            pst.setInt(2, total02);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                lista.add(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return lista;
+    }
+
+    public Paciente getPacientexID(int idx) {
+Paciente temp = new Paciente();
+        sql = "call `sp.getPacientexID` (?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setInt(1, idx);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                temp = new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado")
+                        ,rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return temp;
+    }
+    public int updatePaciente(
+            int idx,
+            String nombrex,
+            String apellidosx,
+            String tipoDocumentox,
+            String dnix,
+            String generox,
+            String fechaNacimientox,
+            int totalSesiones,
+            String telefonox,
+            String telefonoOpcionalx,
+            String correox,
+            String nacionalidadx,
+            String condicionMigratoriax,
+            String departamentox,
+            String provinciax,
+            String distritox,
+            String grupoVulnerablex,
+            String discapacidadx,
+            String redSoportex,
+            String nombreRedSoportex,
+            String srqIngresox,
+            String observacionx,
+            String proyectox,
+            String motivoConsultax,
+            String accionesx,
+            String codigox,
+            String modalidadx,
+            String detalleDerivadox,
+            String detalleOtroTelefonox,
+            String contactoRedSoportex) {
+        int valor = 0;
+        sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setInt(1, idx);
+            pst.setString(2, nombrex);
+            pst.setString(3, apellidosx);
+            pst.setString(4, tipoDocumentox);
+            pst.setString(5, dnix);
+            pst.setString(6, generox);
+            pst.setString(7, fechaNacimientox);
+            pst.setInt(8, totalSesiones);
+            pst.setString(9, telefonox);
+            pst.setString(10, telefonox);
+            pst.setString(11, correox);
+            pst.setString(12, nacionalidadx);
+            pst.setString(13, condicionMigratoriax);
+            pst.setString(14, departamentox);
+            pst.setString(15, provinciax);
+            pst.setString(16, distritox);
+            pst.setString(17, grupoVulnerablex);
+            pst.setString(18, discapacidadx);
+            pst.setString(19, redSoportex);
+            pst.setString(20, nombreRedSoportex);
+            pst.setString(21, srqIngresox);
+            pst.setString(22, observacionx);
+            pst.setString(23, proyectox);
+            pst.setString(24, motivoConsultax);
+            pst.setString(25, accionesx);
+            pst.setString(26, codigox);
+            pst.setString(27, modalidadx);
+            pst.setString(28, detalleDerivadox);
+            pst.setString(29,detalleOtroTelefonox);
+            pst.setString(30,contactoRedSoportex);
+            valor = pst.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+        return valor;
+    }
+public int updatePaciente2() {
+        int valor = 0;
+        sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setInt(1, id);
+            pst.setString(2, nombres);
+            pst.setString(3, apellidos);
+            pst.setString(4, tipoDocumento);
+            pst.setString(5, dni);
+            pst.setString(6, genero);
+            pst.setString(7, fechaNacimiento);
+            pst.setInt(8, totalSesiones);
+            pst.setString(9, telefono);
+            pst.setString(10, telefonoOpcional);
+            pst.setString(11, correo);
+            pst.setString(12, nacionalidad);
+            pst.setString(13, condicionMigratoria);
+            pst.setString(14, departamento);
+            pst.setString(15, provincia);
+            pst.setString(16, distrito);
+            pst.setString(17, grupoVulnerable);
+            pst.setString(18, discapacidad);
+            pst.setString(19, redSoporte);
+            pst.setString(20, nombreRedSoporte);
+            pst.setString(21, srqIngreso);
+            pst.setString(22, observacion);
+            pst.setString(23, proyecto);
+            pst.setString(24, motivoConsulta);
+            pst.setString(25, acciones);
+            pst.setString(26, codigo);
+            pst.setString(27, modalidad);
+            pst.setString(28, detalleDerivado);
+            pst.setString(29,detalleOtroTelefono);
+            pst.setString(30,contactoRedSoporte);
+            valor = pst.executeUpdate();
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+        return valor;
+    }
+    public ArrayList getPacientedeTerapeuta(int idTerapeutax, String valorx, String fecha01, String fecha02) {
+        ArrayList<Paciente> listax = new ArrayList();
+        listax.clear();
+
+        sql = "call `sp.getPacientexTerapeuta` (?,?,?,?)";
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            pst = con.prepareCall(sql);
+            pst.setInt(1, idTerapeutax);
+            pst.setString(2, valorx);
+            pst.setString(3, fecha01);
+            pst.setString(4, fecha02);
+
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                Paciente p = new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),rs.getString("dni"), rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                        rs.getString("telefonoOpcional"),rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad")
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                        
+                listax.add(p);
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+
+        return listax;
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "id=" + id + ", codigo=" + codigo + ", nombres=" + nombres + ", apellidos=" + apellidos + ", tipoDocumento=" + tipoDocumento + ", dni=" + dni + ", genero=" + genero + ", fechaCreacion=" + fechaCreacion + ", fechaNacimiento=" + fechaNacimiento + ", telefono=" + telefono + ", telefonoOpcional=" + telefonoOpcional + ", correo=" + correo + ", nacionalidad=" + nacionalidad + ", condicionMigratoria=" + condicionMigratoria + ", departamento=" + departamento + ", provincia=" + provincia + ", distrito=" + distrito + ", grupoVulnerable=" + grupoVulnerable + ", discapacidad=" + discapacidad + ", redSoporte=" + redSoporte + ", nombreRedSoporte=" + nombreRedSoporte + ", srqIngreso=" + srqIngreso + ", observacion=" + observacion + ", proyecto=" + proyecto + ", motivoConsulta=" + motivoConsulta + ", acciones=" + acciones + ", modalidad=" + modalidad + ", detalleDerivado=" + detalleDerivado + ", detalleOtroTelefono=" + detalleOtroTelefono + ", totalSesiones=" + totalSesiones + ", registros=" + registros + ", srq18s=" + srq18s + ", indices=" + indices + ", notas=" + notas + '}';
+    }
+
+   
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ArrayList<IndiceBienestar> getIndices() {
+        return indices;
+    }
+    public void addNotaEvolucion(NotaEvolucion nota){
+        notas.add(nota);
+    }
+    public ArrayList<NotaEvolucion> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(ArrayList<NotaEvolucion> notas) {
+        this.notas = notas;
+    }
+
+    public void setIndices(ArrayList<IndiceBienestar> indices) {
+        this.indices = indices;
+    }
+
+    public String getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getRedSoporte() {
+        return redSoporte;
+    }
+
+    public void setRedSoporte(String redSoporte) {
+        this.redSoporte = redSoporte;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public String getNombreCompleto() {
+        return nombres + "  " + apellidos;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getTipoDocumentoxdni() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumentoxdni(String tipoDocumentoxdni) {
+        this.tipoDocumento = tipoDocumentoxdni;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public ArrayList<SRQ18> getSrq18s() {
+        return srq18s;
+    }
+
+    public void setSrq18s(ArrayList<SRQ18> srq18s) {
+        this.srq18s = srq18s;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getCondicionMigratoria() {
+        return condicionMigratoria;
+    }
+
+    public void setCondicionMigratoria(String condicionMigratoria) {
+        this.condicionMigratoria = condicionMigratoria;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public void addSRQ18(SRQ18 srq){
+        srq18s.add(srq);
+    }
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public String getGrupoVulnerable() {
+        return grupoVulnerable;
+    }
+
+    public void setGrupoVulnerable(String grupoVulnerable) {
+        this.grupoVulnerable = grupoVulnerable;
+    }
+
+    public String getDiscapacidad() {
+        return discapacidad;
+    }
+
+    public void setDiscapacidad(String discapacidad) {
+        this.discapacidad = discapacidad;
+    }
+
+    public String getReSoporte() {
+        return redSoporte;
+    }
+
+    public void setReSoporte(String reSoporte) {
+        this.redSoporte = reSoporte;
+    }
+
+    public String getNombreRedSoporte() {
+        return nombreRedSoporte;
+    }
+
+    public String getContactoRedSoporte() {
+        return contactoRedSoporte;
+    }
+
+    public void setContactoRedSoporte(String contactoRedSoporte) {
+        this.contactoRedSoporte = contactoRedSoporte;
+    }
+
+    public void setNombreRedSoporte(String nombreRedSoporte) {
+        this.nombreRedSoporte = nombreRedSoporte;
+    }
+
+    public String getSrqIngreso() {
+        return srqIngreso;
+    }
+
+    public void setSrqIngreso(String srqIngreso) {
+        this.srqIngreso = srqIngreso;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    public String getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(String proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public String getMotivoConsulta() {
+        return motivoConsulta;
+    }
+
+    public void setMotivoConsulta(String motivoConsulta) {
+        this.motivoConsulta = motivoConsulta;
+    }
+
+    public String getAcciones() {
+        return acciones;
+    }
+
+    public void setAcciones(String acciones) {
+        this.acciones = acciones;
+    }
+
+    public int getTotalSesiones() {
+        return totalSesiones;
+    }
+
+    public void setTotalSesiones(int totalSesiones) {
+        this.totalSesiones = totalSesiones;
+    }
+
+    public String getTelefonoOpcional() {
+        return telefonoOpcional;
+    }
+
+    public void setTelefonoOpcional(String telefonoOpcional) {
+        this.telefonoOpcional = telefonoOpcional;
+    }
+
+    public ArrayList<RegistroPaciente> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(ArrayList<RegistroPaciente> registros) {
+        this.registros = registros;
+    }
+
+    public void addRegistro(RegistroPaciente rp) {
+        registros.add(rp);
+    }
+
+    public String getModalidad() {
+        return modalidad;
+    }
+
+    public void setModalidad(String modalidad) {
+        this.modalidad = modalidad;
+    }
+
+    public String getDetalleDerivado() {
+        return detalleDerivado;
+    }
+
+    public String getDetalleOtroTelefono() {
+        return detalleOtroTelefono;
+    }
+
+    public void setDetalleOtroTelefono(String detalleOtroTelefono) {
+        this.detalleOtroTelefono = detalleOtroTelefono;
+    }
+
+    public void setDetalleDerivado(String detalleDerivado) {
+        this.detalleDerivado = detalleDerivado;
+    }
+    
+    
+    
+    
+@Override
+    public int hashCode() {
+        return Objects.hash(id, codigo, nombres, apellidos, tipoDocumento, genero, fechaCreacion, fechaNacimiento, telefono, correo, nacionalidad, condicionMigratoria,
+                departamento, provincia, distrito, grupoVulnerable, discapacidad, redSoporte, nombreRedSoporte, srqIngreso, observacion, proyecto, motivoConsulta, acciones, totalSesiones,detalleOtroTelefono);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Paciente p = (Paciente) obj;
+
+        return Float.compare(id, p.id) == 0 && codigo.equals(p.codigo) && nombres.equals(p.nombres) && apellidos.equals(p.apellidos) && tipoDocumento.equals(p.tipoDocumento)
+                && genero.equals(p.genero) && fechaCreacion.equals(p.fechaCreacion) && fechaNacimiento.equals(p.fechaNacimiento) && telefono.equals(p.telefono) && correo.equals(p.correo) && nacionalidad.equals(p.nacionalidad) && condicionMigratoria.equals(p.condicionMigratoria)
+                && departamento.equals(p.departamento) && provincia.equals(p.provincia) && distrito.equals(p.distrito) && grupoVulnerable.equals(p.grupoVulnerable)
+                && discapacidad.equals(p.discapacidad) && redSoporte.equals(p.redSoporte) && nombreRedSoporte.equals(p.nombreRedSoporte) && srqIngreso.equals(p.srqIngreso) && observacion.equals(p.observacion) && proyecto.equals(p.proyecto)
+                && motivoConsulta.equals(p.motivoConsulta) && acciones.equals(p.acciones) && detalleOtroTelefono.equals(p.detalleOtroTelefono);
+    }
+    
+    
+    
+    
+    
+    private void cerrar() {
+        try {
+            if (pst != null) {
+                pst.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+}
