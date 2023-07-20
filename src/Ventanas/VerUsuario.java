@@ -745,6 +745,7 @@ public class VerUsuario extends javax.swing.JFrame {
 
     private void colcocarDatos() {
         llenarCombos();
+        
         idTxt.setText(usuario.getId() + "");
         dniTxt.setText(usuario.getDni());
         usernameTxt.setText(usuario.getUsername());
@@ -752,7 +753,9 @@ public class VerUsuario extends javax.swing.JFrame {
         nombreTxt.setText(usuario.getNombre());
         codigoTerapeutaTxt.setText(usuario.getCodigo());
         privCombo.setSelectedItem(usuario.getPriv());
+        System.out.println(usuario.getCargo());
         cargoCombo.setSelectedItem(usuario.getCargo());
+        
         estadoCombo.setSelectedItem(usuario.getEstado());
         fechaTxt.setText(usuario.getFechaCreacion());
         correoTxt.setText(usuario.getCorreo());
@@ -766,17 +769,7 @@ public class VerUsuario extends javax.swing.JFrame {
 
     private void llenarCombos() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                ArrayList<Privilegios> privs = (ArrayList) new Privilegios().Listar("").clone();
-                privCombo.removeAllItems();
-                for (Privilegios p : privs) {
-                    privCombo.addItem(p.getNombre());
-                }
-            }
-        }).start();
+        
 
         users = (ArrayList) new Usuario().getUsuarioxCodigo("").clone();
         superiorCombo.removeAllItems();
@@ -785,17 +778,20 @@ public class VerUsuario extends javax.swing.JFrame {
             superiorCombo.addItem(user.getCodigo());
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                ArrayList<Cargos> cargos = (ArrayList) new Cargos().Listar("").clone();
+        
+        ArrayList<Cargos> cargos = (ArrayList) new Cargos().Listar("").clone();
                 cargoCombo.removeAllItems();
                 for (Cargos cargo : cargos) {
                     cargoCombo.addItem(cargo.getNombre());
                 }
-            }
-        }).start();
+                
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                
+//            }
+//        }).start();
     }
 
     private int getidJefe() {

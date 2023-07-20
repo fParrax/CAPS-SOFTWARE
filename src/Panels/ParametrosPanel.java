@@ -16,7 +16,7 @@ public class ParametrosPanel extends javax.swing.JPanel {
     panelParametroDocumento ppDocumento = new panelParametroDocumento();
     panelParametroGeneros ppGeneros = new panelParametroGeneros();
     panelParametroGruposVulnerables ppGruposVulnerables = new panelParametroGruposVulnerables();
-    panelParametroPrivilegios ppPrivilegios = new panelParametroPrivilegios();
+    panelParametroCargo ppPrivilegios = new panelParametroCargo();
     panelParametroCondicionMigratoria ppCondicion = new panelParametroCondicionMigratoria();
     panelParametroDerivaciones ppDerivaciones = new panelParametroDerivaciones();
 
@@ -122,7 +122,7 @@ public class ParametrosPanel extends javax.swing.JPanel {
         });
 
         btn2.setBackground(new java.awt.Color(58, 58, 58));
-        btn2.setText("Privilegios");
+        btn2.setText("Cargos");
         btn2.setBgHover(new java.awt.Color(255, 255, 255));
         btn2.setBgShade(new java.awt.Color(255, 255, 255));
         btn2.setBgShadeHover(new java.awt.Color(59, 59, 59));
@@ -360,7 +360,7 @@ public class ParametrosPanel extends javax.swing.JPanel {
         new Thread(ppDocumento::llenarCargos).start();;
         ppGeneros.llenarGeneros("");
         ppGruposVulnerables.llenarGruposVulnerables("");
-        new Thread(ppPrivilegios::llenarPrivilegios).start();
+        new Thread(ppPrivilegios::llenarCargos).start();
 
         ppDocumento.nuevoBtn.setEnabled(agregar);
         ppGeneros.nuevoBtn.setEnabled(agregar);

@@ -57,6 +57,11 @@ public class RnpObservaciones extends javax.swing.JPanel {
     private void initComponents() {
 
         grupo1 = new javax.swing.ButtonGroup();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        accionesTxt = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         srqInicialBtn = new rojeru_san.rsbutton.RSButtonRound();
         jLabel4 = new javax.swing.JLabel();
@@ -68,11 +73,6 @@ public class RnpObservaciones extends javax.swing.JPanel {
         observacionesTxt = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         preocupacionTxt = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        accionesTxt = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         indiceInicialBtn = new rojeru_san.rsbutton.RSButtonRound();
         jLabel9 = new javax.swing.JLabel();
@@ -84,7 +84,6 @@ public class RnpObservaciones extends javax.swing.JPanel {
         alertaIcon1 = new RSMaterialComponent.RSButtonIconDos();
         alertaMensaje2 = new javax.swing.JLabel();
         alertaIcon2 = new RSMaterialComponent.RSButtonIconDos();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         alertaIcon3 = new RSMaterialComponent.RSButtonIconDos();
         alertaMensaje3 = new javax.swing.JLabel();
@@ -92,12 +91,30 @@ public class RnpObservaciones extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         acnurRadio = new RSMaterialComponent.RSRadioButtonMaterial();
         pdafRadio = new RSMaterialComponent.RSRadioButtonMaterial();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
+
+        accionesTxt.setColumns(20);
+        accionesTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        accionesTxt.setRows(3);
+        jScrollPane3.setViewportView(accionesTxt);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("red de apoyo, educación, profesión, etc.");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("como familia, trabajo, cuando llegó a Perú");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Datos complementarios ( aspecto social )");
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observaciones y Evaluaciones SRQ - Indice B.", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 13))); // NOI18N
         setPreferredSize(new java.awt.Dimension(840, 767));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evaluación SRQ18 de Ingreso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 15))); // NOI18N
@@ -140,15 +157,15 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 35, Short.MAX_VALUE)
+                .addGap(0, 53, Short.MAX_VALUE)
                 .addComponent(srqInicialBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rSButtonIconDos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(resultadoSRQLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addComponent(resultadoSRQLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVerSrq, javax.swing.GroupLayout.PREFERRED_SIZE, 55, Short.MAX_VALUE)
+                .addComponent(btnVerSrq, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,36 +184,26 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, -1, -1));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Recomendaciones");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 390, -1));
 
         observacionesTxt.setColumns(20);
         observacionesTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         observacionesTxt.setRows(2);
         jScrollPane1.setViewportView(observacionesTxt);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 390, 80));
+
         preocupacionTxt.setColumns(20);
         preocupacionTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         preocupacionTxt.setRows(3);
         jScrollPane2.setViewportView(preocupacionTxt);
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Datos complementarios ( aspecto social )");
-
-        accionesTxt.setColumns(20);
-        accionesTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        accionesTxt.setRows(3);
-        jScrollPane3.setViewportView(accionesTxt);
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Motivo de Consulta ");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("red de apoyo, educación, profesión, etc.");
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 340, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evaluación Indice Bienestar de Ingreso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 15))); // NOI18N
@@ -244,7 +251,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
                         .addComponent(btnVerIndice, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(83, Short.MAX_VALUE)
                 .addComponent(indiceInicialBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rSButtonIconDos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,11 +273,15 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 640, -1, -1));
+
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 999, 810, 10));
 
         alertaMensaje1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         alertaMensaje1.setText("Paciente posee intenciones Suicidas.");
         alertaMensaje1.setToolTipText("Paciente posee intenciones Suicidas.");
+        add(alertaMensaje1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 860, 298, 40));
 
         alertaIcon1.setBackground(new java.awt.Color(204, 0, 0));
         alertaIcon1.setBackgroundHover(new java.awt.Color(153, 0, 0));
@@ -281,10 +292,12 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 alertaIcon1ActionPerformed(evt);
             }
         });
+        add(alertaIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 860, -1, -1));
 
-        alertaMensaje2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        alertaMensaje2.setText("Probabilidad de sindrome andioso-depresivo o algún trastorno mental");
+        alertaMensaje2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        alertaMensaje2.setText("Prob. de sindrome andioso-depresivo o trastorno mental");
         alertaMensaje2.setToolTipText("Probabilidad de sindrome andioso-depresivo o algún trastorno mental");
+        add(alertaMensaje2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 910, -1, 40));
 
         alertaIcon2.setBackground(new java.awt.Color(204, 0, 0));
         alertaIcon2.setBackgroundHover(new java.awt.Color(153, 0, 0));
@@ -295,14 +308,12 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 alertaIcon2ActionPerformed(evt);
             }
         });
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("como familia, trabajo, cuando llegó a Perú");
+        add(alertaIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, -1, 41));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("(Aspectos psicológicos)");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 340, 15));
 
         alertaIcon3.setBackground(new java.awt.Color(204, 0, 0));
         alertaIcon3.setBackgroundHover(new java.awt.Color(153, 0, 0));
@@ -313,10 +324,12 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 alertaIcon3ActionPerformed(evt);
             }
         });
+        add(alertaIcon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 860, -1, -1));
 
         alertaMensaje3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         alertaMensaje3.setText("Bajo Bienestar. Posible aplicación de ICD-10");
         alertaMensaje3.setToolTipText("Bajo Bienestar. Posible aplicación de ICD-10");
+        add(alertaMensaje3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 860, 355, 40));
 
         rSPanelRound1.setAnchoBorde(0.5F);
         rSPanelRound1.setColorBackground(new java.awt.Color(255, 255, 255));
@@ -355,7 +368,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addComponent(acnurRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pdafRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
         rSPanelRound1Layout.setVerticalGroup(
             rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,123 +381,15 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel1.setText(" ");
+        add(rSPanelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 860, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 982, 904, 10));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rSPanelRound1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(alertaIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(alertaMensaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alertaIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(alertaIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alertaMensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(alertaMensaje2))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jScrollPane1)
-                                .addGap(16, 16, 16))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(rSPanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(alertaIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(alertaIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(alertaMensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(alertaMensaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alertaIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(alertaMensaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Motivo de Consulta ");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 110, 340, 15));
     }// </editor-fold>//GEN-END:initComponents
 
     private void pdafRadioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pdafRadioStateChanged
@@ -603,13 +508,12 @@ public class RnpObservaciones extends javax.swing.JPanel {
     private rojeru_san.rsbutton.RSButtonRoundEffect btnVerSrq;
     private javax.swing.ButtonGroup grupo1;
     public rojeru_san.rsbutton.RSButtonRound indiceInicialBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
