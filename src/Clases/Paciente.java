@@ -1,6 +1,5 @@
 package Clases;
 
-import Ventanas.Index;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
@@ -8,10 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +25,17 @@ public class Paciente {
     int id = -1;
     String codigo, nombres, apellidos, tipoDocumento,dni, genero, fechaCreacion, fechaNacimiento, telefono,telefonoOpcional, correo, nacionalidad, condicionMigratoria,
             departamento, provincia, distrito, grupoVulnerable, discapacidad, redSoporte, nombreRedSoporte, srqIngreso, observacion, proyecto, motivoConsulta, acciones;
-    String modalidad,detalleDerivado,detalleOtroTelefono,contactoRedSoporte;
+    String modalidad, detalleDerivado, detalleOtroTelefono, contactoRedSoporte, cantidadGrupoFamiliar,
+            rbSeguro,
+            txtOtroSeguro,
+            ingresoPeru,
+            rbTrabajo,
+            txtTrabajo,
+            nivelEducativo,
+            otroNivelEducativo,
+            ocupacion,
+            subOcupacion;
+    
     int totalSesiones;
     String sql;
     PreparedStatement pst;
@@ -44,7 +50,14 @@ public class Paciente {
 
     }
 
-    public Paciente(int id, String codigo, String nombres, String apellidos,String dni, String tipoDocumentoxdni, String genero, String fechaCreacion, String fechaNacimiento, String telefono,String telefonoOpcional, String correo, String nacionalidad, String condicionMigratoria, String departamento, String provincia, String distrito, String grupoVulnerable, String discapacidad, String reSoporte, String nombreRedSoporte, String srqIngreso, String observacion, String proyecto, String motivoConsulta, String acciones, int totalSesiones, String modalidad,String detalleDerivado,String detalleOtroTelefono,String contactoRedSoporte) {
+    public Paciente(int id, String codigo, String nombres, String apellidos,String dni, String tipoDocumentoxdni, String genero,
+            String fechaCreacion, String fechaNacimiento, String telefono,String telefonoOpcional, String correo, String nacionalidad,
+            String condicionMigratoria, String departamento, String provincia, String distrito, String grupoVulnerable, String discapacidad,
+            String reSoporte, String nombreRedSoporte, String srqIngreso, String observacion, String proyecto, String motivoConsulta,
+            String acciones, int totalSesiones, String modalidad,String detalleDerivado,String detalleOtroTelefono,String contactoRedSoporte ,
+            String cantidadGrupoFamiliar,String rbSeguro,String txtOtroSeguro,String ingresoPeru,String rbTrabajo,String txtTrabajo,String nivelEducativo,
+            String otroNivelEducativo,String ocupacion,String subOcupacion    
+    ) {
         this.id = id;
         this.codigo = codigo;
         this.nombres = nombres;
@@ -76,6 +89,16 @@ public class Paciente {
         this.detalleDerivado=detalleDerivado;
         this.detalleOtroTelefono=detalleOtroTelefono;
         this.contactoRedSoporte=contactoRedSoporte;
+        this.cantidadGrupoFamiliar=cantidadGrupoFamiliar;
+        this.rbSeguro=rbSeguro;
+        this.txtOtroSeguro=txtOtroSeguro;
+        this.ingresoPeru=ingresoPeru;
+        this.rbTrabajo=rbTrabajo;
+        this.txtTrabajo=txtTrabajo;
+        this.nivelEducativo=nivelEducativo;
+        this.otroNivelEducativo=otroNivelEducativo;
+        this.ocupacion=ocupacion;
+        this.subOcupacion=subOcupacion;
     }
 
    
@@ -95,7 +118,12 @@ public class Paciente {
                         rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
-                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),
+                        rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")
+                );
                                                           //rs.getInt("idRP")
                 RegistroPaciente rp = new RegistroPaciente(rs.getInt("idRP"), rs.getInt("idPaciente"),
                         rs.getInt("idUsuario"), rs.getInt("idUsuarioAsignado"), rs.getString("fecha"),
@@ -144,7 +172,11 @@ public class Paciente {
                         rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
-                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),
+                        rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"));
                                                           
                  NotaEvolucion nota = new NotaEvolucion(
                 rs.getInt("idNota"),rs.getInt("idPacienteNota"),rs.getInt("idTerapeutaNota"),
@@ -183,9 +215,22 @@ public class Paciente {
     public int newPaciente(String nombrex, String apellidosx, String tipoDocumentox, String dnix, String generox, String fechaNacimientox, int totalSesiones,
             String telefonox,String telefonoOpcionalx, String correox, String nacionalidadx, String condicionMigratoriax, String departamentox, String provinciax, String distritox,
             String grupoVulnerablex, String discapacidadx, String redSoportex, String nombreRedSoportex, String srqIngresox, String observacionx,
-            String proyectox, String motivoConsultax, String accionesx, String codigox,String modalidadx,String detalleDerivadox,String detalleOtroTelefonox, String contactoRedSoportex) {
+            String proyectox, String motivoConsultax, String accionesx, String codigox,String modalidadx,
+            String detalleDerivadox,String detalleOtroTelefonox, String contactoRedSoportex,
+            
+            String cantidadGrupoFamiliar,
+            String rbSeguro,
+            String txtOtroSeguro,
+            String ingresoPeru,
+            String rbTrabajo,
+            String txtTrabajo,
+            String nivelEducativo,
+            String otroNivelEducativo,
+            String ocupacion,
+            String subOcupacion) {
         int valor = 0;
-        sql = "call  `sp.newPaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        sql = "call  `sp.newPaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"
+                + "?,?,?,?,?,?,?,?,?,?)";
         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
             pst = con.prepareCall(sql);
             pst.setString(1, nombrex);
@@ -217,6 +262,19 @@ public class Paciente {
             pst.setString(27, detalleDerivadox);
             pst.setString(28,detalleOtroTelefonox);
             pst.setString(29,contactoRedSoportex);
+            
+             pst.setString(30,cantidadGrupoFamiliar);
+            pst.setString(31,rbSeguro);
+            pst.setString(32,txtOtroSeguro);
+            pst.setString(33,ingresoPeru);
+            pst.setString(34,rbTrabajo);
+            pst.setString(35,txtTrabajo);
+            pst.setString(36,nivelEducativo);
+            pst.setString(37,otroNivelEducativo);
+            pst.setString(38,ocupacion);
+            pst.setString(39,subOcupacion);
+            
+            
             rs=pst.executeQuery();
             while(rs.next()){
                 valor=rs.getInt("@idInsertado");
@@ -533,7 +591,10 @@ public class Paciente {
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad"),
-                        rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -561,7 +622,10 @@ public ArrayList getPacientexFechaCreacion(String fecha01, String fecha02) {
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"));
             
              NotaEvolucion nota = new NotaEvolucion(
                 rs.getInt("idNota"),rs.getInt("idPacienteNota"),rs.getInt("idTerapeutaNota"),
@@ -617,7 +681,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -644,7 +711,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -673,7 +743,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -703,7 +776,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -731,7 +807,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -760,7 +839,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -790,7 +872,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -818,7 +903,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -847,7 +935,10 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte")));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion")));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -875,7 +966,10 @@ Paciente temp = new Paciente();
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado")
-                        ,rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                        ,rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"));
             }
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -916,9 +1010,21 @@ Paciente temp = new Paciente();
             String modalidadx,
             String detalleDerivadox,
             String detalleOtroTelefonox,
-            String contactoRedSoportex) {
+            String contactoRedSoportex,
+            
+            String cantidadGrupoFamiliar,
+            String rbSeguro,
+            String txtOtroSeguro,
+            String ingresoPeru,
+            String rbTrabajo,
+            String txtTrabajo,
+            String nivelEducativo,
+            String otroNivelEducativo,
+            String ocupacion,
+            String subOcupacion) {
         int valor = 0;
-        sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                + "?,?,?,?,?,?,?,?,?,?)";
         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
             pst = con.prepareCall(sql);
             pst.setInt(1, idx);
@@ -951,6 +1057,17 @@ Paciente temp = new Paciente();
             pst.setString(28, detalleDerivadox);
             pst.setString(29,detalleOtroTelefonox);
             pst.setString(30,contactoRedSoportex);
+            
+            pst.setString(31,cantidadGrupoFamiliar);
+            pst.setString(32,rbSeguro);
+            pst.setString(33,txtOtroSeguro);
+            pst.setString(34,ingresoPeru);
+            pst.setString(35,rbTrabajo);
+            pst.setString(36,txtTrabajo);
+            pst.setString(37,nivelEducativo);
+            pst.setString(38,otroNivelEducativo);
+            pst.setString(39,ocupacion);
+            pst.setString(40,subOcupacion);
             valor = pst.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -962,7 +1079,7 @@ Paciente temp = new Paciente();
     }
 public int updatePaciente2() {
         int valor = 0;
-        sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"+ "?,?,?,?,?,?,?,?,?,?)";
         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
             pst = con.prepareCall(sql);
             pst.setInt(1, id);
@@ -995,6 +1112,16 @@ public int updatePaciente2() {
             pst.setString(28, detalleDerivado);
             pst.setString(29,detalleOtroTelefono);
             pst.setString(30,contactoRedSoporte);
+            pst.setString(31,cantidadGrupoFamiliar);
+            pst.setString(32,rbSeguro);
+            pst.setString(33,txtOtroSeguro);
+            pst.setString(34,ingresoPeru);
+            pst.setString(35,rbTrabajo);
+            pst.setString(36,txtTrabajo);
+            pst.setString(37,nivelEducativo);
+            pst.setString(38,otroNivelEducativo);
+            pst.setString(39,ocupacion);
+            pst.setString(40,subOcupacion);
             valor = pst.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -1025,7 +1152,10 @@ public int updatePaciente2() {
                         rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
                         rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
                         rs.getInt("totalSesiones"),rs.getString("modalidad")
-                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"));
+                        ,rs.getString("detalleDerivado"),rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"));
                         
                 listax.add(p);
             }
@@ -1042,9 +1172,10 @@ public int updatePaciente2() {
 
     @Override
     public String toString() {
-        return "Paciente{" + "id=" + id + ", codigo=" + codigo + ", nombres=" + nombres + ", apellidos=" + apellidos + ", tipoDocumento=" + tipoDocumento + ", dni=" + dni + ", genero=" + genero + ", fechaCreacion=" + fechaCreacion + ", fechaNacimiento=" + fechaNacimiento + ", telefono=" + telefono + ", telefonoOpcional=" + telefonoOpcional + ", correo=" + correo + ", nacionalidad=" + nacionalidad + ", condicionMigratoria=" + condicionMigratoria + ", departamento=" + departamento + ", provincia=" + provincia + ", distrito=" + distrito + ", grupoVulnerable=" + grupoVulnerable + ", discapacidad=" + discapacidad + ", redSoporte=" + redSoporte + ", nombreRedSoporte=" + nombreRedSoporte + ", srqIngreso=" + srqIngreso + ", observacion=" + observacion + ", proyecto=" + proyecto + ", motivoConsulta=" + motivoConsulta + ", acciones=" + acciones + ", modalidad=" + modalidad + ", detalleDerivado=" + detalleDerivado + ", detalleOtroTelefono=" + detalleOtroTelefono + ", totalSesiones=" + totalSesiones + ", registros=" + registros + ", srq18s=" + srq18s + ", indices=" + indices + ", notas=" + notas + '}';
+        return "Paciente{" + "id=" + id + ", codigo=" + codigo + ", nombres=" + nombres + ", apellidos=" + apellidos + ", tipoDocumento=" + tipoDocumento + ", dni=" + dni + ", genero=" + genero + ", fechaCreacion=" + fechaCreacion + ", fechaNacimiento=" + fechaNacimiento + ", telefono=" + telefono + ", telefonoOpcional=" + telefonoOpcional + ", correo=" + correo + ", nacionalidad=" + nacionalidad + ", condicionMigratoria=" + condicionMigratoria + ", departamento=" + departamento + ", provincia=" + provincia + ", distrito=" + distrito + ", grupoVulnerable=" + grupoVulnerable + ", discapacidad=" + discapacidad + ", redSoporte=" + redSoporte + ", nombreRedSoporte=" + nombreRedSoporte + ", srqIngreso=" + srqIngreso + ", observacion=" + observacion + ", proyecto=" + proyecto + ", motivoConsulta=" + motivoConsulta + ", acciones=" + acciones + ", modalidad=" + modalidad + ", detalleDerivado=" + detalleDerivado + ", detalleOtroTelefono=" + detalleOtroTelefono + ", contactoRedSoporte=" + contactoRedSoporte + ", cantidadGrupoFamiliar=" + cantidadGrupoFamiliar + ", rbSeguro=" + rbSeguro + ", txtOtroSeguro=" + txtOtroSeguro + ", ingresoPeru=" + ingresoPeru + ", rbTrabajo=" + rbTrabajo + ", txtTrabajo=" + txtTrabajo + ", nivelEducativo=" + nivelEducativo + ", otroNivelEducativo=" + otroNivelEducativo + ", ocupacion=" + ocupacion + ", subOcupacion=" + subOcupacion + ", totalSesiones=" + totalSesiones + '}';
     }
 
+    
    
     public int getId() {
         return id;
@@ -1354,6 +1485,86 @@ public int updatePaciente2() {
     public void setDetalleDerivado(String detalleDerivado) {
         this.detalleDerivado = detalleDerivado;
     }
+
+    public String getCantidadGrupoFamiliar() {
+        return cantidadGrupoFamiliar;
+    }
+
+    public void setCantidadGrupoFamiliar(String cantidadGrupoFamiliar) {
+        this.cantidadGrupoFamiliar = cantidadGrupoFamiliar;
+    }
+
+    public String getRbSeguro() {
+        return rbSeguro;
+    }
+
+    public void setRbSeguro(String rbSeguro) {
+        this.rbSeguro = rbSeguro;
+    }
+
+    public String getTxtOtroSeguro() {
+        return txtOtroSeguro;
+    }
+
+    public void setTxtOtroSeguro(String txtOtroSeguro) {
+        this.txtOtroSeguro = txtOtroSeguro;
+    }
+
+    public String getIngresoPeru() {
+        return ingresoPeru;
+    }
+
+    public void setIngresoPeru(String ingresoPeru) {
+        this.ingresoPeru = ingresoPeru;
+    }
+
+    public String getRbTrabajo() {
+        return rbTrabajo;
+    }
+
+    public void setRbTrabajo(String rbTrabajo) {
+        this.rbTrabajo = rbTrabajo;
+    }
+
+    public String getTxtTrabajo() {
+        return txtTrabajo;
+    }
+
+    public void setTxtTrabajo(String txtTrabajo) {
+        this.txtTrabajo = txtTrabajo;
+    }
+
+    public String getNivelEducativo() {
+        return nivelEducativo;
+    }
+
+    public void setNivelEducativo(String nivelEducativo) {
+        this.nivelEducativo = nivelEducativo;
+    }
+
+    public String getOtroNivelEducativo() {
+        return otroNivelEducativo;
+    }
+
+    public void setOtroNivelEducativo(String otroNivelEducativo) {
+        this.otroNivelEducativo = otroNivelEducativo;
+    }
+
+    public String getOcupacion() {
+        return ocupacion;
+    }
+
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
+    }
+
+    public String getSubOcupacion() {
+        return subOcupacion;
+    }
+
+    public void setSubOcupacion(String subOcupacion) {
+        this.subOcupacion = subOcupacion;
+    }
     
     
     
@@ -1361,8 +1572,37 @@ public int updatePaciente2() {
 @Override
     public int hashCode() {
         return Objects.hash(id, codigo, nombres, apellidos, tipoDocumento, genero, fechaCreacion, fechaNacimiento, telefono, correo, nacionalidad, condicionMigratoria,
-                departamento, provincia, distrito, grupoVulnerable, discapacidad, redSoporte, nombreRedSoporte, srqIngreso, observacion, proyecto, motivoConsulta, acciones, totalSesiones,detalleOtroTelefono);
+                departamento, provincia, distrito, grupoVulnerable, discapacidad, redSoporte, nombreRedSoporte, srqIngreso, observacion, proyecto, motivoConsulta, acciones, totalSesiones,detalleOtroTelefono
+        ,cantidadGrupoFamiliar,
+        rbSeguro,txtOtroSeguro,ingresoPeru,rbTrabajo,txtTrabajo,nivelEducativo,otroNivelEducativo,ocupacion,subOcupacion);
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//
+//        Paciente p = (Paciente) obj;
+//
+//        return Float.compare(id, p.id) == 0 && codigo.equals(p.codigo) && nombres.equals(p.nombres) && apellidos.equals(p.apellidos) && tipoDocumento.equals(p.tipoDocumento)
+//                && genero.equals(p.genero) && fechaCreacion.equals(p.fechaCreacion) && fechaNacimiento.equals(p.fechaNacimiento) && telefono.equals(p.telefono) && correo.equals(p.correo) && nacionalidad.equals(p.nacionalidad) && condicionMigratoria.equals(p.condicionMigratoria)
+//                && departamento.equals(p.departamento) && provincia.equals(p.provincia) && distrito.equals(p.distrito) && grupoVulnerable.equals(p.grupoVulnerable)
+//                && discapacidad.equals(p.discapacidad) && redSoporte.equals(p.redSoporte) && nombreRedSoporte.equals(p.nombreRedSoporte) && srqIngreso.equals(p.srqIngreso) && observacion.equals(p.observacion) && proyecto.equals(p.proyecto)
+//                && motivoConsulta.equals(p.motivoConsulta) && acciones.equals(p.acciones) && detalleOtroTelefono.equals(p.detalleOtroTelefono)
+//                
+//                && cantidadGrupoFamiliar.equals(p.cantidadGrupoFamiliar) && rbSeguro.equals(p.rbSeguro) && txtOtroSeguro.equals(p.txtOtroSeguro)
+//                && ingresoPeru.equals(p.ingresoPeru) && rbTrabajo.equals(p.rbTrabajo) && txtTrabajo.equals(p.txtTrabajo) && nivelEducativo.equals(p.nivelEducativo)
+//                && otroNivelEducativo.equals(p.otroNivelEducativo) && ocupacion.equals(p.ocupacion) && subOcupacion.equals(p.subOcupacion)
+//                
+//                ;
+//    }
 
     @Override
     public boolean equals(Object obj) {
@@ -1375,14 +1615,116 @@ public int updatePaciente2() {
         if (getClass() != obj.getClass()) {
             return false;
         }
-
-        Paciente p = (Paciente) obj;
-
-        return Float.compare(id, p.id) == 0 && codigo.equals(p.codigo) && nombres.equals(p.nombres) && apellidos.equals(p.apellidos) && tipoDocumento.equals(p.tipoDocumento)
-                && genero.equals(p.genero) && fechaCreacion.equals(p.fechaCreacion) && fechaNacimiento.equals(p.fechaNacimiento) && telefono.equals(p.telefono) && correo.equals(p.correo) && nacionalidad.equals(p.nacionalidad) && condicionMigratoria.equals(p.condicionMigratoria)
-                && departamento.equals(p.departamento) && provincia.equals(p.provincia) && distrito.equals(p.distrito) && grupoVulnerable.equals(p.grupoVulnerable)
-                && discapacidad.equals(p.discapacidad) && redSoporte.equals(p.redSoporte) && nombreRedSoporte.equals(p.nombreRedSoporte) && srqIngreso.equals(p.srqIngreso) && observacion.equals(p.observacion) && proyecto.equals(p.proyecto)
-                && motivoConsulta.equals(p.motivoConsulta) && acciones.equals(p.acciones) && detalleOtroTelefono.equals(p.detalleOtroTelefono);
+        final Paciente other = (Paciente) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.totalSesiones != other.totalSesiones) {
+            return false;
+        }
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombres, other.nombres)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipoDocumento, other.tipoDocumento)) {
+            return false;
+        }
+        if (!Objects.equals(this.dni, other.dni)) {
+            return false;
+        }
+        if (!Objects.equals(this.genero, other.genero)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaCreacion, other.fechaCreacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefono, other.telefono)) {
+            return false;
+        }
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        if (!Objects.equals(this.nacionalidad, other.nacionalidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.condicionMigratoria, other.condicionMigratoria)) {
+            return false;
+        }
+        if (!Objects.equals(this.departamento, other.departamento)) {
+            return false;
+        }
+        if (!Objects.equals(this.provincia, other.provincia)) {
+            return false;
+        }
+        if (!Objects.equals(this.distrito, other.distrito)) {
+            return false;
+        }
+        if (!Objects.equals(this.grupoVulnerable, other.grupoVulnerable)) {
+            return false;
+        }
+        if (!Objects.equals(this.discapacidad, other.discapacidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.redSoporte, other.redSoporte)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombreRedSoporte, other.nombreRedSoporte)) {
+            return false;
+        }
+        if (!Objects.equals(this.srqIngreso, other.srqIngreso)) {
+            return false;
+        }
+        if (!Objects.equals(this.observacion, other.observacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.proyecto, other.proyecto)) {
+            return false;
+        }
+        if (!Objects.equals(this.motivoConsulta, other.motivoConsulta)) {
+            return false;
+        }
+        if (!Objects.equals(this.acciones, other.acciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.detalleOtroTelefono, other.detalleOtroTelefono)) {
+            return false;
+        }
+        if (!Objects.equals(this.cantidadGrupoFamiliar, other.cantidadGrupoFamiliar)) {
+            return false;
+        }
+        if (!Objects.equals(this.rbSeguro, other.rbSeguro)) {
+            return false;
+        }
+        if (!Objects.equals(this.txtOtroSeguro, other.txtOtroSeguro)) {
+            return false;
+        }
+        if (!Objects.equals(this.ingresoPeru, other.ingresoPeru)) {
+            return false;
+        }
+        if (!Objects.equals(this.rbTrabajo, other.rbTrabajo)) {
+            return false;
+        }
+        if (!Objects.equals(this.txtTrabajo, other.txtTrabajo)) {
+            return false;
+        }
+        if (!Objects.equals(this.nivelEducativo, other.nivelEducativo)) {
+            return false;
+        }
+        if (!Objects.equals(this.otroNivelEducativo, other.otroNivelEducativo)) {
+            return false;
+        }
+        if (!Objects.equals(this.ocupacion, other.ocupacion)) {
+            return false;
+        }
+        return Objects.equals(this.subOcupacion, other.subOcupacion);
     }
     
     

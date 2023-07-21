@@ -65,7 +65,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         txtIntegrantesGrupoFamiliar = new RSComponentShade.RSTextFieldShade();
         jLabel6 = new javax.swing.JLabel();
         rbSiSeguro = new rojerusan.RSRadioButton();
-        rSRadioButton2 = new rojerusan.RSRadioButton();
+        rbNoSeguro = new rojerusan.RSRadioButton();
         jLabel8 = new javax.swing.JLabel();
         txtOtroSeguro = new RSComponentShade.RSTextFieldShade();
         rbOtroSeguro = new rojerusan.RSRadioButton();
@@ -119,6 +119,11 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("¿Pertenece a una red de Soporte?");
 
+        condicionMigratoriaCombo.setColorArrow(new java.awt.Color(0, 102, 102));
+        condicionMigratoriaCombo.setColorBorde(new java.awt.Color(0, 102, 102));
+        condicionMigratoriaCombo.setColorFondo(new java.awt.Color(0, 102, 102));
+        condicionMigratoriaCombo.setColorSeleccion(new java.awt.Color(51, 51, 51));
+
         discapacidadTxt.setColumns(20);
         discapacidadTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         discapacidadTxt.setLineWrap(true);
@@ -143,6 +148,10 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         redSoporteTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         redSoporteTxt.setPlaceholder("Especificar(Opcional)");
 
+        grupoVulnerableCombo.setColorArrow(new java.awt.Color(0, 102, 102));
+        grupoVulnerableCombo.setColorBorde(new java.awt.Color(0, 102, 102));
+        grupoVulnerableCombo.setColorFondo(new java.awt.Color(0, 102, 102));
+        grupoVulnerableCombo.setColorSeleccion(new java.awt.Color(51, 51, 51));
         grupoVulnerableCombo.setDisabledIdex("");
         grupoVulnerableCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -271,9 +280,12 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         gpSeguro.add(rbSiSeguro);
         rbSiSeguro.setText("Si");
+        rbSiSeguro.setName("Si"); // NOI18N
 
-        gpSeguro.add(rSRadioButton2);
-        rSRadioButton2.setText("No");
+        gpSeguro.add(rbNoSeguro);
+        rbNoSeguro.setSelected(true);
+        rbNoSeguro.setText("No");
+        rbNoSeguro.setName("No"); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Tienen SIS-Seguro integral de salud?");
@@ -285,6 +297,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         gpSeguro.add(rbOtroSeguro);
         rbOtroSeguro.setText("Otro");
+        rbOtroSeguro.setName("Otro"); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Indique Cual (Solo si elije \"otro\")");
@@ -301,7 +314,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(rSRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbNoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbSiSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -331,7 +344,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
                         .addGap(1, 1, 1)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbSiSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rSRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(rbNoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,6 +362,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         jLabel15.setText("¿Actualmente se encuentra laborando?");
 
         gpTrabajo.add(rbNoTrabajo);
+        rbNoTrabajo.setSelected(true);
         rbNoTrabajo.setText("No");
 
         gpTrabajo.add(rbSiTrabajo);
@@ -604,8 +618,8 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
     public rojerusan.RSComboBox comboNivelEducativo;
     public rojerusan.RSComboBox condicionMigratoriaCombo;
     public javax.swing.JTextArea discapacidadTxt;
-    private javax.swing.ButtonGroup gpSeguro;
-    private javax.swing.ButtonGroup gpTrabajo;
+    public javax.swing.ButtonGroup gpSeguro;
+    public javax.swing.ButtonGroup gpTrabajo;
     public rojerusan.RSComboBox grupoVulnerableCombo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -632,7 +646,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
     public static javax.swing.JLabel lbTituloContactoRedsoporte;
     public static javax.swing.JLabel lbTituloContactoRedsoporte1;
     private javax.swing.JPopupMenu popUp;
-    public rojerusan.RSRadioButton rSRadioButton2;
+    public rojerusan.RSRadioButton rbNoSeguro;
     public rojerusan.RSRadioButton rbNoTrabajo;
     public rojerusan.RSRadioButton rbOtroSeguro;
     public rojerusan.RSRadioButton rbSiSeguro;

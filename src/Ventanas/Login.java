@@ -501,6 +501,7 @@ public class Login extends javax.swing.JFrame {
                                         RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.INFORMATION).setVisible(true);
                                         ingresarBtn.setEnabled(true);    
                     } else {
+                        ingresarBtn.setEnabled(false);
                         gif.setVisible(true);
                         setMensaje("validando credenciales");
 
@@ -516,6 +517,7 @@ public class Login extends javax.swing.JFrame {
                             setMensaje("Usuario no encontrado");
                             barra.setVisible(false);
                             nuevoValorBarra = 0;
+                            ingresarBtn.setEnabled(true);
                             new Thread(Login::setValorBarra).start();
                             new rojerusan.RSNotifyFade("¡Usuario no encontrado!",
                                     "Ingrese correctamente el usuario, no encontramos coincidencias en la base de datos.", 5,

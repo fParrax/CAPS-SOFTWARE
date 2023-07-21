@@ -8,7 +8,7 @@ package Panels;
 import Clases.CondicionMigratoria;
 import Clases.Generos;
 import Clases.GrupoVulnerable;
-import Ventanas.Index;
+import Clases.NivelEducativo;
 import java.util.ArrayList;
 
 public class ParametrosPanel extends javax.swing.JPanel {
@@ -19,6 +19,7 @@ public class ParametrosPanel extends javax.swing.JPanel {
     panelParametroCargo ppPrivilegios = new panelParametroCargo();
     panelParametroCondicionMigratoria ppCondicion = new panelParametroCondicionMigratoria();
     panelParametroDerivaciones ppDerivaciones = new panelParametroDerivaciones();
+    panelParametroNivelEducativo ppNivelEducativo = new panelParametroNivelEducativo();
 
     public ParametrosPanel() {
         initComponents();
@@ -109,7 +110,7 @@ public class ParametrosPanel extends javax.swing.JPanel {
         });
 
         btn7.setBackground(new java.awt.Color(58, 58, 58));
-        btn7.setText("-");
+        btn7.setText("Nivel Educativo");
         btn7.setBgHover(new java.awt.Color(255, 255, 255));
         btn7.setBgShade(new java.awt.Color(255, 255, 255));
         btn7.setBgShadeHover(new java.awt.Color(59, 59, 59));
@@ -339,7 +340,7 @@ public class ParametrosPanel extends javax.swing.JPanel {
                 btn6.setSelected(false);
                 btn7.setSelected(true);
                 btn8.setSelected(false);
-                // jScrollPane.setViewportView(ppCliente);
+                scroll.setViewportView(ppNivelEducativo);
                 break;
             case 8:
                 btn1.setSelected(false);
@@ -361,26 +362,31 @@ public class ParametrosPanel extends javax.swing.JPanel {
         ppGeneros.llenarGeneros("");
         ppGruposVulnerables.llenarGruposVulnerables("");
         new Thread(ppPrivilegios::llenarCargos).start();
+        ppNivelEducativo.llenarGeneros();
 
         ppDocumento.nuevoBtn.setEnabled(agregar);
         ppGeneros.nuevoBtn.setEnabled(agregar);
         ppGruposVulnerables.nuevoBtn.setEnabled(agregar);
         ppPrivilegios.nuevoBtn.setEnabled(agregar);
+        ppNivelEducativo.nuevoBtn.setEnabled(agregar);
 
         ppDocumento.editarBtn.setEnabled(editar);
         ppGeneros.editarBtn.setEnabled(editar);
         ppGruposVulnerables.editarBtn.setEnabled(editar);
         ppPrivilegios.editarBtn.setEnabled(editar);
+        ppNivelEducativo.editarBtn.setEnabled(editar);
 
         ppDocumento.agregar = agregar;
         ppGeneros.agregar = agregar;
         ppGruposVulnerables.agregar = agregar;
         ppPrivilegios.agregar = agregar;
+        ppNivelEducativo.agregar=agregar;
 
         ppDocumento.editar = editar;
         ppGeneros.editar = editar;
         ppGruposVulnerables.editar = editar;
         ppPrivilegios.editar = editar;
+        ppNivelEducativo.editar=editar;
     }
 
     public void setAgregar(boolean llave) {
@@ -487,7 +493,36 @@ public class ParametrosPanel extends javax.swing.JPanel {
             break;
             
             
-            
+            case "nivelEducativo":
+                if (panelIndexMenu.pnp.np.isVisible() || panelIndexMenu.pnp.np.isShowing()) {
+                    String nivelEducativo = panelIndexMenu.pnp.np.RnpPag2.comboNivelEducativo.getSelectedItem().toString();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                           ArrayList<NivelEducativo> niveles = (ArrayList) new GrupoVulnerable().Listar("").clone();
+                            panelIndexMenu.pnp.np.RnpPag2.grupoVulnerableCombo.removeAllItems();
+                            ArrayList<String> tmp = new ArrayList();
+                            int index = 0, myIndex = 0;
+                            for (NivelEducativo grupo : niveles) {
+                                if (grupo.getEstado().equalsIgnoreCase("activo") && !tmp.contains(grupo.getNombre())) {
+                                    panelIndexMenu.pnp.np.RnpPag2.comboNivelEducativo.addItem(grupo.getNombre());
+                                    if (grupo.getNombre().contains(nivelEducativo.toLowerCase())) {
+                                        myIndex = index;
+                                    }
+                                    tmp.add(grupo.getNombre());
+                                    index++;
+                                }
+                            }
+                            if (myIndex > 0) {
+                                panelIndexMenu.pnp.np.RnpPag2.comboNivelEducativo.setSelectedIndex(myIndex);
+                            }
+
+                        }
+                    }).start();
+                    
+                }
+            break;
             
             
             

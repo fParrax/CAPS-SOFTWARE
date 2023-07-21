@@ -11,6 +11,7 @@ import Clases.Generos;
 import Clases.GrupoVulnerable;
 import Clases.IndiceBienestar;
 import Clases.Mail;
+import Clases.NivelEducativo;
 import Clases.Paciente;
 import Clases.RegistroPaciente;
 import Clases.SRQ18;
@@ -839,6 +840,25 @@ public class newPaciente extends javax.swing.JFrame {
                 }
             }).start();
 
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    RnpPag2.comboNivelEducativo.removeAllItems();
+                    ArrayList<NivelEducativo> niveles = (ArrayList) new NivelEducativo().Listar("").clone();
+                    //RnpPag2.condicionMigratoriaCombo.removeAllItems();
+                    ArrayList<String> tmp = new ArrayList();
+                    for (NivelEducativo nivelEducativo : niveles) {
+                        if (nivelEducativo.getEstado().equalsIgnoreCase("activo") && !tmp.contains(nivelEducativo.getNombre())) {
+                            RnpPag2.comboNivelEducativo.addItem(nivelEducativo.getNombre());
+                            tmp.add(nivelEducativo.getNombre());
+                        }
+                    }
+                }
+            }).start();
+            
+            //****************************************************
+            
+            
             if (tipo.equalsIgnoreCase("editar")) {
 
                 // DATOS DE LA PAGINA 1 - DATOS PERSONALES
@@ -899,6 +919,39 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag2.totalSesionesTxt.setText(paciente.getTotalSesiones() + "");
                     RnpPag2.totalSesionesTxt.setEditable(false);
                 }
+                
+               // System.out.println(paciente.toString());
+                RnpPag2.txtIntegrantesGrupoFamiliar.setText(paciente.getCantidadGrupoFamiliar());
+                if(paciente.getRbSeguro().equalsIgnoreCase("si")){
+                    RnpPag2.rbSiSeguro.setSelected(true);
+                }else if(paciente.getRbSeguro().equalsIgnoreCase("no")){
+                     RnpPag2.rbNoSeguro.setSelected(true);
+                }else{
+                    RnpPag2.rbOtroSeguro.setSelected(true);
+                    RnpPag2.txtOtroSeguro.setEnabled(true);
+                    RnpPag2.txtOtroSeguro.setText(paciente.getTxtOtroSeguro());
+                }
+                
+                RnpPag2.txtIngresoPeru.setText(paciente.getIngresoPeru());
+                
+                if(paciente.getRbTrabajo().equalsIgnoreCase("no")){
+                    RnpPag2.rbNoTrabajo.setSelected(true);
+                }else{
+                    RnpPag2.rbSiTrabajo.setSelected(true);
+                    RnpPag2.txtSiTrabajo.setEnabled(true);
+                    RnpPag2.txtSiTrabajo.setText(paciente.getTxtTrabajo());
+                }
+                
+                RnpPag2.comboNivelEducativo.setSelectedItem(paciente.getNivelEducativo());
+                if(paciente.getNivelEducativo().equalsIgnoreCase("otro")){
+                    RnpPag2.txtOtroNivelEducativo.setEnabled(true);
+                    RnpPag2.txtOtroNivelEducativo.setText(paciente.getNivelEducativo());
+                }
+                RnpPag2.txtOcupacion.setText(paciente.getOcupacion());
+                RnpPag2.txtSubOcupacion.setText(paciente.getSubOcupacion());
+                
+                
+                
 
                 //DATOS DE LA PAGINA 3 - OBSERVACIONES
                 RnpPag3.srqInicialBtn.setEnabled(false);
@@ -1113,6 +1166,29 @@ public class newPaciente extends javax.swing.JFrame {
             }
 
         }
+        
+        String  cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
+        otroNivelEducativo, ocupacion,subOcupacion;
+       
+        cantidadGrupoFamiliar = RnpPag2.txtIntegrantesGrupoFamiliar.getText();
+        
+        rbSeguro = RnpPag2.rbSiSeguro.isSelected()
+                ?"Si"
+                : RnpPag2.rbNoSeguro.isSelected()
+                ?"No"
+                :"Otro";
+        txtOtroSeguro = RnpPag2.txtOtroSeguro.getText();
+        ingresoPeru=RnpPag2.txtIngresoPeru.getText();
+        rbTrabajo = RnpPag2.rbNoTrabajo.isSelected()
+                ? "No"
+                :"Si";
+        txtTrabajo = RnpPag2.txtSiTrabajo.getText();
+        nivelEducativo = RnpPag2.comboNivelEducativo.getSelectedItem().toString();
+        otroNivelEducativo = RnpPag2.txtOtroNivelEducativo.getText();
+        ocupacion = RnpPag2.txtOcupacion.getText();
+        subOcupacion=RnpPag2.txtSubOcupacion.getText();
+        
+        
 
         if (tipo.equalsIgnoreCase("nuevo")) {
             String nombreCompleto = RnpPag1.nombresTxt.getText() + " " + RnpPag1.apellidosTxt.getText();
@@ -1124,7 +1200,9 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag2.discapacidadTxt.getText(), redSoporte, nombreRedSoporte,
                     resultadoSRQIngreso + "", RnpPag3.observacionesTxt.getText(), proyecto,
                     RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente, modalidad, detalleDerivadox,
-                    RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText());
+                    RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
+                    cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
+                    otroNivelEducativo, ocupacion,subOcupacion);
 
             if (srq18.getIdsrq() >= 0) {
                 int evsr = new SRQ18().newSRQ18(idPacientex, Index.getUser().getId(), srq18.getLugar(),
@@ -1174,7 +1252,9 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag2.discapacidadTxt.getText(), redSoporte, nombreRedSoporte,
                     resultadoSRQIngreso + "", RnpPag3.observacionesTxt.getText(), proyecto,
                     RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente,
-                    modalidad, detalleDerivadox, RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText());
+                    modalidad, detalleDerivadox, RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
+                    cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
+                    otroNivelEducativo, ocupacion,subOcupacion);
             if (respuesta > 0) {
                 new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Actualización de Datos",
                         RnpPag3.observacionesTxt.getText(), hoy, "Activo");

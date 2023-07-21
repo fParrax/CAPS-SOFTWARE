@@ -114,7 +114,6 @@ public class RnpObservaciones extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observaciones y Evaluaciones SRQ - Indice B.", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 13))); // NOI18N
         setPreferredSize(new java.awt.Dimension(840, 767));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evaluación SRQ18 de Ingreso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 15))); // NOI18N
@@ -184,26 +183,19 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Recomendaciones");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 390, -1));
 
         observacionesTxt.setColumns(20);
         observacionesTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         observacionesTxt.setRows(2);
         jScrollPane1.setViewportView(observacionesTxt);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 390, 80));
-
         preocupacionTxt.setColumns(20);
         preocupacionTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         preocupacionTxt.setRows(3);
         jScrollPane2.setViewportView(preocupacionTxt);
-
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 340, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evaluación Indice Bienestar de Ingreso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 15))); // NOI18N
@@ -273,15 +265,11 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 640, -1, -1));
-
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 999, 810, 10));
 
         alertaMensaje1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         alertaMensaje1.setText("Paciente posee intenciones Suicidas.");
         alertaMensaje1.setToolTipText("Paciente posee intenciones Suicidas.");
-        add(alertaMensaje1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 860, 298, 40));
 
         alertaIcon1.setBackground(new java.awt.Color(204, 0, 0));
         alertaIcon1.setBackgroundHover(new java.awt.Color(153, 0, 0));
@@ -292,12 +280,10 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 alertaIcon1ActionPerformed(evt);
             }
         });
-        add(alertaIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 860, -1, -1));
 
         alertaMensaje2.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         alertaMensaje2.setText("Prob. de sindrome andioso-depresivo o trastorno mental");
         alertaMensaje2.setToolTipText("Probabilidad de sindrome andioso-depresivo o algún trastorno mental");
-        add(alertaMensaje2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 910, -1, 40));
 
         alertaIcon2.setBackground(new java.awt.Color(204, 0, 0));
         alertaIcon2.setBackgroundHover(new java.awt.Color(153, 0, 0));
@@ -308,12 +294,10 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 alertaIcon2ActionPerformed(evt);
             }
         });
-        add(alertaIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 910, -1, 41));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("(Aspectos psicológicos)");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 340, 15));
 
         alertaIcon3.setBackground(new java.awt.Color(204, 0, 0));
         alertaIcon3.setBackgroundHover(new java.awt.Color(153, 0, 0));
@@ -324,12 +308,10 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 alertaIcon3ActionPerformed(evt);
             }
         });
-        add(alertaIcon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 860, -1, -1));
 
         alertaMensaje3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         alertaMensaje3.setText("Bajo Bienestar. Posible aplicación de ICD-10");
         alertaMensaje3.setToolTipText("Bajo Bienestar. Posible aplicación de ICD-10");
-        add(alertaMensaje3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 860, 355, 40));
 
         rSPanelRound1.setAnchoBorde(0.5F);
         rSPanelRound1.setColorBackground(new java.awt.Color(255, 255, 255));
@@ -368,7 +350,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addComponent(acnurRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pdafRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         rSPanelRound1Layout.setVerticalGroup(
             rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,15 +363,97 @@ public class RnpObservaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        add(rSPanelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 860, -1));
-
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 982, 904, 10));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Motivo de Consulta ");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 110, 340, 15));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(alertaIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(alertaMensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(alertaIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(alertaMensaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(alertaIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(alertaMensaje2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(rSPanelRound1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(69, 69, 69)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(rSPanelRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alertaIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alertaMensaje1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alertaIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alertaMensaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alertaIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alertaMensaje2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void pdafRadioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pdafRadioStateChanged

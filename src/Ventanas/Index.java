@@ -167,7 +167,8 @@ public class Index extends javax.swing.JFrame {
         versionLabel.setText("Versión Actual:");
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Diseñado y desarrollado por: comredSystem.com");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Diseñado y desarrollado por: comredsystem.net.pe/");
 
         javax.swing.GroupLayout panelInferiorLayout = new javax.swing.GroupLayout(panelInferior);
         panelInferior.setLayout(panelInferiorLayout);
@@ -178,7 +179,7 @@ public class Index extends javax.swing.JFrame {
                 .addComponent(versionLabel)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addContainerGap(676, Short.MAX_VALUE))
+                .addContainerGap(650, Short.MAX_VALUE))
         );
         panelInferiorLayout.setVerticalGroup(
             panelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
