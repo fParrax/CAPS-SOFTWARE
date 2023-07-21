@@ -402,7 +402,8 @@ public class Login extends javax.swing.JFrame {
     private void usernameTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTxtKeyReleased
         
         try {
-            if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP && new tools().Obtener_mac().equals("00-24-81-CC-7D-05")){
+            if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP && new tools().Obtener_mac().equals("E8-40-F2-05-EC-40") 
+                    || new tools().Obtener_mac().equals("E8-40-F2-05-EC-40")){
                 usernameTxt.setText("dev");
                 passwordTxt.setText(".");
                 captchaTxt.setText(captchaLabel.getText());

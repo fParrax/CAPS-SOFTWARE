@@ -858,6 +858,7 @@ public class newPaciente extends javax.swing.JFrame {
             
             //****************************************************
             
+           // esperar(1500);
             
             if (tipo.equalsIgnoreCase("editar")) {
 
@@ -1121,6 +1122,15 @@ public class newPaciente extends javax.swing.JFrame {
     private void esperar() {
         try {
             Thread.sleep(15);
+            barra.repaint();
+            barra.revalidate();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(newPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     private void esperar(int valor) {
+        try {
+            Thread.sleep(valor);
             barra.repaint();
             barra.revalidate();
         } catch (InterruptedException ex) {
