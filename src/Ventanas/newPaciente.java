@@ -745,9 +745,8 @@ public class newPaciente extends javax.swing.JFrame {
                 }
             }).start();
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+           
+            
                     ArrayList<GrupoVulnerable> grupos = (ArrayList) new GrupoVulnerable().Listar("").clone();
                     RnpPag2.grupoVulnerableCombo.removeAllItems();
                     ArrayList<String> tmp = new ArrayList();
@@ -757,8 +756,8 @@ public class newPaciente extends javax.swing.JFrame {
                             tmp.add(grupo.getNombre());
                         }
                     }
-                }
-            }).start();
+            
+            
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -790,19 +789,7 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag1.nacionalidadTxt.addItem("Colombia");
                     RnpPag1.nacionalidadTxt.addItem("Perú");
                     RnpPag1.nacionalidadTxt.addItem("Venezuela");
-                    /*
-                    for(Paciente paciente:pacientes){
-                        
-                        if(!paciente.getNacionalidad().toLowerCase().contains("rsitem")
-                                &&
-                            !paciente.getNacionalidad().isEmpty()
-                                &&
-                            !nacs.contains(paciente.getNacionalidad().toLowerCase())){
-                            docs.add(paciente.getNacionalidad().toLowerCase());
-                            RnpPag1.nacionalidadTxt.addItem(paciente.getNacionalidad());
-                        }
-                    }
-                     */
+                    
 
                 }
             }).start();
@@ -840,21 +827,18 @@ public class newPaciente extends javax.swing.JFrame {
                 }
             }).start();
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+            
                     RnpPag2.comboNivelEducativo.removeAllItems();
                     ArrayList<NivelEducativo> niveles = (ArrayList) new NivelEducativo().Listar("").clone();
                     //RnpPag2.condicionMigratoriaCombo.removeAllItems();
-                    ArrayList<String> tmp = new ArrayList();
+                    ArrayList<String> tmpx = new ArrayList();
                     for (NivelEducativo nivelEducativo : niveles) {
                         if (nivelEducativo.getEstado().equalsIgnoreCase("activo") && !tmp.contains(nivelEducativo.getNombre())) {
                             RnpPag2.comboNivelEducativo.addItem(nivelEducativo.getNombre());
-                            tmp.add(nivelEducativo.getNombre());
+                            tmpx.add(nivelEducativo.getNombre());
                         }
                     }
-                }
-            }).start();
+               
             
             //****************************************************
             
@@ -946,7 +930,7 @@ public class newPaciente extends javax.swing.JFrame {
                 RnpPag2.comboNivelEducativo.setSelectedItem(paciente.getNivelEducativo());
                 if(paciente.getNivelEducativo().equalsIgnoreCase("otro")){
                     RnpPag2.txtOtroNivelEducativo.setEnabled(true);
-                    RnpPag2.txtOtroNivelEducativo.setText(paciente.getNivelEducativo());
+                    RnpPag2.txtOtroNivelEducativo.setText(paciente.getOtroNivelEducativo());
                 }
                 RnpPag2.txtOcupacion.setText(paciente.getOcupacion());
                 RnpPag2.txtSubOcupacion.setText(paciente.getSubOcupacion());

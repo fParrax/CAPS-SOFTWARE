@@ -403,7 +403,7 @@ public class Login extends javax.swing.JFrame {
         
         try {
             if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP && new tools().Obtener_mac().equals("E8-40-F2-05-EC-40") 
-                    || new tools().Obtener_mac().equals("E8-40-F2-05-EC-40")){
+                    || new tools().Obtener_mac().equals("00-24-81-CC-7D-05")){
                 usernameTxt.setText("dev");
                 passwordTxt.setText(".");
                 captchaTxt.setText(captchaLabel.getText());
