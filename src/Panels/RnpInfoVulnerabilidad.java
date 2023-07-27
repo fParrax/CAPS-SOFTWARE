@@ -4,6 +4,7 @@
  */
 package Panels;
 
+import Ventanas.newPaciente;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -224,6 +225,11 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         comboNivelEducativo.setColorFondo(new java.awt.Color(0, 102, 102));
         comboNivelEducativo.setColorSeleccion(new java.awt.Color(102, 102, 102));
         comboNivelEducativo.setDisabledIdex("");
+        comboNivelEducativo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboNivelEducativoItemStateChanged(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setText("Nivel educativo.");
@@ -292,12 +298,18 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         txtOtroSeguro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtOtroSeguro.setBgShadeHover(new java.awt.Color(0, 0, 0));
+        txtOtroSeguro.setEnabled(false);
         txtOtroSeguro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtOtroSeguro.setPlaceholder("");
 
         gpSeguro.add(rbOtroSeguro);
         rbOtroSeguro.setText("Otro");
         rbOtroSeguro.setName("Otro"); // NOI18N
+        rbOtroSeguro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbOtroSeguroItemStateChanged(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Indique Cual (Solo si elije \"otro\")");
@@ -367,9 +379,15 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         gpTrabajo.add(rbSiTrabajo);
         rbSiTrabajo.setText("Si");
+        rbSiTrabajo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbSiTrabajoItemStateChanged(evt);
+            }
+        });
 
         txtSiTrabajo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSiTrabajo.setBgShadeHover(new java.awt.Color(0, 0, 0));
+        txtSiTrabajo.setEnabled(false);
         txtSiTrabajo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSiTrabajo.setPlaceholder("");
 
@@ -440,6 +458,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         txtSubOcupacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSubOcupacion.setBgShadeHover(new java.awt.Color(0, 0, 0));
+        txtSubOcupacion.setEnabled(false);
         txtSubOcupacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSubOcupacion.setPlaceholder("");
 
@@ -448,10 +467,10 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtOcupacion, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtOcupacion, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -611,6 +630,39 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
     private void grupoVulnerableComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_grupoVulnerableComboItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_grupoVulnerableComboItemStateChanged
+
+    private void rbOtroSeguroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbOtroSeguroItemStateChanged
+       if(rbOtroSeguro.isSelected()){
+            txtOtroSeguro.setEnabled(rbOtroSeguro.isSelected());
+            
+       }else{
+            txtOtroSeguro.setEnabled(rbOtroSeguro.isSelected());
+            txtOtroSeguro.setText("");
+       }
+       
+    }//GEN-LAST:event_rbOtroSeguroItemStateChanged
+
+    private void rbSiTrabajoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbSiTrabajoItemStateChanged
+       
+        if(rbSiTrabajo.isSelected()){
+            txtSiTrabajo.setEnabled(rbSiTrabajo.isSelected());
+        }else{
+            txtSiTrabajo.setEnabled(rbSiTrabajo.isSelected());
+            txtSiTrabajo.setText("");
+        }
+       
+    }//GEN-LAST:event_rbSiTrabajoItemStateChanged
+
+    private void comboNivelEducativoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboNivelEducativoItemStateChanged
+        if(newPaciente.a>0){
+            if(comboNivelEducativo.getSelectedItem().toString().equalsIgnoreCase("otro")){
+         txtOtroNivelEducativo.setEnabled(true);
+     }else{
+         txtOtroNivelEducativo.setEnabled(true);
+     }
+        }
+     
+    }//GEN-LAST:event_comboNivelEducativoItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

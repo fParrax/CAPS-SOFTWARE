@@ -46,7 +46,7 @@ public class Index extends javax.swing.JFrame {
         ss = new ScrollSens(scrollMenu);
         new ScrollSens(scrollCentral);
         changeIcon();
-
+            
         menu = new panelIndexMenu(user.getCargo(),this);
         scrollMenu.setViewportView(menu);
         new Thread(Index::iniciarDatos).start();

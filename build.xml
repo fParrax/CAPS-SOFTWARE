@@ -10,8 +10,11 @@
 <project name="Caps2023" default="default" basedir=".">
      <target name= "-post-jar">
         <jar jarfile="${dist.jar}" update="true">
+                   
             
-            <zipfileset src="R:\Caps\01.Libs\commons-codec-1.13.jar" excludes="META-INF/*"/>
+            
+            <!--
+    <zipfileset src="R:\Caps\01.Libs\commons-codec-1.13.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\commons-dbcp2-2.7.0.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\commons-dbcp2-2.4.0.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\commons-logging-1.2.jar" excludes="META-INF/*"/>
@@ -26,7 +29,7 @@
             <zipfileset src="R:\Caps\01.Libs\junit-4.11.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\mysql-connector-java-8.0.29.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\orsoncharts-1.4-eval-nofx.jar" excludes="META-INF/*"/>
-             <zipfileset src="R:\Caps\01.Libs\javax.activation-1.2.0.jar" excludes="META-INF/*"/>
+            <zipfileset src="R:\Caps\01.Libs\javax.activation-1.2.0.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\orsonpdf-1.6-eval.jar" excludes="META-INF/*"/>   
             <zipfileset src="R:\Caps\01.Libs\poi-3.9-20121203.jar" excludes="META-INF/*"/>   
             <zipfileset src="R:\Caps\01.Libs\RojeruSan.full_9.6.jar" excludes="META-INF/*"/>   
@@ -41,6 +44,35 @@
             <zipfileset src="R:\Caps\01.Libs\JasperReports\commons-javaflow.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\JasperReports\commons-logging-1.1.jar" excludes="META-INF/*"/>
             <zipfileset src="R:\Caps\01.Libs\JasperReports\jasperreports-6.3.0.jar" excludes="META-INF/*"/>
+
+           -->
+                                                         
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\commons-codec-1.13.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\commons-dbcp2-2.7.0.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\commons-dbcp2-2.4.0.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\commons-logging-1.2.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\commons-pool2-2.8.0.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\hamcrest-core-1.3.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\javax.mail.jar" excludes="META-INF/*"/>   
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\jcommon-1.0.23.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\jfreechart-1.0.19.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\jfreechart-1.0.19-experimental.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\jfreechart-1.0.19-swt.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\jfreesvg-2.0.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\junit-4.11.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\mysql-connector-java-8.0.29.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\orsoncharts-1.4-eval-nofx.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\javax.activation-1.2.0.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\poi-3.9-20121203.jar" excludes="META-INF/*"/>   
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\RojeruSan.full_9.6.jar" excludes="META-INF/*"/>   
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\RSAnimation.jar" excludes="META-INF/*"/>    
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\RSNotify v1.0.jar" excludes="META-INF/*"/>    
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\servlet.jar" excludes="META-INF/*"/>
+            <zipfileset src="C:\Users\Franklin\Documents\LibCapSoftware\swtgraphics2d.jar" excludes="META-INF/*"/>
+            
+            
+                     
+            
             
             
         </jar>
