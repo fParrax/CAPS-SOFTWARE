@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
+    boolean llaveInicio = false;
     public RnpInfoVulnerabilidad() {
         initComponents();
         redSoporteTxt.setVisible(false);
@@ -653,14 +654,21 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
        
     }//GEN-LAST:event_rbSiTrabajoItemStateChanged
 
+    
+
+
+
     private void comboNivelEducativoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboNivelEducativoItemStateChanged
-        if(newPaciente.a>0){
-            if(comboNivelEducativo.getSelectedItem().toString().equalsIgnoreCase("otro")){
-         txtOtroNivelEducativo.setEnabled(true);
-     }else{
-         txtOtroNivelEducativo.setEnabled(true);
-     }
+     /*
+        if (newPaciente.a>0) {
+            if (comboNivelEducativo.getSelectedItem().toString().equalsIgnoreCase("otro")) {
+                txtOtroNivelEducativo.setEnabled(true);
+            } else {
+                txtOtroNivelEducativo.setEnabled(true);
+            }
         }
+        */
+        
      
     }//GEN-LAST:event_comboNivelEducativoItemStateChanged
 
@@ -724,5 +732,7 @@ public static String validar(){
         jLabel7.setVisible(false);
     return resultado="";
 }
-
+public void setLlaveInicio(boolean llave){
+    llaveInicio=llave;
+}
 }

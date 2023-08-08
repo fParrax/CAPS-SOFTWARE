@@ -35,14 +35,17 @@ public class panelIndexMenu extends javax.swing.JPanel {
         initComponents();
         this.priv = priv;
         this.index=index;
+        
         new Thread(new Runnable() {
             @Override
             public void run() {
                 pp = new ParametrosPanel();
             }
         }).start();
-        new Thread(this::iniciarMenu).start();
         
+        
+        new Thread(this::iniciarMenu).start();
+         
         btn1.setVisible(true);
     }
 

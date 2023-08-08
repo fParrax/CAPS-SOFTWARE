@@ -107,7 +107,6 @@ public class newPaciente extends javax.swing.JFrame {
         changeIcon();
         iniciar();
     }
-
     public void changeIcon() {
         Image icon = new ImageIcon(getClass().getResource("/imgs/logo.png")).getImage();
         setIconImage(icon);
@@ -711,6 +710,7 @@ public class newPaciente extends javax.swing.JFrame {
     }
     */
  public static int a=0;
+ 
     private void iniciar() {
         setExtendedState(MAXIMIZED_BOTH);
         pp.setLayout(new BoxLayout(pp, BoxLayout.Y_AXIS));
@@ -838,8 +838,10 @@ public class newPaciente extends javax.swing.JFrame {
                             tmpx.add(nivelEducativo.getNombre());
                         }
                     }
-               
-            a=1;
+                    a=1;
+
+            RnpPag2.setLlaveInicio(true);
+
             //****************************************************
             
            // esperar(1500);
