@@ -145,6 +145,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         jLabel4.setText("Genero");
 
         generoCombo.setDisabledIdex("");
+        generoCombo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -244,8 +245,10 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         });
 
         nacionalidadTxt.setDisabledIdex("");
+        nacionalidadTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         departamentoTxt.setDisabledIdex("");
+        departamentoTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         departamentoTxt.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 departamentoTxtItemStateChanged(evt);
@@ -253,6 +256,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         });
 
         provinviaTxt.setDisabledIdex("");
+        provinviaTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         provinviaTxt.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 provinviaTxtItemStateChanged(evt);
@@ -260,6 +264,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         });
 
         distritoTxt.setDisabledIdex("");
+        distritoTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

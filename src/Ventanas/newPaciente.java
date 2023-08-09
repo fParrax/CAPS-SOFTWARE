@@ -28,6 +28,8 @@ import java.awt.Component;
 import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -709,6 +711,19 @@ public class newPaciente extends javax.swing.JFrame {
 
     }
     */
+    
+    
+    public static String cambiarFormatoFecha(String fecha) {
+        // Crear un objeto LocalDate con la fecha recibida
+        LocalDate fechaOriginal = LocalDate.parse(fecha);
+         // Definir el formato deseado para la fecha
+        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+         // Formatear la fecha al formato deseado
+        String fechaFormateada = fechaOriginal.format(formatoDeseado);
+         // Retornar la fecha formateada
+        return fechaFormateada;
+    }
+    
  public static int a=0;
  
     private void iniciar() {
@@ -873,7 +888,9 @@ public class newPaciente extends javax.swing.JFrame {
                 
                 
                 RnpPag1.generoCombo.setSelectedItem(paciente.getGenero());
-                RnpPag1.fnac.setDatoFecha(new SimpleDateFormat("dd-MM-yyyy").parse(paciente.getFechaNacimiento().replace("/", "-")));
+                RnpPag1.fnac.setDatoFecha(new SimpleDateFormat("dd-MM-yyyy").parse(cambiarFormatoFecha(paciente.getFechaNacimiento())));
+                System.out.println("Fnac: "+paciente.getFechaNacimiento());
+                System.out.println("F2: "+new SimpleDateFormat("dd-MM-yyyy").parse(paciente.getFechaNacimiento().replace("/", "-")));
                 RnpPag1.telefonoTxt.setText(paciente.getTelefono());
                 RnpPag1.telefonoOpcionalTxt.setText(paciente.getTelefonoOpcional());
                 RnpPag1.correoTxt.setText(paciente.getCorreo());
@@ -1114,6 +1131,7 @@ public class newPaciente extends javax.swing.JFrame {
             Logger.getLogger(newPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
      private void esperar(int valor) {
         try {
             Thread.sleep(valor);
@@ -1239,6 +1257,7 @@ public class newPaciente extends javax.swing.JFrame {
             this.dispose();
 
         } else {
+            System.out.println("Editando");
             int respuesta = paciente.updatePaciente(paciente.getId(),
                     RnpPag1.nombresTxt.getText(), RnpPag1.apellidosTxt.getText(), tipoDoc, RnpPag1.dniTxt.getText(),
                     RnpPag1.generoCombo.getSelectedItem().toString(), fechaNacx, totalSesiones, RnpPag1.telefonoTxt.getText(), RnpPag1.telefonoOpcionalTxt.getText(),
@@ -1251,6 +1270,7 @@ public class newPaciente extends javax.swing.JFrame {
                     modalidad, detalleDerivadox, RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
                     cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
                     otroNivelEducativo, ocupacion,subOcupacion);
+            System.out.println("R: "+respuesta);
             if (respuesta > 0) {
                 new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Actualización de Datos",
                         RnpPag3.observacionesTxt.getText(), hoy, "Activo");
@@ -1369,6 +1389,7 @@ private void verVertical() {
         scrollContenido.setViewportView(pp);
 
     }
+
     private void verHorizontal() {
         
         panelMenu.setVisible(true);

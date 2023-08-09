@@ -459,7 +459,6 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         txtSubOcupacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSubOcupacion.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        txtSubOcupacion.setEnabled(false);
         txtSubOcupacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtSubOcupacion.setPlaceholder("");
 
