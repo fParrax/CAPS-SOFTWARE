@@ -249,6 +249,9 @@
         <Component class="rojeru_san.rsbutton.RSButtonRound" name="srqInicialBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="+ Generar SRQ"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="13" style="1"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="srqInicialBtnActionPerformed"/>
@@ -269,7 +272,7 @@
         <Component class="javax.swing.JLabel" name="resultadoSRQLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="Segoe UI" size="13" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Esperando Resultados "/>
@@ -291,6 +294,9 @@
         <Component class="rojeru_san.rsbutton.RSButtonRoundEffect" name="btnVerSrq">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver SRQ"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="13" style="1"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerSrqActionPerformed"/>
@@ -318,7 +324,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
+              <Font name="Segoe UI" size="13" style="0"/>
             </Property>
             <Property name="rows" type="int" value="2"/>
           </Properties>
@@ -339,7 +345,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
+              <Font name="Segoe UI" size="13" style="0"/>
             </Property>
             <Property name="rows" type="int" value="3"/>
           </Properties>
@@ -411,6 +417,9 @@
         <Component class="rojeru_san.rsbutton.RSButtonRound" name="indiceInicialBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="+ Generar Indice B."/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="13" style="1"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiceInicialBtnActionPerformed"/>
@@ -431,7 +440,7 @@
         <Component class="javax.swing.JLabel" name="resultadoIndiceLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="Segoe UI" size="13" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Esperando Resultados "/>
@@ -453,6 +462,9 @@
         <Component class="rojeru_san.rsbutton.RSButtonRoundEffect" name="btnVerIndice">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Indice"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="13" style="1"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerIndiceActionPerformed"/>

@@ -72,13 +72,14 @@ public class RnpFinalizar extends javax.swing.JPanel {
         resumenLabel.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         resumenLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Deseo:");
 
         grupo1.add(radio1);
         radio1.setSelected(true);
         radio1.setText("Enviar Paciente a Lista de Espera");
+        radio1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         radio1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radio1StateChanged(evt);
@@ -87,6 +88,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
 
         grupo1.add(radio2);
         radio2.setText("Derivarlo directamente con un Terapeuta");
+        radio2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         radio2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radio2StateChanged(evt);
@@ -106,6 +108,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
         finalizarBtn.setBackground(new java.awt.Color(0, 102, 51));
         finalizarBtn.setText("Finalizar Registro");
         finalizarBtn.setColorHover(new java.awt.Color(0, 153, 0));
+        finalizarBtn.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         finalizarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finalizarBtnActionPerformed(evt);
@@ -116,14 +119,16 @@ public class RnpFinalizar extends javax.swing.JPanel {
 
         fechaCitaTxt.setToolTipText("Ingrese fecha de la cita con el terapeuta");
         fechaCitaTxt.setFormatoFecha("dd-MM-yyyy");
+        fechaCitaTxt.setFuente(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         fechaCitaTxt.setPlaceholder("   Fecha Cita");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Modalidad:");
 
         modalidadCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Directo", "Derivado" }));
         modalidadCombo.setDisabledIdex("");
+        modalidadCombo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         modalidadCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 modalidadComboItemStateChanged(evt);
@@ -132,6 +137,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
+        derivadoCombo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         derivadoCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 derivadoComboItemStateChanged(evt);

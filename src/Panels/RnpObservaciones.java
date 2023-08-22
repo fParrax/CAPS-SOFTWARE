@@ -119,6 +119,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evaluación SRQ18 de Ingreso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 15))); // NOI18N
 
         srqInicialBtn.setText("+ Generar SRQ");
+        srqInicialBtn.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         srqInicialBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 srqInicialBtnActionPerformed(evt);
@@ -129,7 +130,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Resultado:");
 
-        resultadoSRQLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        resultadoSRQLabel.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         resultadoSRQLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultadoSRQLabel.setText("Esperando Resultados ");
 
@@ -141,6 +142,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
         });
 
         btnVerSrq.setText("Ver SRQ");
+        btnVerSrq.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnVerSrq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerSrqActionPerformed(evt);
@@ -188,12 +190,12 @@ public class RnpObservaciones extends javax.swing.JPanel {
         jLabel3.setText("Recomendaciones");
 
         observacionesTxt.setColumns(20);
-        observacionesTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        observacionesTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         observacionesTxt.setRows(2);
         jScrollPane1.setViewportView(observacionesTxt);
 
         preocupacionTxt.setColumns(20);
-        preocupacionTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        preocupacionTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         preocupacionTxt.setRows(3);
         jScrollPane2.setViewportView(preocupacionTxt);
 
@@ -201,6 +203,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Evaluación Indice Bienestar de Ingreso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 15))); // NOI18N
 
         indiceInicialBtn.setText("+ Generar Indice B.");
+        indiceInicialBtn.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         indiceInicialBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indiceInicialBtnActionPerformed(evt);
@@ -211,7 +214,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Resultado:");
 
-        resultadoIndiceLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        resultadoIndiceLabel.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         resultadoIndiceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultadoIndiceLabel.setText("Esperando Resultados ");
 
@@ -223,6 +226,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
         });
 
         btnVerIndice.setText("Ver Indice");
+        btnVerIndice.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnVerIndice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerIndiceActionPerformed(evt);

@@ -58,11 +58,6 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         txtContactoRedSoporte = new RSComponentShade.RSTextFieldShade();
         lbTituloContactoRedsoporte = new javax.swing.JLabel();
         lbTituloContactoRedsoporte1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        comboNivelEducativo = new rojerusan.RSComboBox();
-        jLabel17 = new javax.swing.JLabel();
-        txtOtroNivelEducativo = new RSComponentShade.RSTextFieldShade();
-        jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtIntegrantesGrupoFamiliar = new RSComponentShade.RSTextFieldShade();
         jLabel6 = new javax.swing.JLabel();
@@ -80,6 +75,10 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         rbSiTrabajo = new rojerusan.RSRadioButton();
         txtSiTrabajo = new RSComponentShade.RSTextFieldShade();
         jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        comboNivelEducativo = new rojerusan.RSComboBox();
+        txtOtroNivelEducativo = new RSComponentShade.RSTextFieldShade();
         jPanel6 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         txtOcupacion = new RSComponentShade.RSTextFieldShade();
@@ -125,9 +124,10 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         condicionMigratoriaCombo.setColorBorde(new java.awt.Color(0, 102, 102));
         condicionMigratoriaCombo.setColorFondo(new java.awt.Color(0, 102, 102));
         condicionMigratoriaCombo.setColorSeleccion(new java.awt.Color(51, 51, 51));
+        condicionMigratoriaCombo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
 
         discapacidadTxt.setColumns(20);
-        discapacidadTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        discapacidadTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         discapacidadTxt.setLineWrap(true);
         discapacidadTxt.setRows(3);
         jScrollPane1.setViewportView(discapacidadTxt);
@@ -147,7 +147,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         redSoporteTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         redSoporteTxt.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        redSoporteTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        redSoporteTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         redSoporteTxt.setPlaceholder("Especificar(Opcional)");
 
         grupoVulnerableCombo.setColorArrow(new java.awt.Color(0, 102, 102));
@@ -155,6 +155,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         grupoVulnerableCombo.setColorFondo(new java.awt.Color(0, 102, 102));
         grupoVulnerableCombo.setColorSeleccion(new java.awt.Color(51, 51, 51));
         grupoVulnerableCombo.setDisabledIdex("");
+        grupoVulnerableCombo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         grupoVulnerableCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 grupoVulnerableComboItemStateChanged(evt);
@@ -207,7 +208,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         txtContactoRedSoporte.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtContactoRedSoporte.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        txtContactoRedSoporte.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtContactoRedSoporte.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtContactoRedSoporte.setPlaceholder("Especificar(Opcional)");
 
         lbTituloContactoRedsoporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -218,68 +219,11 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         lbTituloContactoRedsoporte1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTituloContactoRedsoporte1.setText("(En caso de omitir la Opción \"SI\", se considerará que no pertenece a una red de soporte)");
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        comboNivelEducativo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Educación primaria", "d", "d", "d", "d" }));
-        comboNivelEducativo.setColorArrow(new java.awt.Color(0, 102, 102));
-        comboNivelEducativo.setColorBorde(new java.awt.Color(0, 102, 102));
-        comboNivelEducativo.setColorFondo(new java.awt.Color(0, 102, 102));
-        comboNivelEducativo.setColorSeleccion(new java.awt.Color(102, 102, 102));
-        comboNivelEducativo.setDisabledIdex("");
-        comboNivelEducativo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboNivelEducativoItemStateChanged(evt);
-            }
-        });
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel17.setText("Nivel educativo.");
-
-        txtOtroNivelEducativo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtOtroNivelEducativo.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        txtOtroNivelEducativo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtOtroNivelEducativo.setPlaceholder("");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel18.setText("Describa Cual (Solo Disponible si selecciona \"otro\")");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboNivelEducativo, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel18)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(txtOtroNivelEducativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboNivelEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtOtroNivelEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         txtIntegrantesGrupoFamiliar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtIntegrantesGrupoFamiliar.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        txtIntegrantesGrupoFamiliar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIntegrantesGrupoFamiliar.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtIntegrantesGrupoFamiliar.setPlaceholder("");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -287,11 +231,13 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         gpSeguro.add(rbSiSeguro);
         rbSiSeguro.setText("Si");
+        rbSiSeguro.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         rbSiSeguro.setName("Si"); // NOI18N
 
         gpSeguro.add(rbNoSeguro);
         rbNoSeguro.setSelected(true);
         rbNoSeguro.setText("No");
+        rbNoSeguro.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         rbNoSeguro.setName("No"); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -300,11 +246,12 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         txtOtroSeguro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtOtroSeguro.setBgShadeHover(new java.awt.Color(0, 0, 0));
         txtOtroSeguro.setEnabled(false);
-        txtOtroSeguro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtOtroSeguro.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtOtroSeguro.setPlaceholder("");
 
         gpSeguro.add(rbOtroSeguro);
         rbOtroSeguro.setText("Otro");
+        rbOtroSeguro.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         rbOtroSeguro.setName("Otro"); // NOI18N
         rbOtroSeguro.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -321,10 +268,10 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtIntegrantesGrupoFamiliar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(51, 51, 51)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtIntegrantesGrupoFamiliar, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(rbNoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -333,10 +280,14 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(rbOtroSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtOtroSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtOtroSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -368,7 +319,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
 
         txtIngresoPeru.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtIngresoPeru.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        txtIngresoPeru.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtIngresoPeru.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtIngresoPeru.setPlaceholder("Fecha aprox. (Dia/mes/año)");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -377,9 +328,11 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         gpTrabajo.add(rbNoTrabajo);
         rbNoTrabajo.setSelected(true);
         rbNoTrabajo.setText("No");
+        rbNoTrabajo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
 
         gpTrabajo.add(rbSiTrabajo);
         rbSiTrabajo.setText("Si");
+        rbSiTrabajo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         rbSiTrabajo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rbSiTrabajoItemStateChanged(evt);
@@ -389,11 +342,40 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         txtSiTrabajo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSiTrabajo.setBgShadeHover(new java.awt.Color(0, 0, 0));
         txtSiTrabajo.setEnabled(false);
-        txtSiTrabajo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtSiTrabajo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtSiTrabajo.setPlaceholder("");
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("Indique Cual (Solo si elije \"Si\")");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setText("Nivel educativo.");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("  Describa Cual (Solo Disponible si selecciona \"otro\")");
+
+        comboNivelEducativo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Educación primaria", "d", "d", "d", "d" }));
+        comboNivelEducativo.setColorArrow(new java.awt.Color(0, 102, 102));
+        comboNivelEducativo.setColorBorde(new java.awt.Color(0, 102, 102));
+        comboNivelEducativo.setColorFondo(new java.awt.Color(0, 102, 102));
+        comboNivelEducativo.setColorSeleccion(new java.awt.Color(102, 102, 102));
+        comboNivelEducativo.setDisabledIdex("");
+        comboNivelEducativo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        comboNivelEducativo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboNivelEducativoItemStateChanged(evt);
+            }
+        });
+
+        txtOtroNivelEducativo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtOtroNivelEducativo.setBgShadeHover(new java.awt.Color(0, 0, 0));
+        txtOtroNivelEducativo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        txtOtroNivelEducativo.setPlaceholder("");
+        txtOtroNivelEducativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOtroNivelEducativoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -401,24 +383,35 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(txtIngresoPeru, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(rbNoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(rbSiTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(txtIngresoPeru, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(rbNoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbSiTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSiTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(txtSiTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboNivelEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtOtroNivelEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))
+                        .addGap(2, 2, 2)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -438,16 +431,24 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbSiTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbNoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbNoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbSiTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboNivelEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOtroNivelEducativo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setText("Ocupación");
+        jLabel19.setText("   Ocupación");
 
         txtOcupacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtOcupacion.setBgShadeHover(new java.awt.Color(0, 0, 0));
@@ -455,7 +456,7 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         txtOcupacion.setPlaceholder("");
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setText("Sub Ocupación");
+        jLabel20.setText("   Sub Ocupación");
 
         txtSubOcupacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSubOcupacion.setBgShadeHover(new java.awt.Color(0, 0, 0));
@@ -467,15 +468,15 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtOcupacion, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSubOcupacion, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                    .addComponent(txtSubOcupacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,12 +532,13 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
                             .addGap(36, 36, 36)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addComponent(s, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -557,13 +559,11 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(condicionMigratoriaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(s)
@@ -671,6 +671,10 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
      
     }//GEN-LAST:event_comboNivelEducativoItemStateChanged
 
+    private void txtOtroNivelEducativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtroNivelEducativoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOtroNivelEducativoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Eliminar;
@@ -697,7 +701,6 @@ public class RnpInfoVulnerabilidad extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

@@ -84,7 +84,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
 
         apellidosTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         apellidosTxt.setBgShade(new java.awt.Color(153, 0, 0));
-        apellidosTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        apellidosTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         apellidosTxt.setPlaceholder("");
         apellidosTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -145,7 +145,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         jLabel4.setText("Genero");
 
         generoCombo.setDisabledIdex("");
-        generoCombo.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        generoCombo.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -153,7 +153,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
 
         telefonoTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         telefonoTxt.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        telefonoTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        telefonoTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         telefonoTxt.setPlaceholder("");
         telefonoTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -163,7 +163,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
 
         correoTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         correoTxt.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        correoTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        correoTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         correoTxt.setPlaceholder("");
         correoTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -193,7 +193,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
 
         dniTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         dniTxt.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        dniTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        dniTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         dniTxt.setPlaceholder("");
 
         checkDocumento.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,7 +209,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
 
         nombresTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         nombresTxt.setBgShade(new java.awt.Color(153, 0, 0));
-        nombresTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        nombresTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         nombresTxt.setPlaceholder("");
         nombresTxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -231,6 +231,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         otroDocumentoTxt.setColorBorde(new java.awt.Color(204, 204, 204));
         otroDocumentoTxt.setConBorde(true);
         otroDocumentoTxt.setDisabledIdex("");
+        otroDocumentoTxt.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         otroDocumentoTxt.setItemHeight(40);
         otroDocumentoTxt.setOpaque(false);
         otroDocumentoTxt.addItemListener(new java.awt.event.ItemListener() {
@@ -245,10 +246,10 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         });
 
         nacionalidadTxt.setDisabledIdex("");
-        nacionalidadTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        nacionalidadTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
 
         departamentoTxt.setDisabledIdex("");
-        departamentoTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        departamentoTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         departamentoTxt.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 departamentoTxtItemStateChanged(evt);
@@ -256,7 +257,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         });
 
         provinviaTxt.setDisabledIdex("");
-        provinviaTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        provinviaTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         provinviaTxt.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 provinviaTxtItemStateChanged(evt);
@@ -264,7 +265,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         });
 
         distritoTxt.setDisabledIdex("");
-        distritoTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        distritoTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -272,7 +273,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
 
         telefonoOpcionalTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         telefonoOpcionalTxt.setBgShadeHover(new java.awt.Color(0, 0, 0));
-        telefonoOpcionalTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        telefonoOpcionalTxt.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         telefonoOpcionalTxt.setPlaceholder("");
         telefonoOpcionalTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -287,7 +288,7 @@ public class RnpDatosPersonales extends javax.swing.JPanel {
         jLabel13.setText("Detalle Teléfono Opcional");
 
         txtDetalleTelefonoOpcional.setColumns(12);
-        txtDetalleTelefonoOpcional.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtDetalleTelefonoOpcional.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         txtDetalleTelefonoOpcional.setLineWrap(true);
         txtDetalleTelefonoOpcional.setRows(1);
         txtDetalleTelefonoOpcional.setTabSize(3);

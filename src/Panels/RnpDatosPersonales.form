@@ -250,7 +250,7 @@
           <Color blue="0" green="0" red="99" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
         <Property name="placeholder" type="java.lang.String" value=""/>
       </Properties>
@@ -334,7 +334,7 @@
         </Property>
         <Property name="disabledIdex" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -357,7 +357,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
         <Property name="placeholder" type="java.lang.String" value=""/>
       </Properties>
@@ -375,7 +375,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
         <Property name="placeholder" type="java.lang.String" value=""/>
       </Properties>
@@ -438,7 +438,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
         <Property name="placeholder" type="java.lang.String" value=""/>
       </Properties>
@@ -472,7 +472,7 @@
           <Color blue="0" green="0" red="99" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
         <Property name="placeholder" type="java.lang.String" value=""/>
       </Properties>
@@ -505,6 +505,9 @@
         </Property>
         <Property name="conBorde" type="boolean" value="true"/>
         <Property name="disabledIdex" type="java.lang.String" value=""/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="13" style="1"/>
+        </Property>
         <Property name="itemHeight" type="int" value="40"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
@@ -523,7 +526,7 @@
         </Property>
         <Property name="disabledIdex" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -537,7 +540,7 @@
         </Property>
         <Property name="disabledIdex" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
       </Properties>
       <Events>
@@ -554,7 +557,7 @@
         </Property>
         <Property name="disabledIdex" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
       </Properties>
       <Events>
@@ -571,7 +574,7 @@
         </Property>
         <Property name="disabledIdex" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -594,7 +597,7 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="16" style="0"/>
+          <Font name="Segoe UI" size="13" style="0"/>
         </Property>
         <Property name="placeholder" type="java.lang.String" value=""/>
       </Properties>
@@ -632,7 +635,7 @@
           <Properties>
             <Property name="columns" type="int" value="12"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="16" style="0"/>
+              <Font name="Segoe UI" size="13" style="0"/>
             </Property>
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="1"/>
