@@ -95,11 +95,11 @@ public class panelVerUsuarios extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Nombre de Usuario", "Nombre", "Cargo", "Estado"
+                "ID", "Nombre de Usuario", "Código", "Nombre", "Cargo", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -109,8 +109,8 @@ public class panelVerUsuarios extends javax.swing.JPanel {
         tabla.setBackgoundHead(new java.awt.Color(0, 102, 102));
         tabla.setBackgoundHover(new java.awt.Color(0, 153, 153));
         tabla.setColorBorderRows(new java.awt.Color(255, 255, 255));
-        tabla.setColorSecondary(new java.awt.Color(255, 255, 255));
-        tabla.setColorSecundaryText(new java.awt.Color(0, 0, 0));
+        tabla.setColorPrimaryText(new java.awt.Color(102, 102, 102));
+        tabla.setColorSecundaryText(new java.awt.Color(102, 102, 102));
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
@@ -124,12 +124,15 @@ public class panelVerUsuarios extends javax.swing.JPanel {
             tabla.getColumnModel().getColumn(1).setMinWidth(160);
             tabla.getColumnModel().getColumn(1).setPreferredWidth(160);
             tabla.getColumnModel().getColumn(1).setMaxWidth(160);
-            tabla.getColumnModel().getColumn(3).setMinWidth(180);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(180);
-            tabla.getColumnModel().getColumn(3).setMaxWidth(180);
-            tabla.getColumnModel().getColumn(4).setMinWidth(120);
-            tabla.getColumnModel().getColumn(4).setPreferredWidth(120);
-            tabla.getColumnModel().getColumn(4).setMaxWidth(120);
+            tabla.getColumnModel().getColumn(2).setMinWidth(120);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(120);
+            tabla.getColumnModel().getColumn(2).setMaxWidth(120);
+            tabla.getColumnModel().getColumn(4).setMinWidth(180);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(180);
+            tabla.getColumnModel().getColumn(4).setMaxWidth(180);
+            tabla.getColumnModel().getColumn(5).setMinWidth(120);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(120);
+            tabla.getColumnModel().getColumn(5).setMaxWidth(120);
         }
 
         buscarTxt.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -372,7 +375,7 @@ public class panelVerUsuarios extends javax.swing.JPanel {
         for (Usuario user : usuarios) {
             if ((user.getCodigo().contains(txt2) || user.getNombre().contains(txt2)) || user.getUsername().contains(txt2)) {//validarPaciente(paciente)
                 modelo.addRow(new Object[]{
-                    user.getId(), user.getUsername(), user.getNombre(), user.getCargo(), user.getEstado()
+                    user.getId(), user.getUsername(),user.getCodigo(), user.getNombre(), user.getCargo(), user.getEstado()
                 });
             }
         }

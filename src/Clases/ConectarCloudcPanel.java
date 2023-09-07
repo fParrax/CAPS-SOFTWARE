@@ -54,8 +54,10 @@ public class ConectarCloudcPanel {
         try {
             Propiedades p = new Propiedades();
             p.openPropiedades();
-            url = a.desencriptar(p.getPropiedad("url"));
-            //url="jdbc:mysql://capsperu.dyndns.org/"+ dataBase;
+            url = a.desencriptar(p.getPropiedad("url"))+dataBase;
+            //url="jdbc:mysql://190.237.216.231:3306/"+ dataBase;
+           // System.out.println(url);
+            
            //url="jdbc:mysql://181.66.168.57/";
             user2 = a.desencriptar(p.getPropiedad("user"));
             pass2 = a.desencriptar(p.getPropiedad("password"));
@@ -63,14 +65,14 @@ public class ConectarCloudcPanel {
                 ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
                 ds.setUsername(user2);
                 ds.setPassword(pass2);
-                ds.setUrl(url+dataBase);
+                ds.setUrl(url);
                 ds.setInitialSize(1);
                 ds.setMaxTotal(2);
                 ds.setTestWhileIdle(true);
                 ds.setTimeBetweenEvictionRunsMillis(10000);
                 ds.setValidationQuery("select 1");
             } catch (Exception ex) {
-                Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al Conectar con la base de Datos\nPor favor verifique su conexión a internet o contacte al administrador." + ex);
             }
         } catch (UnsupportedEncodingException ex) {
@@ -92,7 +94,16 @@ public class ConectarCloudcPanel {
     public static void main(String[] args) {
         
          try {
-             System.out.println(new EncriptadorAES().encriptar("."));
+        EncriptadorAES a = new EncriptadorAES();
+        
+            Propiedades p = new Propiedades();
+            p.openPropiedades();
+        String user2 = a.desencriptar(p.getPropiedad("url"));
+        String    pass2 = a.desencriptar(p.getPropiedad("password"));
+        
+        
+             System.out.println(user2);
+             System.out.println(pass2);
          } catch (UnsupportedEncodingException ex) {
              Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
          } catch (NoSuchAlgorithmException ex) {
@@ -122,7 +133,7 @@ public class ConectarCloudcPanel {
              con = getDataSource().getConnection();
              return con;
          } catch (SQLException ex) {
-             Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
              return null;
          }
     }
@@ -181,7 +192,7 @@ public String parsearFecha(String fecha) {
             try {
                 campoFecha.setDatoFecha(new SimpleDateFormat(formato).parse(fechaFinal)); // Asigamos al campoFecha la fecha Parseada con el formato usando un nuevo SimpleDateFormat
             } catch (ParseException ex) {
-                Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -242,7 +253,7 @@ public String parsearFecha(String fecha) {
         try {
             temp = new SimpleDateFormat(formato).parse(fechaFinal);
         } catch (ParseException ex) {
-            Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex);
         }
         
@@ -267,11 +278,11 @@ public String parsearFecha(String fecha) {
                     rs.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, e);
             JOptionPane.showMessageDialog(null, e);
         }
 
@@ -284,7 +295,7 @@ public String parsearFecha(String fecha) {
             con.close();
             a = 1;
         } catch (SQLException ex) {
-            Logger.getLogger(ConectarCloud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConectarCloudcPanel.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex, null, 0);
             a = 0;
         }

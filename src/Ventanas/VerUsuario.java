@@ -87,6 +87,9 @@ public class VerUsuario extends javax.swing.JFrame {
     public void changeIcon() {
         Image icon = new ImageIcon(getClass().getResource("/imgs/logo.png")).getImage();
         setIconImage(icon);
+        
+        jLabel10.setVisible(false);
+        superiorCombo.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -96,12 +99,12 @@ public class VerUsuario extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         privCombo = new rojerusan.RSComboBox();
+        superiorCombo = new rojerusan.RSComboBox();
+        jLabel10 = new javax.swing.JLabel();
         fondoPanel = new javax.swing.JPanel();
         panelCentral = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         tituloTxt = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        idTxt = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         dniTxt = new rojeru_san.rsfield.RSTextFullRound();
         jLabel3 = new javax.swing.JLabel();
@@ -112,17 +115,13 @@ public class VerUsuario extends javax.swing.JFrame {
         nombreTxt = new rojeru_san.rsfield.RSTextFullRound();
         jLabel7 = new javax.swing.JLabel();
         codigoTerapeutaTxt = new rojeru_san.rsfield.RSTextFullRound();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         cargoCombo = new rojerusan.RSComboBox();
         jLabel12 = new javax.swing.JLabel();
         estadoCombo = new rojerusan.RSComboBox();
-        jLabel13 = new javax.swing.JLabel();
-        fechaTxt = new javax.swing.JLabel();
         rSButtonRound1 = new rojeru_san.rsbutton.RSButtonRound();
         jLabel14 = new javax.swing.JLabel();
         correoTxt = new rojeru_san.rsfield.RSTextFullRound();
-        superiorCombo = new rojerusan.RSComboBox();
         srqCheckP = new rojerusan.RSCheckBox();
         indiceCheckP = new rojerusan.RSCheckBox();
 
@@ -143,6 +142,12 @@ public class VerUsuario extends javax.swing.JFrame {
 
         privCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Privs" }));
         privCombo.setDisabledIdex("");
+
+        superiorCombo.setDisabledIdex("");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Superior");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administración de usuarios");
@@ -175,12 +180,6 @@ public class VerUsuario extends javax.swing.JFrame {
                 .addComponent(tituloTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setText("ID");
-
-        idTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        idTxt.setText("-");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -241,10 +240,6 @@ public class VerUsuario extends javax.swing.JFrame {
         codigoTerapeutaTxt.setPhColor(new java.awt.Color(0, 102, 102));
         codigoTerapeutaTxt.setPlaceholder("Esperando Valor");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Superior");
-
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Cargo");
@@ -258,14 +253,6 @@ public class VerUsuario extends javax.swing.JFrame {
 
         estadoCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
         estadoCombo.setDisabledIdex("");
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Fec. Creación");
-
-        fechaTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        fechaTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fechaTxt.setText("@Fecha");
 
         rSButtonRound1.setBackground(new java.awt.Color(51, 51, 51));
         rSButtonRound1.setText("ACEPTAR");
@@ -289,8 +276,6 @@ public class VerUsuario extends javax.swing.JFrame {
         correoTxt.setPhColor(new java.awt.Color(0, 102, 102));
         correoTxt.setPlaceholder("Esperando Valor");
 
-        superiorCombo.setDisabledIdex("");
-
         srqCheckP.setText("Emitir SRQ18");
         srqCheckP.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -311,56 +296,11 @@ public class VerUsuario extends javax.swing.JFrame {
             panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCentralLayout.createSequentialGroup()
                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCentralLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(superiorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                        .addGap(477, 477, 477)
-                        .addComponent(rSButtonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelCentralLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelCentralLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(15, 15, 15)
-                                .addComponent(idTxt)
-                                .addGap(34, 34, 34)
-                                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelCentralLayout.createSequentialGroup()
-                                        .addGap(120, 120, 120)
-                                        .addComponent(fechaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelCentralLayout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelCentralLayout.createSequentialGroup()
-                                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelCentralLayout.createSequentialGroup()
-                                        .addComponent(dniTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(50, 50, 50)
-                                        .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40)
-                                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelCentralLayout.createSequentialGroup()
-                                        .addComponent(claveTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(codigoTerapeutaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCentralLayout.createSequentialGroup()
-                                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(correoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(10, 10, 10))))
-                            .addGroup(panelCentralLayout.createSequentialGroup()
-                                .addGap(228, 228, 228)
                                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cargoCombo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,24 +308,46 @@ public class VerUsuario extends javax.swing.JFrame {
                                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(estadoCombo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(34, 34, 34)
+                                .addComponent(srqCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(indiceCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelCentralLayout.createSequentialGroup()
+                                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(panelCentralLayout.createSequentialGroup()
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCentralLayout.createSequentialGroup()
+                                        .addComponent(dniTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50)
+                                        .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40)
                                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(indiceCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(srqCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)))))
+                                    .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(panelCentralLayout.createSequentialGroup()
+                                            .addComponent(claveTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(30, 30, 30)
+                                            .addComponent(codigoTerapeutaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(correoTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCentralLayout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCentralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rSButtonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(322, 322, 322))
         );
         panelCentralLayout.setVerticalGroup(
             panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCentralLayout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(70, 70, 70)
                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,27 +370,21 @@ public class VerUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(correoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelCentralLayout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(superiorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCentralLayout.createSequentialGroup()
-                        .addComponent(srqCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(indiceCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(panelCentralLayout.createSequentialGroup()
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4)
-                            .addComponent(estadoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelCentralLayout.createSequentialGroup()
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(cargoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(50, 50, 50)
+                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(estadoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(srqCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(indiceCheckP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelCentralLayout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(cargoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(rSButtonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout fondoPanelLayout = new javax.swing.GroupLayout(fondoPanel);
@@ -638,18 +594,14 @@ public class VerUsuario extends javax.swing.JFrame {
     private rojeru_san.rsfield.RSTextFullRound correoTxt;
     private rojeru_san.rsfield.RSTextFullRound dniTxt;
     private rojerusan.RSComboBox estadoCombo;
-    private javax.swing.JLabel fechaTxt;
     private javax.swing.JPanel fondoPanel;
-    private javax.swing.JLabel idTxt;
     private rojerusan.RSCheckBox indiceCheckP;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -668,26 +620,26 @@ public class VerUsuario extends javax.swing.JFrame {
 
     
     private void borrarCampos() {
-        idTxt.setText("");
+        //idTxt.setText("");
         dniTxt.setText("");
         usernameTxt.setText(usuario.getUsername());
         claveTxt.setText("");
         nombreTxt.setText("");
         codigoTerapeutaTxt.setText("");
-        fechaTxt.setText("");
+        //fechaTxt.setText("");
         privCombo.setSelectedIndex(0);
         cargoCombo.setSelectedIndex(0);
         estadoCombo.setSelectedIndex(0);
     }
 
     private void escribirUsuario() {
-        idTxt.setText(usuario.getId() + "");
+        //idTxt.setText(usuario.getId() + "");
         dniTxt.setText(usuario.getDni());
         usernameTxt.setText(usuario.getUsername());
         claveTxt.setText(usuario.getClave());
         nombreTxt.setText(usuario.getNombre());
         codigoTerapeutaTxt.setText(usuario.getCodigo());
-        fechaTxt.setText(usuario.getFechaCreacion());
+        //fechaTxt.setText(usuario.getFechaCreacion());
         
 //        if(!usuario.getSrqCheck().equalsIgnoreCase("no"))srqCheckP.setSelected(true);
       //  if(!usuario.getIndiceCheck().equalsIgnoreCase("no"))indiceCheckP.setSelected(true);
@@ -696,7 +648,7 @@ public class VerUsuario extends javax.swing.JFrame {
     private void iniciarDatos() {
         if (tipo.equalsIgnoreCase("editar")) {
             try {
-                idTxt.setText(usuario.getId() + "");
+           //     idTxt.setText(usuario.getId() + "");
                 dniTxt.setText(usuario.getDni());
                 nombreTxt.setText(usuario.getNombre());
                 usernameTxt.setText(usuario.getUsername());
@@ -705,7 +657,7 @@ public class VerUsuario extends javax.swing.JFrame {
                 estadoCombo.setSelectedItem(usuario.getEstado());
                 cargoCombo.setSelectedItem(usuario.getCargo());
                 privCombo.setSelectedItem(usuario.getPriv());
-                fechaTxt.setText(usuario.getFechaCreacion());
+              //  fechaTxt.setText(usuario.getFechaCreacion());
             } catch (UnsupportedEncodingException ex) {
                 Logger.getLogger(VerUsuario.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NoSuchAlgorithmException ex) {
@@ -746,7 +698,7 @@ public class VerUsuario extends javax.swing.JFrame {
     private void colcocarDatos() {
         llenarCombos();
         
-        idTxt.setText(usuario.getId() + "");
+      //  idTxt.setText(usuario.getId() + "");
         dniTxt.setText(usuario.getDni());
         usernameTxt.setText(usuario.getUsername());
         claveTxt.setText(usuario.getClave());
@@ -757,7 +709,7 @@ public class VerUsuario extends javax.swing.JFrame {
         cargoCombo.setSelectedItem(usuario.getCargo());
         
         estadoCombo.setSelectedItem(usuario.getEstado());
-        fechaTxt.setText(usuario.getFechaCreacion());
+        //fechaTxt.setText(usuario.getFechaCreacion());
         correoTxt.setText(usuario.getCorreo());
         
         
@@ -775,7 +727,7 @@ public class VerUsuario extends javax.swing.JFrame {
         superiorCombo.removeAllItems();
         superiorCombo.addItem("Ninguno");
         for (Usuario user : users) {
-            superiorCombo.addItem(user.getCodigo());
+            superiorCombo.addItem(user.getUsername());
         }
 
         
@@ -798,7 +750,7 @@ public class VerUsuario extends javax.swing.JFrame {
         int rsp = -1;
         String codx = superiorCombo.getSelectedItem().toString();
         for (Usuario user : users) {
-            if (user.getCodigo().equalsIgnoreCase(codx)) {
+            if (user.getUsername().equalsIgnoreCase(codx)) {
                 rsp = user.getId();
             }
 
