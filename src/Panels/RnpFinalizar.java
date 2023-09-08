@@ -19,7 +19,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
     /**
      * Creates new form DatosPersonales
      */
-    static Usuario terapeuta = new Usuario();
+    public static Usuario terapeuta = new Usuario();
     static newPaciente ventanaOriginal;
     public RnpFinalizar() {
         initComponents();

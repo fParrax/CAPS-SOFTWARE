@@ -1202,7 +1202,11 @@ public class newPaciente extends javax.swing.JFrame {
         ocupacion = RnpPag2.txtOcupacion.getText();
         subOcupacion=RnpPag2.txtSubOcupacion.getText();
         
+        int idTerapeuta=0;
         
+        idTerapeuta = RnpPag4.terapeuta.getId()<0
+                ? 0
+                : RnpPag4.terapeuta.getId();
 
         if (tipo.equalsIgnoreCase("nuevo")) {
             String nombreCompleto = RnpPag1.nombresTxt.getText() + " " + RnpPag1.apellidosTxt.getText();
@@ -1216,7 +1220,7 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente, modalidad, detalleDerivadox,
                     RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
                     cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
-                    otroNivelEducativo, ocupacion,subOcupacion);
+                    otroNivelEducativo, ocupacion,subOcupacion,idTerapeuta);
 
             if (srq18.getIdsrq() >= 0) {
                 int evsr = new SRQ18().newSRQ18(idPacientex, Index.getUser().getId(), srq18.getLugar(),

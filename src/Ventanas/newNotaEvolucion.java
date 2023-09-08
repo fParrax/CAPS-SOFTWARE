@@ -101,9 +101,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         nombrePacienteLabel = new javax.swing.JLabel();
         edadPacienteLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaNotas = new rojerusan.RSTableMetro();
-        tituloTablaLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtObservacion = new javax.swing.JTextArea();
@@ -121,6 +118,9 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         txtAlianzaTrabajo = new javax.swing.JTextArea();
         jScrollPane11 = new javax.swing.JScrollPane();
         txtLimites = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaNotas = new rojerusan.RSTableMetro();
+        tituloTablaLabel = new javax.swing.JLabel();
         registrarBtn = new rojeru_san.rsbutton.RSButtonRound();
         infoBtn = new RSMaterialComponent.RSButtonIconDos();
         jLabel4 = new javax.swing.JLabel();
@@ -175,6 +175,81 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel3.setText("Edad:");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nota de Evolución", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtObservacion.setColumns(20);
+        txtObservacion.setLineWrap(true);
+        txtObservacion.setRows(5);
+        txtObservacion.setTabSize(2);
+        txtObservacion.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(txtObservacion);
+
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sintomas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtSintomas.setColumns(20);
+        txtSintomas.setLineWrap(true);
+        txtSintomas.setRows(5);
+        txtSintomas.setTabSize(2);
+        txtSintomas.setWrapStyleWord(true);
+        jScrollPane4.setViewportView(txtSintomas);
+
+        jScrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Manejo de la Agresión", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtManejoAgresion.setColumns(20);
+        txtManejoAgresion.setLineWrap(true);
+        txtManejoAgresion.setRows(4);
+        txtManejoAgresion.setTabSize(2);
+        txtManejoAgresion.setWrapStyleWord(true);
+        jScrollPane5.setViewportView(txtManejoAgresion);
+
+        jScrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ansiedad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtAnsiedad.setColumns(20);
+        txtAnsiedad.setLineWrap(true);
+        txtAnsiedad.setRows(4);
+        txtAnsiedad.setTabSize(2);
+        txtAnsiedad.setWrapStyleWord(true);
+        jScrollPane6.setViewportView(txtAnsiedad);
+
+        jScrollPane8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Relaciones Interpersonales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtRelaciones.setColumns(20);
+        txtRelaciones.setLineWrap(true);
+        txtRelaciones.setRows(4);
+        txtRelaciones.setTabSize(2);
+        txtRelaciones.setWrapStyleWord(true);
+        jScrollPane8.setViewportView(txtRelaciones);
+
+        jScrollPane9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionalidad laboral/académica", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtFuncionalidad.setColumns(20);
+        txtFuncionalidad.setLineWrap(true);
+        txtFuncionalidad.setRows(5);
+        txtFuncionalidad.setTabSize(2);
+        txtFuncionalidad.setWrapStyleWord(true);
+        jScrollPane9.setViewportView(txtFuncionalidad);
+
+        jScrollPane10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alianza trabajo terapeútico", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtAlianzaTrabajo.setColumns(20);
+        txtAlianzaTrabajo.setLineWrap(true);
+        txtAlianzaTrabajo.setRows(5);
+        txtAlianzaTrabajo.setTabSize(2);
+        txtAlianzaTrabajo.setWrapStyleWord(true);
+        jScrollPane10.setViewportView(txtAlianzaTrabajo);
+
+        jScrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Limites y/o Otro", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        txtLimites.setColumns(20);
+        txtLimites.setLineWrap(true);
+        txtLimites.setRows(4);
+        txtLimites.setTabSize(2);
+        txtLimites.setWrapStyleWord(true);
+        jScrollPane11.setViewportView(txtLimites);
+
         tablaNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -222,89 +297,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         tituloTablaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloTablaLabel.setText("Notas de Evolución Registradas");
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nota de Evolución", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtObservacion.setColumns(20);
-        txtObservacion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtObservacion.setLineWrap(true);
-        txtObservacion.setRows(5);
-        txtObservacion.setTabSize(2);
-        txtObservacion.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(txtObservacion);
-
-        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sintomas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtSintomas.setColumns(20);
-        txtSintomas.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtSintomas.setLineWrap(true);
-        txtSintomas.setRows(5);
-        txtSintomas.setTabSize(2);
-        txtSintomas.setWrapStyleWord(true);
-        jScrollPane4.setViewportView(txtSintomas);
-
-        jScrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Manejo de la Agresión", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtManejoAgresion.setColumns(20);
-        txtManejoAgresion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtManejoAgresion.setLineWrap(true);
-        txtManejoAgresion.setRows(5);
-        txtManejoAgresion.setTabSize(2);
-        txtManejoAgresion.setWrapStyleWord(true);
-        jScrollPane5.setViewportView(txtManejoAgresion);
-
-        jScrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ansiedad", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtAnsiedad.setColumns(20);
-        txtAnsiedad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtAnsiedad.setLineWrap(true);
-        txtAnsiedad.setRows(4);
-        txtAnsiedad.setTabSize(2);
-        txtAnsiedad.setWrapStyleWord(true);
-        jScrollPane6.setViewportView(txtAnsiedad);
-
-        jScrollPane8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Relaciones Interpersonales", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtRelaciones.setColumns(20);
-        txtRelaciones.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtRelaciones.setLineWrap(true);
-        txtRelaciones.setRows(4);
-        txtRelaciones.setTabSize(2);
-        txtRelaciones.setWrapStyleWord(true);
-        jScrollPane8.setViewportView(txtRelaciones);
-
-        jScrollPane9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Funcionalidad laboral/académica", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtFuncionalidad.setColumns(20);
-        txtFuncionalidad.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtFuncionalidad.setLineWrap(true);
-        txtFuncionalidad.setRows(5);
-        txtFuncionalidad.setTabSize(2);
-        txtFuncionalidad.setWrapStyleWord(true);
-        jScrollPane9.setViewportView(txtFuncionalidad);
-
-        jScrollPane10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alianza trabajo terapeútico", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtAlianzaTrabajo.setColumns(20);
-        txtAlianzaTrabajo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtAlianzaTrabajo.setLineWrap(true);
-        txtAlianzaTrabajo.setRows(5);
-        txtAlianzaTrabajo.setTabSize(2);
-        txtAlianzaTrabajo.setWrapStyleWord(true);
-        jScrollPane10.setViewportView(txtAlianzaTrabajo);
-
-        jScrollPane11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Limites y/o Otro", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12))); // NOI18N
-
-        txtLimites.setColumns(20);
-        txtLimites.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        txtLimites.setLineWrap(true);
-        txtLimites.setRows(4);
-        txtLimites.setTabSize(2);
-        txtLimites.setWrapStyleWord(true);
-        jScrollPane11.setViewportView(txtLimites);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -318,11 +310,11 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                                 .addComponent(jScrollPane8))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(jScrollPane9)))
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2)))
@@ -330,36 +322,42 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                            .addComponent(jScrollPane6))
+                            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
                         .addGap(13, 13, 13))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                         .addContainerGap())))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tituloTablaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4))
-                .addGap(6, 6, 6)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                         .addGap(8, 8, 8)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jScrollPane5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane10)
-                            .addComponent(jScrollPane9))
-                        .addGap(1, 1, 1)))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tituloTablaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -433,16 +431,8 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                                 .addComponent(cambiarPacienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(anularBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelCentralLayout.createSequentialGroup()
-                                .addComponent(tituloTablaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panelCentralLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(registrarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(registrarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(infoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)))
@@ -469,14 +459,10 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                             .addComponent(cambiarPacienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(anularBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelCentralLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(tituloTablaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(registrarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(infoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(110, 110, 110)
+                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(registrarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(infoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -677,6 +663,11 @@ public class newNotaEvolucion extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarValores() {
+       cambiarPacienteBtn.setVisible(false);
+       anularBtn.setVisible(false);
+        
+        
+        
         nombrePacienteLabel.setText(this.paciente.getNombreCompleto());
 
         edadPacienteLabel.setText(new tools().obtenerEdad2(this.paciente.getFechaNacimiento()) + "");

@@ -227,13 +227,14 @@ public class Paciente {
             String nivelEducativo,
             String otroNivelEducativo,
             String ocupacion,
-            String subOcupacion) {
+            String subOcupacion,
+            int idTerapeuta) {
         int valor = 0;
         sql = "call  `sp.newPaciente` ("
                 + "?,?,?,?,?,?,?,?,?,?,"
                 + "?,?,?,?,?,?,?,?,?,?,"
                 + "?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?)";
+                + "?,?,?,?,?,?,?,?,?,?)";
         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
             pst = con.prepareCall(sql);
             pst.setString(1, nombrex);
@@ -276,6 +277,7 @@ public class Paciente {
             pst.setString(37,otroNivelEducativo);
             pst.setString(38,ocupacion);
             pst.setString(39,subOcupacion);
+            pst.setInt(40,idTerapeuta);
             
             
             rs=pst.executeQuery();

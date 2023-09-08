@@ -31,6 +31,12 @@ public tipoSRQ(Paciente paciente, String tipo) {
                 :tipo.equalsIgnoreCase("indice")
                 ?"Seleccione el tipo de Indice Bienestar"
                 :"Seleccione el tipo de Nota de Evolución");
+        
+        this.setTitle(tipo.equalsIgnoreCase("srq")
+                ?"Seleccione el tipo de SRQ"
+                :tipo.equalsIgnoreCase("indice")
+                ?"Seleccione el tipo de Indice Bienestar"
+                :"Seleccione el tipo de Nota de Evolución");
     }
 
     public void changeIcon() {
@@ -46,6 +52,7 @@ public tipoSRQ(Paciente paciente, String tipo) {
         tituloLabel = new javax.swing.JLabel();
         rSButtonRoundEffect1 = new rojeru_san.rsbutton.RSButtonRoundEffect();
         rSButtonRoundEffect2 = new rojeru_san.rsbutton.RSButtonRoundEffect();
+        rSButtonRoundEffect3 = new rojeru_san.rsbutton.RSButtonRoundEffect();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seleccione Tipo SRQ");
@@ -67,7 +74,7 @@ public tipoSRQ(Paciente paciente, String tipo) {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tituloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tituloLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -92,6 +99,13 @@ public tipoSRQ(Paciente paciente, String tipo) {
             }
         });
 
+        rSButtonRoundEffect3.setText("Inicio");
+        rSButtonRoundEffect3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonRoundEffect3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCentralLayout = new javax.swing.GroupLayout(panelCentral);
         panelCentral.setLayout(panelCentralLayout);
         panelCentralLayout.setHorizontalGroup(
@@ -99,8 +113,10 @@ public tipoSRQ(Paciente paciente, String tipo) {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(rSButtonRoundEffect3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rSButtonRoundEffect1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102)
+                .addGap(39, 39, 39)
                 .addComponent(rSButtonRoundEffect2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -111,7 +127,8 @@ public tipoSRQ(Paciente paciente, String tipo) {
                 .addGap(76, 76, 76)
                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rSButtonRoundEffect1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSButtonRoundEffect2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rSButtonRoundEffect2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rSButtonRoundEffect3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 71, Short.MAX_VALUE))
         );
 
@@ -159,6 +176,19 @@ public tipoSRQ(Paciente paciente, String tipo) {
         
     }//GEN-LAST:event_rSButtonRoundEffect2ActionPerformed
 
+    private void rSButtonRoundEffect3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonRoundEffect3ActionPerformed
+         if(tipo.equalsIgnoreCase("srq")){
+         new newSRQ18(paciente, "Inicio").setVisible(true);
+        this.dispose();  
+       }else if(tipo.equalsIgnoreCase("indice")){
+           new newIndiceBienestar(paciente, Index.getUser(), "Inicio").setVisible(true);
+           this.dispose();  
+       }else if(tipo.equalsIgnoreCase("nota")){
+           new newNotaEvolucion(paciente, Index.getUser(), "Inicio").setVisible(true);
+            this.dispose();
+       }
+    }//GEN-LAST:event_rSButtonRoundEffect3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -200,6 +230,7 @@ public tipoSRQ(Paciente paciente, String tipo) {
     private javax.swing.JPanel panelCentral;
     private rojeru_san.rsbutton.RSButtonRoundEffect rSButtonRoundEffect1;
     private rojeru_san.rsbutton.RSButtonRoundEffect rSButtonRoundEffect2;
+    private rojeru_san.rsbutton.RSButtonRoundEffect rSButtonRoundEffect3;
     private javax.swing.JLabel tituloLabel;
     // End of variables declaration//GEN-END:variables
 }

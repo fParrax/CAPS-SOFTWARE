@@ -55,8 +55,10 @@
               <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rSButtonRoundEffect3" min="-2" pref="173" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="rSButtonRoundEffect1" min="-2" pref="173" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="rSButtonRoundEffect2" min="-2" pref="173" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -70,6 +72,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rSButtonRoundEffect1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rSButtonRoundEffect2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rSButtonRoundEffect3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
               </Group>
@@ -89,7 +92,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="tituloLabel" max="32767" attributes="0"/>
+                      <Component id="tituloLabel" pref="586" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -133,6 +136,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonRoundEffect2ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="rojeru_san.rsbutton.RSButtonRoundEffect" name="rSButtonRoundEffect3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inicio"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonRoundEffect3ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
