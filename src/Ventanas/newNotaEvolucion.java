@@ -122,7 +122,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         tablaNotas = new rojerusan.RSTableMetro();
         tituloTablaLabel = new javax.swing.JLabel();
         registrarBtn = new rojeru_san.rsbutton.RSButtonRound();
-        infoBtn = new RSMaterialComponent.RSButtonIconDos();
         jLabel4 = new javax.swing.JLabel();
         terapeutaLabel = new javax.swing.JLabel();
         anularBtn = new rojeru_san.rsbutton.RSButtonRound();
@@ -168,7 +167,7 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         jLabel2.setText("Paciente:");
 
         nombrePacienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        nombrePacienteLabel.setText("jLabel3");
+        nombrePacienteLabel.setText("sdf");
 
         edadPacienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         edadPacienteLabel.setText("jLabel3");
@@ -179,7 +178,7 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nota de Evolución", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nota de Evolución (Campo Obligatorio)", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         txtObservacion.setColumns(20);
         txtObservacion.setLineWrap(true);
@@ -370,13 +369,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
             }
         });
 
-        infoBtn.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.INFO);
-        infoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoBtnActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel4.setText("Terapeuta:");
 
@@ -424,40 +416,35 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
                                 .addGap(29, 29, 29)
-                                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(edadPacienteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCentralLayout.createSequentialGroup()
+                                        .addComponent(edadPacienteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(terapeutaLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(registrarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(nombrePacienteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(terapeutaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(registrarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(infoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)))))
+                                .addGap(55, 55, 55)))))
                 .addContainerGap())
         );
         panelCentralLayout.setVerticalGroup(
             panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCentralLayout.createSequentialGroup()
-                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelCentralLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombrePacienteLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(edadPacienteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(terapeutaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(registrarBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(infoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombrePacienteLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edadPacienteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(terapeutaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(registrarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cambiarPacienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(anularBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -484,10 +471,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
     private void tituloLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tituloLabelPropertyChange
 
     }//GEN-LAST:event_tituloLabelPropertyChange
-
-    private void infoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoBtnActionPerformed
-        JOptionPane.showMessageDialog(rootPane, "Para Registrar la Nota de evolución debe almenos ingresar información en el campo de <Observación General>\nEn caso requira consultar las notas de evolución anteriores solo debe presionar doble click sobre un resultado de la tabla.");
-    }//GEN-LAST:event_infoBtnActionPerformed
 
     private void registrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarBtnActionPerformed
 
@@ -628,7 +611,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
     private rojeru_san.rsbutton.RSButtonRound anularBtn;
     private rojeru_san.rsbutton.RSButtonRound cambiarPacienteBtn;
     public javax.swing.JLabel edadPacienteLabel;
-    private RSMaterialComponent.RSButtonIconDos infoBtn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -704,7 +686,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                 txtObservacion.setEditable(false);
 
                 registrarBtn.setVisible(false);
-                infoBtn.setVisible(false);
                 tablaNotas.setVisible(false);
                 tituloTablaLabel.setVisible(false);
 
@@ -713,7 +694,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                 tablaNotas.setVisible(false);
                 tituloTablaLabel.setVisible(false);
                 registrarBtn.setVisible(false);
-                infoBtn.setVisible(false);
                 anularBtn.setVisible(false);
                 cambiarPacienteBtn.setVisible(false);
 
@@ -735,7 +715,6 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                 jLabel4.setVisible(false);
                 tablaNotas.setVisible(false);
                 tituloTablaLabel.setVisible(false);
-                infoBtn.setVisible(false);
 
                 txtObservacion.setText(nota.getObservacion());
                 txtSintomas.setText(nota.getSintomas());
