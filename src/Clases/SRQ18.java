@@ -328,7 +328,7 @@ public class SRQ18 {
                         rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
                         rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
                         rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
-                        rs.getString("ocupacion"),rs.getString("subOcupacion"));
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"));
 
                 SRQ18 srq = new SRQ18(rs.getInt("idsrq"),
                         rs.getInt("idPacientesrq"), rs.getInt("idTerapeutasrq"), rs.getString("fechaSrq"), rs.getInt("puntajeSi"), rs.getString("lugar"), rs.getString("estadosrq"),
@@ -382,7 +382,7 @@ public class SRQ18 {
                         rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
                         rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
                         rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
-                        rs.getString("ocupacion"),rs.getString("subOcupacion"));
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"));
                 usuario.setId(rs.getInt("id"));
                 usuario.setDni(rs.getString("dni"));
                 usuario.setIdJefe(rs.getInt("idJefe"));
