@@ -92,7 +92,7 @@ public class newLoggin extends javax.swing.JFrame {
 
         rSLabelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/logoCaps2.png"))); // NOI18N
 
-        jSeparator1.setBackground(new java.awt.Color(236, 171, 175));
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         ingresarBtn.setBackground(new java.awt.Color(138, 128, 155));
@@ -205,8 +205,8 @@ public class newLoggin extends javax.swing.JFrame {
                     .addComponent(txtCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -432,7 +432,7 @@ private boolean validarCaptcha() {
                             ingresarBtn.setEnabled(true);
                             } else {
                                 barra.setVisible(true);
-
+                                    System.out.println(user.toString());
                                 new Index(user).setVisible(true);
                                 this.dispose();
                             }

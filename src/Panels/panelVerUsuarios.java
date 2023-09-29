@@ -371,9 +371,11 @@ public class panelVerUsuarios extends javax.swing.JPanel {
     public void llenarTabla() {
         modelo.setRowCount(0);
 
-        String txt2 = buscarTxt.getText().isEmpty() ? "" : buscarTxt.getText();
+        String txt2 = buscarTxt.getText().isEmpty() ? "" : buscarTxt.getText().toLowerCase();
         for (Usuario user : usuarios) {
-            if ((user.getCodigo().contains(txt2) || user.getNombre().contains(txt2)) || user.getUsername().contains(txt2)) {//validarPaciente(paciente)
+            if ((user.getCodigo().toLowerCase().contains(txt2) 
+                    || user.getNombre().toLowerCase().contains(txt2)) 
+                    || user.getUsername().toLowerCase().contains(txt2)) {//validarPaciente(paciente)
                 modelo.addRow(new Object[]{
                     user.getId(), user.getUsername(),user.getCodigo(), user.getNombre(), user.getCargo(), user.getEstado()
                 });

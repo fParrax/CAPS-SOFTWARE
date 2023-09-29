@@ -168,15 +168,15 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "N° Paciente", "Código", "Nombre y Apellido", "Edad", "Teléfono", "SRQ Ingreso", "SVBG", "N° Sesiones"
+                "N° Paciente", "Código", "Nombre y Apellido", "Edad", "Teléfono", "Terapeuta Asig.", "SRQ Ingreso", "SVBG", "N° Sesiones"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -212,15 +212,15 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             tabla.getColumnModel().getColumn(4).setMinWidth(75);
             tabla.getColumnModel().getColumn(4).setPreferredWidth(75);
             tabla.getColumnModel().getColumn(4).setMaxWidth(75);
-            tabla.getColumnModel().getColumn(5).setMinWidth(80);
-            tabla.getColumnModel().getColumn(5).setPreferredWidth(80);
-            tabla.getColumnModel().getColumn(5).setMaxWidth(80);
-            tabla.getColumnModel().getColumn(6).setMinWidth(70);
-            tabla.getColumnModel().getColumn(6).setPreferredWidth(70);
-            tabla.getColumnModel().getColumn(6).setMaxWidth(70);
-            tabla.getColumnModel().getColumn(7).setMinWidth(75);
-            tabla.getColumnModel().getColumn(7).setPreferredWidth(75);
-            tabla.getColumnModel().getColumn(7).setMaxWidth(75);
+            tabla.getColumnModel().getColumn(6).setMinWidth(80);
+            tabla.getColumnModel().getColumn(6).setPreferredWidth(80);
+            tabla.getColumnModel().getColumn(6).setMaxWidth(80);
+            tabla.getColumnModel().getColumn(7).setMinWidth(70);
+            tabla.getColumnModel().getColumn(7).setPreferredWidth(70);
+            tabla.getColumnModel().getColumn(7).setMaxWidth(70);
+            tabla.getColumnModel().getColumn(8).setMinWidth(75);
+            tabla.getColumnModel().getColumn(8).setPreferredWidth(75);
+            tabla.getColumnModel().getColumn(8).setMaxWidth(75);
         }
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -803,12 +803,6 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             }
 
             
-            
-           
-            
-            
-            
-            
             private void actualizarIndicadores() {
                 ArrayList<NotaEvolucion> notas = (ArrayList) new NotaEvolucion().getNotasdePacientexRangoFecha(fecha01, fecha02).clone();
 
@@ -849,14 +843,12 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             }
         }).start();
         
-        
-        
-        
-        
     }
 
     public void llenarTabla() {
-        String namex = buscarTxt.getText().isEmpty() ? "" : buscarTxt.getText().toLowerCase();
+        String namex = buscarTxt.getText().isEmpty() 
+                ? "" 
+                : buscarTxt.getText().toLowerCase();
 
         modelo.setRowCount(0);
 
@@ -865,13 +857,24 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             String svbg = paciente.getGrupoVulnerable().toLowerCase().contains("svbg")
                     ?"SI"
                     :"NO";
-            if (validarPaciente(paciente) || paciente.getNombreCompleto().toLowerCase().contains(namex)) {
-                modelo.addRow(new Object[]{
-                    paciente.getId(), paciente.getCodigo(), paciente.getNombreCompleto(),new tools().obtenerEdad2(paciente.getFechaNacimiento())
-                    ,paciente.getTelefono(),paciente.getSrqIngreso(),svbg, paciente.getTotalSesiones()
-                });
-            }
-
+            
+            if (validarPaciente(paciente) ||
+                    paciente.getNombreCompleto().toLowerCase().contains(namex)
+                    || paciente.getNombreTerapeuta().toLowerCase().contains(namex)
+                    || paciente.getCodigo().toLowerCase().contains(namex)
+                ){
+                        modelo.addRow(new Object[]{
+                            paciente.getId(),
+                            paciente.getCodigo(),
+                            paciente.getNombreCompleto(),
+                            new tools().obtenerEdad2(paciente.getFechaNacimiento()),
+                            paciente.getTelefono(),
+                            paciente.getNombreTerapeuta(),
+                            paciente.getSrqIngreso(),
+                            svbg,
+                            paciente.getTotalSesiones()
+                        });
+                }
         }
     }
 

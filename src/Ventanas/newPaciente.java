@@ -1031,6 +1031,7 @@ public class newPaciente extends javax.swing.JFrame {
             Logger.getLogger(newPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        codigoPaciente = paciente.getCodigo();
         verVertical();
     }
 
@@ -1144,9 +1145,10 @@ public class newPaciente extends javax.swing.JFrame {
 
     public void registrarPaciente() {
         String tipoDoc = "DNI";
-        if (!RnpPag1.checkDocumento.isSelected()) {
-            tipoDoc = RnpPag1.otroDocumentoTxt.getSelectedItem().toString().replace("   ", "");
-        }
+        actualizarResumen();
+        
+        tipoDoc = RnpPag1.otroDocumentoTxt.getSelectedItem().toString().trim();
+      
         String redSoporte = "No";
         String nombreRedSoporte = "";
         if (RnpPag2.redCheck.isSelected()) {
@@ -1262,15 +1264,31 @@ public class newPaciente extends javax.swing.JFrame {
 
         } else {
             System.out.println("Editando");
-            int respuesta = paciente.updatePaciente(paciente.getId(),
-                    RnpPag1.nombresTxt.getText(), RnpPag1.apellidosTxt.getText(), tipoDoc, RnpPag1.dniTxt.getText(),
-                    RnpPag1.generoCombo.getSelectedItem().toString(), fechaNacx, totalSesiones, RnpPag1.telefonoTxt.getText(), RnpPag1.telefonoOpcionalTxt.getText(),
-                    RnpPag1.correoTxt.getText(), RnpPag1.nacionalidadTxt.getSelectedItem().toString(), RnpPag2.condicionMigratoriaCombo.getSelectedItem().toString(),
-                    RnpPag1.departamentoTxt.getSelectedItem().toString(), RnpPag1.provinviaTxt.getSelectedItem().toString(),
-                    RnpPag1.distritoTxt.getSelectedItem().toString(), grupoVulnerable,
-                    RnpPag2.discapacidadTxt.getText(), redSoporte, nombreRedSoporte,
-                    resultadoSRQIngreso + "", RnpPag3.observacionesTxt.getText(), proyecto,
-                    RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente,
+            int respuesta = paciente.updatePaciente(
+                    paciente.getId(),
+                    RnpPag1.nombresTxt.getText(),
+                    RnpPag1.apellidosTxt.getText(),
+                    tipoDoc,
+                    RnpPag1.dniTxt.getText(),
+                    RnpPag1.generoCombo.getSelectedItem().toString(),
+                    fechaNacx,
+                    totalSesiones,
+                    RnpPag1.telefonoTxt.getText(),
+                    RnpPag1.telefonoOpcionalTxt.getText(),
+                    RnpPag1.correoTxt.getText(),
+                    RnpPag1.nacionalidadTxt.getSelectedItem().toString(),
+                    RnpPag2.condicionMigratoriaCombo.getSelectedItem().toString(),
+                    RnpPag1.departamentoTxt.getSelectedItem().toString(),
+                    RnpPag1.provinviaTxt.getSelectedItem().toString(),
+                    RnpPag1.distritoTxt.getSelectedItem().toString(),
+                    grupoVulnerable,
+                    RnpPag2.discapacidadTxt.getText(),
+                    redSoporte, nombreRedSoporte,
+                    resultadoSRQIngreso + "",
+                    RnpPag3.observacionesTxt.getText(),
+                    proyecto,
+                    RnpPag3.preocupacionTxt.getText(),
+                    RnpPag3.accionesTxt.getText(), codigoPaciente,
                     modalidad, detalleDerivadox, RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
                     cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
                     otroNivelEducativo, ocupacion,subOcupacion);
@@ -1338,6 +1356,15 @@ public class newPaciente extends javax.swing.JFrame {
         String apellido = RnpPag1.apellidosTxt.getText().isEmpty()
                 ? "(ingrese apellido)"
                 : RnpPag1.apellidosTxt.getText().substring(0, 1);
+        
+        codigoPaciente = codigoPaciente.length()<1
+                ?codigoPaciente = edad + hoy2 + " - " + name + apellido
+                :codigoPaciente;
+            
+        
+        
+        codigoPaciente = codigoPaciente.toUpperCase();
+/*
         if (tipo.equalsIgnoreCase("nuevo")) {
             codigoPaciente = edad + hoy2 + " - " + name + apellido;
             codigoPaciente = codigoPaciente.toUpperCase();
@@ -1346,8 +1373,10 @@ public class newPaciente extends javax.swing.JFrame {
         } else if(tipo.equalsIgnoreCase("editar") && paciente.getCodigo().equalsIgnoreCase("vacio")){
             
         }
-
+        */
+        
         codigoPaciente = codigoPaciente.toUpperCase();
+        System.out.println("Obteniendo Codigo: "+codigoPaciente);
     }
 
     public String getCodigoPaciente() {
@@ -1378,8 +1407,6 @@ public class newPaciente extends javax.swing.JFrame {
             }
         }
     }
-    
-
     
 private void verVertical() {
         pp.removeAll();
