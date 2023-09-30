@@ -93,7 +93,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -131,7 +131,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -173,7 +173,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -214,7 +214,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -255,7 +255,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -293,7 +293,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -328,7 +328,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -366,7 +366,7 @@
           <ComponentRef name="grupoBtns"/>
         </Property>
         <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e6" green="e6" red="e6" type="rgb"/>
+          <Color blue="ac" green="b9" red="a5" type="rgb"/>
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>

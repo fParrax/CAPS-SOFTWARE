@@ -10,9 +10,15 @@ import Clases.ScrollSens;
 import Clases.Usuario;
 import Clases.tools;
 import Panels.panelIndexMenu;
+import java.awt.Color;
+import java.awt.Desktop;
 import static java.awt.Frame.NORMAL;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -73,6 +79,7 @@ public class Index extends javax.swing.JFrame {
         panelInferior = new javax.swing.JPanel();
         versionLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lbLink = new javax.swing.JLabel();
         scrollCentral = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -169,7 +176,21 @@ public class Index extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Diseñado y desarrollado por: comredsystem.net.pe/");
+        jLabel1.setText("Desarrollado por: ");
+
+        lbLink.setText("comredsystem.net.pe/");
+        lbLink.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbLinkMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbLinkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbLinkMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelInferiorLayout = new javax.swing.GroupLayout(panelInferior);
         panelInferior.setLayout(panelInferiorLayout);
@@ -180,13 +201,16 @@ public class Index extends javax.swing.JFrame {
                 .addComponent(versionLabel)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addContainerGap(650, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbLink)
+                .addContainerGap(711, Short.MAX_VALUE))
         );
         panelInferiorLayout.setVerticalGroup(
             panelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(versionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbLink))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -256,6 +280,30 @@ public class Index extends javax.swing.JFrame {
 
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void lbLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLinkMouseEntered
+        lbLink.setForeground(new Color(0,0,204));
+    }//GEN-LAST:event_lbLinkMouseEntered
+
+    private void lbLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLinkMouseExited
+      lbLink.setForeground(new Color(0,0,0));
+    }//GEN-LAST:event_lbLinkMouseExited
+
+    private void lbLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLinkMouseClicked
+      URL url=null;
+try {
+    url = new URL("https://comredsystem.net.pe/");
+    try {
+        Desktop.getDesktop().browse(url.toURI());
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (URISyntaxException e) {
+        e.printStackTrace();
+    }
+} catch (MalformedURLException e1) {
+    e1.printStackTrace();
+}
+    }//GEN-LAST:event_lbLinkMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -298,6 +346,7 @@ public class Index extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbLink;
     private javax.swing.JButton logoutButton;
     private static javax.swing.JLabel nameUserLabel;
     private javax.swing.JPanel panelCentral;

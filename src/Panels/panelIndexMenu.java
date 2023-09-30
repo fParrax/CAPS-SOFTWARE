@@ -76,7 +76,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/home_icon.png"))); // NOI18N
         btn1.setText("            Home(OCULTO)");
         grupoBtns.add(btn1);
-        btn1.setColorHover(new java.awt.Color(230, 230, 230));
+        btn1.setColorHover(new java.awt.Color(165, 185, 172));
         btn1.setColorLine(new java.awt.Color(51, 51, 51));
         btn1.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -94,7 +94,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/people_list_filled_icon.png"))); // NOI18N
         btn2.setText("            Mis Pacientes");
         grupoBtns.add(btn2);
-        btn2.setColorHover(new java.awt.Color(230, 230, 230));
+        btn2.setColorHover(new java.awt.Color(165, 185, 172));
         btn2.setColorLine(new java.awt.Color(51, 51, 51));
         btn2.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn2.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -130,7 +130,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/people_add_filled_icon.png"))); // NOI18N
         btn3.setText("            Nuevo Paciente");
         grupoBtns.add(btn3);
-        btn3.setColorHover(new java.awt.Color(230, 230, 230));
+        btn3.setColorHover(new java.awt.Color(165, 185, 172));
         btn3.setColorLine(new java.awt.Color(51, 51, 51));
         btn3.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn3.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -161,7 +161,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/user_circle_gear_icon.png"))); // NOI18N
         btn4.setText("            Ver Usuarios");
         grupoBtns.add(btn4);
-        btn4.setColorHover(new java.awt.Color(230, 230, 230));
+        btn4.setColorHover(new java.awt.Color(165, 185, 172));
         btn4.setColorLine(new java.awt.Color(51, 51, 51));
         btn4.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn4.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -192,7 +192,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/increase_chart_data_graph_icon.png"))); // NOI18N
         btn5.setText("            Monitoreo");
         grupoBtns.add(btn5);
-        btn5.setColorHover(new java.awt.Color(230, 230, 230));
+        btn5.setColorHover(new java.awt.Color(165, 185, 172));
         btn5.setColorLine(new java.awt.Color(51, 51, 51));
         btn5.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn5.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -222,7 +222,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn7.setBackground(new java.awt.Color(138, 128, 155));
         btn7.setText("            Inicio");
         grupoBtns.add(btn7);
-        btn7.setColorHover(new java.awt.Color(230, 230, 230));
+        btn7.setColorHover(new java.awt.Color(165, 185, 172));
         btn7.setColorLine(new java.awt.Color(51, 51, 51));
         btn7.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn7.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -239,7 +239,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn8.setBackground(new java.awt.Color(138, 128, 155));
         btn8.setText("            Inicio");
         grupoBtns.add(btn8);
-        btn8.setColorHover(new java.awt.Color(230, 230, 230));
+        btn8.setColorHover(new java.awt.Color(165, 185, 172));
         btn8.setColorLine(new java.awt.Color(51, 51, 51));
         btn8.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn8.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
@@ -257,7 +257,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/setting.png"))); // NOI18N
         btn12.setText("            Parámetros");
         grupoBtns.add(btn12);
-        btn12.setColorHover(new java.awt.Color(230, 230, 230));
+        btn12.setColorHover(new java.awt.Color(165, 185, 172));
         btn12.setColorLine(new java.awt.Color(51, 51, 51));
         btn12.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn12.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N

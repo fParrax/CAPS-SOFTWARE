@@ -243,7 +243,9 @@
                           <Component id="versionLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="650" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lbLink" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="711" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -252,6 +254,7 @@
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="versionLabel" alignment="3" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="lbLink" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -276,8 +279,21 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Dise&#xf1;ado y desarrollado por: comredsystem.net.pe/"/>
+                    <Property name="text" type="java.lang.String" value="Desarrollado por: "/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lbLink">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="comredsystem.net.pe/"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Hand Cursor"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLinkMouseClicked"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLinkMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbLinkMouseExited"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

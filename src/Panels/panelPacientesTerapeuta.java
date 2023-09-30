@@ -79,7 +79,8 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"sdfgsdf", null, null, null, null, null, null, null, null},
-                {"4", "sdfg", null, null, null, null, null, null, null}
+                {"4", "sdfg", null, null, null, null, null, null, null},
+                {"we", null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "N° Paciente", "Código", "Nombre y Apellido", "Edad", "Teléfono", "Terapeuta Asig.", "SRQ Ingreso", "SVBG", "N° Sesiones"
@@ -95,11 +96,11 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         });
         tabla.setToolTipText("Resumen de mis pacientes");
         tabla.setBackgoundHead(new java.awt.Color(138, 128, 155));
-        tabla.setBackgoundHover(new java.awt.Color(220, 226, 218));
+        tabla.setBackgoundHover(new java.awt.Color(138, 128, 155));
         tabla.setColorBorderRows(new java.awt.Color(165, 185, 172));
         tabla.setColorPrimary(new java.awt.Color(165, 185, 172));
         tabla.setColorPrimaryText(new java.awt.Color(0, 0, 0));
-        tabla.setColorSecondary(new java.awt.Color(165, 185, 172));
+        tabla.setColorSecondary(new java.awt.Color(221, 226, 218));
         tabla.setColorSecundaryText(new java.awt.Color(0, 0, 0));
         tabla.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         tabla.setFontHead(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
@@ -108,8 +109,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         tabla.setForegroundHover(new java.awt.Color(0, 0, 0));
         tabla.setGridColor(new java.awt.Color(0, 0, 0));
         tabla.setHighHead(25);
-        tabla.setSelectionBackground(new java.awt.Color(220, 226, 218));
-        tabla.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tabla.setSelectionBackground(new java.awt.Color(138, 128, 155));
         tabla.setShowGrid(true);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -418,21 +418,25 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tituloBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(srqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(indiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)))
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(srqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(indiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)))
+                        .addGap(5, 5, 5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
