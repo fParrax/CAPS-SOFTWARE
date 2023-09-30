@@ -18,7 +18,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
 
     static String priv = "";
     static panelPacientesTerapeuta pct = new panelPacientesTerapeuta();
-    public static panelNewPaciente pnp = new panelNewPaciente();
+    public static panelNewPaciente pnp;
     static panelVerUsuarios pvu = new panelVerUsuarios();
     static ParametrosPanel pp;
     static panelHome ph = new panelHome();
@@ -44,9 +44,8 @@ public class panelIndexMenu extends javax.swing.JPanel {
         }).start();
         
         
-        new Thread(this::iniciarMenu).start();
+        iniciarMenu();
          
-        btn1.setVisible(true);
     }
 
     /**
@@ -70,9 +69,9 @@ public class panelIndexMenu extends javax.swing.JPanel {
         btn6 = new rojeru_san.rsbutton.RSButtonRoundRipple();
         rSPanelImage1 = new rojeru_san.rspanel.RSPanelImage();
 
-        setBackground(new java.awt.Color(13, 123, 131));
+        setBackground(new java.awt.Color(138, 128, 155));
 
-        btn1.setBackground(new java.awt.Color(13, 123, 131));
+        btn1.setBackground(new java.awt.Color(138, 128, 155));
         btn1.setForeground(new java.awt.Color(51, 51, 51));
         btn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/home_icon.png"))); // NOI18N
         btn1.setText("            Home(OCULTO)");
@@ -91,7 +90,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn2.setBackground(new java.awt.Color(13, 123, 131));
+        btn2.setBackground(new java.awt.Color(138, 128, 155));
         btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/people_list_filled_icon.png"))); // NOI18N
         btn2.setText("            Mis Pacientes");
         grupoBtns.add(btn2);
@@ -127,7 +126,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn3.setBackground(new java.awt.Color(13, 123, 131));
+        btn3.setBackground(new java.awt.Color(138, 128, 155));
         btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/people_add_filled_icon.png"))); // NOI18N
         btn3.setText("            Nuevo Paciente");
         grupoBtns.add(btn3);
@@ -158,7 +157,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn4.setBackground(new java.awt.Color(13, 123, 131));
+        btn4.setBackground(new java.awt.Color(138, 128, 155));
         btn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/user_circle_gear_icon.png"))); // NOI18N
         btn4.setText("            Ver Usuarios");
         grupoBtns.add(btn4);
@@ -189,7 +188,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn5.setBackground(new java.awt.Color(13, 123, 131));
+        btn5.setBackground(new java.awt.Color(138, 128, 155));
         btn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/increase_chart_data_graph_icon.png"))); // NOI18N
         btn5.setText("            Monitoreo");
         grupoBtns.add(btn5);
@@ -220,7 +219,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn7.setBackground(new java.awt.Color(13, 123, 131));
+        btn7.setBackground(new java.awt.Color(138, 128, 155));
         btn7.setText("            Inicio");
         grupoBtns.add(btn7);
         btn7.setColorHover(new java.awt.Color(230, 230, 230));
@@ -237,7 +236,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn8.setBackground(new java.awt.Color(13, 123, 131));
+        btn8.setBackground(new java.awt.Color(138, 128, 155));
         btn8.setText("            Inicio");
         grupoBtns.add(btn8);
         btn8.setColorHover(new java.awt.Color(230, 230, 230));
@@ -254,7 +253,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn12.setBackground(new java.awt.Color(13, 123, 131));
+        btn12.setBackground(new java.awt.Color(138, 128, 155));
         btn12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/setting.png"))); // NOI18N
         btn12.setText("            Parámetros");
         grupoBtns.add(btn12);
@@ -285,7 +284,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
             }
         });
 
-        btn6.setBackground(new java.awt.Color(13, 123, 131));
+        btn6.setBackground(new java.awt.Color(138, 128, 155));
         btn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/pdfIconx32px.png"))); // NOI18N
         btn6.setText("  Manual");
         btn6.setColorHover(new java.awt.Color(249, 182, 48));
@@ -703,6 +702,9 @@ public class panelIndexMenu extends javax.swing.JPanel {
     }
 
     private void iniciarMenu() {
+        pnp = new panelNewPaciente();;
+        btn1.setVisible(false);    
+        
         btn1.doClick();
         if (priv.equalsIgnoreCase("administrador")) {
             

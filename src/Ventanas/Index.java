@@ -16,6 +16,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -77,9 +78,9 @@ public class Index extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema - Ventana Principal");
 
-        panelCentral.setBackground(new java.awt.Color(13, 123, 131));
+        panelCentral.setBackground(new java.awt.Color(138, 128, 155));
 
-        panelUser.setBackground(new java.awt.Color(13, 123, 131));
+        panelUser.setBackground(new java.awt.Color(138, 128, 155));
 
         rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imgs/user_icon_64px.png"))); // NOI18N
 
@@ -267,10 +268,11 @@ public class Index extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                   //javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Index.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

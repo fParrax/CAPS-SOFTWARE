@@ -31,12 +31,13 @@ public class panelNewPaciente extends javax.swing.JPanel {
     String fecha01 = "1990/01/01", fecha02 = "2100/12/31";
     ArrayList<String> pacs = new ArrayList();
     ArrayList<RegistroPaciente> registros = new ArrayList();
-    newPaciente np = new newPaciente();
+    newPaciente np;
     public panelNewPaciente() {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         tituloBoton.setVisible(false);
-        new Thread(this::iniciar).start();
+        //new Thread(this::iniciar).start();
+        iniciar();
     }
 
     @SuppressWarnings("unchecked")
@@ -480,7 +481,7 @@ public class panelNewPaciente extends javax.swing.JPanel {
             np.setExtendedState(0);
         }
                 
-       // new newPaciente(this).setVisible(true);
+      
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -678,31 +679,8 @@ public class panelNewPaciente extends javax.swing.JPanel {
 
     public void iniciar() {
         barra.setVisible(false);
-        
         resetearBusqueda();
-        
-      
-
-/*
-  // alinear nombre a la izquierda
-TableColumn column = tabla.getColumnModel().getColumn(2);
-        column.setCellRenderer(new DefaultTableCellRenderer() {
-    @Override
-    public void setValue(Object value) {
-        setHorizontalAlignment(JLabel.LEFT);
-        setFont(new Font("Tahoma",11,Font.PLAIN));
-        setForeground(new Color(204,204,204));
-        super.setValue(value);
-    }
-});
-        // Alinear el contenido al centro
-
-
-//column.setCellRenderer(tabla.getColumnModel().getColumn(1).getCellRenderer());
-*/
-
-
-
+         
     }
 
     public  void resetearBusqueda() {
@@ -726,7 +704,9 @@ TableColumn column = tabla.getColumnModel().getColumn(2);
 
         String txt2 = buscarTxt.getText().isEmpty() ? "" : buscarTxt.getText().toLowerCase();
         for (Paciente paciente : pacientes) {
-            if ((paciente.getCodigo().toLowerCase().contains(txt2) || paciente.getNombreCompleto().toLowerCase().contains(txt2) || paciente.getDni().contains(txt2))) {//validarPaciente(paciente)
+            if ((paciente.getCodigo().toLowerCase().contains(txt2) 
+                    || paciente.getNombreCompleto().toLowerCase().contains(txt2) 
+                    || paciente.getDni().contains(txt2))) {//validarPaciente(paciente)
                 modelo.addRow(new Object[]{
                     paciente.getId(), paciente.getCodigo(), paciente.getNombreCompleto(),paciente.getTipoDocumento(),paciente.getDni(),
                     new tools().obtenerEdad2(paciente.getFechaNacimiento()),paciente.getTelefono(),paciente.getCorreo(), paciente.getTotalSesiones()

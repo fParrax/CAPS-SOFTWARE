@@ -36,6 +36,7 @@ public class newLoggin extends javax.swing.JFrame {
             }
         }).start();
         actualizarCaptcha();
+       // usernameTxt.requestFocus();
     }
 
     public void changeIcon() {
@@ -49,18 +50,17 @@ public class newLoggin extends javax.swing.JFrame {
 
         panelCentral = new javax.swing.JPanel();
         rSPanelImage1 = new rojeru_san.rspanel.RSPanelImage();
-        jPanel1 = new javax.swing.JPanel();
-        rSButtonIconShadow1 = new RSMaterialComponent.RSButtonIconShadow();
-        rSPanelRound1 = new rojeru_san.rspanel.RSPanelRound();
-        rSLabelImage1 = new rojeru_san.rslabel.RSLabelImage();
-        jSeparator1 = new javax.swing.JSeparator();
-        ingresarBtn = new rojeru_san.rsbutton.RSButtonRound();
+        pnlDiseño = new javax.swing.JPanel();
+        lbTitulo = new javax.swing.JLabel();
+        iconPersonas = new RSMaterialComponent.RSButtonIconShadow();
         usernameTxt = new RSMaterialComponent.RSTextFieldMaterial();
         passwordTxt = new RSMaterialComponent.RSTextFieldMaterial();
-        rSLabelImage2 = new rojeru_san.rslabel.RSLabelImage();
+        ingresarBtn = new rojeru_san.rsbutton.RSButtonRound();
         txtCaptcha = new rojeru_san.rsfield.RSTextFullRound();
-        lbcaptcha = new javax.swing.JLabel();
         lbAvisoGatcha = new javax.swing.JLabel();
+        lbImageCaptcha = new rojeru_san.rslabel.RSLabelImage();
+        lbcaptcha = new javax.swing.JLabel();
+        lbFondo = new rojeru_san.rslabel.RSLabelImage();
         barra = new rojeru_san.rsprogress.RSProgressBarAnimated();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,29 +71,81 @@ public class newLoggin extends javax.swing.JFrame {
 
         rSPanelImage1.setImagen(new javax.swing.ImageIcon(getClass().getResource("/imgs/fondoLoggin2.png"))); // NOI18N
 
-        jPanel1.setOpaque(false);
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlDiseño.setOpaque(false);
+        pnlDiseño.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rSButtonIconShadow1.setBackground(new java.awt.Color(157, 169, 167));
-        rSButtonIconShadow1.setBackgroundHover(new java.awt.Color(157, 169, 167));
-        rSButtonIconShadow1.setFontSize(24.0F);
-        rSButtonIconShadow1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        rSButtonIconShadow1.setIconTextGap(0);
-        rSButtonIconShadow1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
-        rSButtonIconShadow1.setOpaque(true);
-        rSButtonIconShadow1.setRound(100);
-        rSButtonIconShadow1.setTypeBorder(RSMaterialComponent.RSButtonIconShadow.TYPEBORDER.CIRCLE);
-        jPanel1.add(rSButtonIconShadow1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 90, 90));
+        lbTitulo.setBackground(new java.awt.Color(246, 219, 212));
+        lbTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(246, 219, 212));
+        lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbTitulo.setText("INICIAR SESIÓN");
+        pnlDiseño.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
-        rSPanelRound1.setBackground(new java.awt.Color(255, 255, 255));
-        rSPanelRound1.setAnchoBorde(1.5F);
-        rSPanelRound1.setColorBackground(new java.awt.Color(164, 184, 172));
-        rSPanelRound1.setOpaque(false);
+        iconPersonas.setBackground(new java.awt.Color(165, 185, 172));
+        iconPersonas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        iconPersonas.setForeground(new java.awt.Color(246, 219, 212));
+        iconPersonas.setBackgroundHover(new java.awt.Color(157, 169, 167));
+        iconPersonas.setFontSize(24.0F);
+        iconPersonas.setForegroundText(new java.awt.Color(246, 219, 212));
+        iconPersonas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        iconPersonas.setIconTextGap(0);
+        iconPersonas.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.PEOPLE);
+        iconPersonas.setOpaque(true);
+        iconPersonas.setRound(100);
+        iconPersonas.setTypeBorder(RSMaterialComponent.RSButtonIconShadow.TYPEBORDER.CIRCLE);
+        pnlDiseño.add(iconPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 100));
 
-        rSLabelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/logoCaps2.png"))); // NOI18N
+        usernameTxt.setBackground(new java.awt.Color(164, 184, 172));
+        usernameTxt.setForeground(new java.awt.Color(255, 255, 255));
+        usernameTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        usernameTxt.setColorMaterial(new java.awt.Color(138, 128, 155));
+        usernameTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        usernameTxt.setPhColor(new java.awt.Color(246, 219, 212));
+        usernameTxt.setPhIntensity(220);
+        usernameTxt.setPlaceholder("Usuario");
+        usernameTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usernameTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameTxtFocusLost(evt);
+            }
+        });
+        usernameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                usernameTxtKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameTxtKeyTyped(evt);
+            }
+        });
+        pnlDiseño.add(usernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        passwordTxt.setBackground(new java.awt.Color(164, 184, 172));
+        passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
+        passwordTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordTxt.setColorMaterial(new java.awt.Color(138, 128, 155));
+        passwordTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        passwordTxt.setPhColor(new java.awt.Color(246, 219, 212));
+        passwordTxt.setPhIntensity(220);
+        passwordTxt.setPlaceholder("Contraseña");
+        passwordTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordTxtFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordTxtFocusLost(evt);
+            }
+        });
+        passwordTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordTxtKeyReleased(evt);
+            }
+        });
+        pnlDiseño.add(passwordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         ingresarBtn.setBackground(new java.awt.Color(138, 128, 155));
         ingresarBtn.setText("ACCESO");
@@ -104,34 +156,7 @@ public class newLoggin extends javax.swing.JFrame {
                 ingresarBtnActionPerformed(evt);
             }
         });
-
-        usernameTxt.setBackground(new java.awt.Color(164, 184, 172));
-        usernameTxt.setForeground(new java.awt.Color(255, 255, 255));
-        usernameTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        usernameTxt.setColorMaterial(new java.awt.Color(138, 128, 155));
-        usernameTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        usernameTxt.setPhColor(new java.awt.Color(255, 255, 255));
-        usernameTxt.setPlaceholder("Nombre de Usuario");
-        usernameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                usernameTxtKeyReleased(evt);
-            }
-        });
-
-        passwordTxt.setBackground(new java.awt.Color(164, 184, 172));
-        passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
-        passwordTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordTxt.setColorMaterial(new java.awt.Color(138, 128, 155));
-        passwordTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        passwordTxt.setPhColor(new java.awt.Color(255, 255, 255));
-        passwordTxt.setPlaceholder("Contraseña");
-        passwordTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordTxtKeyPressed(evt);
-            }
-        });
-
-        rSLabelImage2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/captcha.png"))); // NOI18N
+        pnlDiseño.add(ingresarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
 
         txtCaptcha.setBackground(new java.awt.Color(164, 184, 172));
         txtCaptcha.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,75 +169,28 @@ public class newLoggin extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtCaptchaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCaptchaKeyTyped(evt);
+            }
         });
+        pnlDiseño.add(txtCaptcha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 100, -1));
+
+        lbAvisoGatcha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbAvisoGatcha.setForeground(new java.awt.Color(255, 255, 255));
+        lbAvisoGatcha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbAvisoGatcha.setText("Ingrese Captcha");
+        pnlDiseño.add(lbAvisoGatcha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
+
+        lbImageCaptcha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/captcha.png"))); // NOI18N
+        pnlDiseño.add(lbImageCaptcha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 40, 40));
 
         lbcaptcha.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         lbcaptcha.setForeground(new java.awt.Color(255, 255, 255));
         lbcaptcha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pnlDiseño.add(lbcaptcha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 60, 40));
 
-        lbAvisoGatcha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbAvisoGatcha.setText("Ingrese Captcha");
-
-        javax.swing.GroupLayout rSPanelRound1Layout = new javax.swing.GroupLayout(rSPanelRound1);
-        rSPanelRound1.setLayout(rSPanelRound1Layout);
-        rSPanelRound1Layout.setHorizontalGroup(
-            rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rSPanelRound1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelRound1Layout.createSequentialGroup()
-                        .addComponent(jSeparator1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelRound1Layout.createSequentialGroup()
-                        .addGap(0, 31, Short.MAX_VALUE)
-                        .addGroup(rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelRound1Layout.createSequentialGroup()
-                                .addGroup(rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rSPanelRound1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lbcaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbAvisoGatcha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                                .addGap(27, 27, 27))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelRound1Layout.createSequentialGroup()
-                                .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51))))))
-            .addGroup(rSPanelRound1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        rSPanelRound1Layout.setVerticalGroup(
-            rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelRound1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbAvisoGatcha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(rSPanelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rSLabelImage2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbcaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ingresarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rSLabelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-        );
-
-        jPanel1.add(rSPanelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 400));
+        lbFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/fotoLoggin.png"))); // NOI18N
+        pnlDiseño.add(lbFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 340, 480));
 
         barra.setForeground(new java.awt.Color(236, 171, 175));
         barra.setColorBorde(new java.awt.Color(157, 169, 167));
@@ -227,16 +205,16 @@ public class newLoggin extends javax.swing.JFrame {
             rSPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rSPanelImage1Layout.createSequentialGroup()
                 .addContainerGap(200, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addComponent(pnlDiseño, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200))
             .addComponent(barra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rSPanelImage1Layout.setVerticalGroup(
             rSPanelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelImage1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlDiseño, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -278,9 +256,17 @@ public class newLoggin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCaptchaKeyReleased
 
     private void usernameTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTxtKeyReleased
-      try {
-            if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP && new tools().Obtener_mac().equals("E8-40-F2-05-EC-40") 
-                    || new tools().Obtener_mac().equals("00-24-81-CC-7D-05")){
+      
+        if(usernameTxt.getText().length()>0){
+           usernameTxt.setPlaceholder("");
+       }else{
+            usernameTxt.setPlaceholder("Usuario");
+       }
+        
+        try {
+            if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP && (new tools().Obtener_mac().equals("E8-40-F2-05-EC-40") 
+                    || new tools().Obtener_mac().equals("00-24-81-CC-7D-05")
+                    || new tools().Obtener_mac().equals("EC-F4-BB-4A-2E-B2"))){
                 usernameTxt.setText("dev");
                 passwordTxt.setText(".");
                 txtCaptcha.setText(lbcaptcha.getText());
@@ -302,6 +288,50 @@ public class newLoggin extends javax.swing.JFrame {
     private void ingresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBtnActionPerformed
       new Thread(this::buscarUsuario).start();
     }//GEN-LAST:event_ingresarBtnActionPerformed
+
+    private void usernameTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTxtKeyTyped
+       
+    }//GEN-LAST:event_usernameTxtKeyTyped
+
+    private void passwordTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTxtKeyReleased
+       if(passwordTxt.getText().length()>0){
+           passwordTxt.setPlaceholder("");
+       }else{
+            passwordTxt.setPlaceholder("Contraseña");
+       }
+    }//GEN-LAST:event_passwordTxtKeyReleased
+
+    private void usernameTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTxtFocusGained
+     
+            usernameTxt.setPlaceholder("");
+       
+    }//GEN-LAST:event_usernameTxtFocusGained
+
+    private void usernameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTxtFocusLost
+      if(usernameTxt.getText().length()>0){
+          
+       }else{
+            usernameTxt.setPlaceholder("Contraseña");
+       }
+    }//GEN-LAST:event_usernameTxtFocusLost
+
+    private void passwordTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTxtFocusLost
+      if(passwordTxt.getText().length()>0){
+          
+       }else{
+            passwordTxt.setPlaceholder("Contraseña");
+       }
+    }//GEN-LAST:event_passwordTxtFocusLost
+
+    private void passwordTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTxtFocusGained
+      passwordTxt.setPlaceholder("");
+    }//GEN-LAST:event_passwordTxtFocusGained
+
+    private void txtCaptchaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaptchaKeyTyped
+     if(txtCaptcha.getText().length()>4){
+         evt.consume();
+     }
+    }//GEN-LAST:event_txtCaptchaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -340,18 +370,17 @@ public class newLoggin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.rsprogress.RSProgressBarAnimated barra;
+    private RSMaterialComponent.RSButtonIconShadow iconPersonas;
     private rojeru_san.rsbutton.RSButtonRound ingresarBtn;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbAvisoGatcha;
+    private rojeru_san.rslabel.RSLabelImage lbFondo;
+    private rojeru_san.rslabel.RSLabelImage lbImageCaptcha;
+    private javax.swing.JLabel lbTitulo;
     private javax.swing.JLabel lbcaptcha;
     private javax.swing.JPanel panelCentral;
     private RSMaterialComponent.RSTextFieldMaterial passwordTxt;
-    private RSMaterialComponent.RSButtonIconShadow rSButtonIconShadow1;
-    private rojeru_san.rslabel.RSLabelImage rSLabelImage1;
-    private rojeru_san.rslabel.RSLabelImage rSLabelImage2;
+    private javax.swing.JPanel pnlDiseño;
     private rojeru_san.rspanel.RSPanelImage rSPanelImage1;
-    private rojeru_san.rspanel.RSPanelRound rSPanelRound1;
     private rojeru_san.rsfield.RSTextFullRound txtCaptcha;
     private RSMaterialComponent.RSTextFieldMaterial usernameTxt;
     // End of variables declaration//GEN-END:variables
