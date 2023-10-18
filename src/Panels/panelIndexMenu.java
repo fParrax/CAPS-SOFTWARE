@@ -719,12 +719,15 @@ public class panelIndexMenu extends javax.swing.JPanel {
         
         
 
-        if (priv.equalsIgnoreCase("terapeuta")) {
+        if (priv.equalsIgnoreCase("terapeuta") || priv.equalsIgnoreCase("psiquiatra")) {
             btn2.setVisible(true);
+            btn12.setVisible(false);
         }
+        
         if (priv.equalsIgnoreCase("trabajador social")) {
             btn3.setVisible(true);
         }
+        
         String privx = priv.toLowerCase();
          if (privx.contains("monitoreo")) {
             btn5.setVisible(true);

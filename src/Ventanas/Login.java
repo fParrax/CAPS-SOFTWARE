@@ -8,6 +8,9 @@ import Clases.Usuario;
 import Clases.tools;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +29,7 @@ public class Login extends javax.swing.JFrame {
     static boolean userEncontrado = false;
     public Login() {
         initComponents();
-        changeIcon();
+        changeIcon(true);
         barra.setVisible(false);
         new Thread(new Runnable() {
             @Override
@@ -38,10 +41,35 @@ public class Login extends javax.swing.JFrame {
         actualizarCaptcha();
        // usernameTxt.requestFocus();
     }
-
-    public void changeIcon() {
+public Login(boolean isOpen) {
+        initComponents();
+        changeIcon(isOpen);
+        barra.setVisible(false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                user = new Usuario().getUsuario(".");
+                user = new Usuario();
+            }
+        }).start();
+        actualizarCaptcha();
+       // usernameTxt.requestFocus();
+    }
+    public void changeIcon(boolean isOpen) {
         Image icon = new ImageIcon(getClass().getResource("/imgs/logo.png")).getImage();
         setIconImage(icon);
+        
+        if (isOpen) {
+            new Thread(() -> {
+                try {
+                    ServerSocket serverSocket = new ServerSocket(11246);
+                    Socket socket = serverSocket.accept();
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(rootPane, "El programa ya se encuentra abierto, solo puede tener una instancia del mismo");
+                    System.exit(0);
+                }
+            }).start();
+        }
     }
     
     @SuppressWarnings("unchecked")

@@ -49,6 +49,8 @@ public class ListarTerapeutas extends javax.swing.JFrame {
     private void initComponents() {
 
         grupo1 = new javax.swing.ButtonGroup();
+        miGrupoRadio = new rojerusan.RSRadioButton();
+        todosRadio = new rojerusan.RSRadioButton();
         panelCentral = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
@@ -57,12 +59,23 @@ public class ListarTerapeutas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         nombreTxt = new rojeru_san.rsfield.RSTextFullRound();
         rSButtonIconDos1 = new RSMaterialComponent.RSButtonIconDos();
-        miGrupoRadio = new rojerusan.RSRadioButton();
-        todosRadio = new rojerusan.RSRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new rojerusan.RSTableMetro();
         rSButtonIconDos2 = new RSMaterialComponent.RSButtonIconDos();
         barra = new rojeru_san.rsprogress.RSProgressBarAnimated();
+
+        grupo1.add(miGrupoRadio);
+        miGrupoRadio.setForeground(new java.awt.Color(0, 0, 0));
+        miGrupoRadio.setText("De mi grupo");
+        miGrupoRadio.setColorCheck(new java.awt.Color(0, 102, 102));
+        miGrupoRadio.setColorUnCheck(new java.awt.Color(102, 102, 102));
+
+        grupo1.add(todosRadio);
+        todosRadio.setForeground(new java.awt.Color(0, 0, 0));
+        todosRadio.setSelected(true);
+        todosRadio.setText("Todos");
+        todosRadio.setColorCheck(new java.awt.Color(0, 102, 102));
+        todosRadio.setColorUnCheck(new java.awt.Color(102, 102, 102));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listado de Terapeutas");
@@ -142,19 +155,6 @@ public class ListarTerapeutas extends javax.swing.JFrame {
             }
         });
 
-        grupo1.add(miGrupoRadio);
-        miGrupoRadio.setForeground(new java.awt.Color(0, 0, 0));
-        miGrupoRadio.setText("De mi grupo");
-        miGrupoRadio.setColorCheck(new java.awt.Color(0, 102, 102));
-        miGrupoRadio.setColorUnCheck(new java.awt.Color(102, 102, 102));
-
-        grupo1.add(todosRadio);
-        todosRadio.setForeground(new java.awt.Color(0, 0, 0));
-        todosRadio.setSelected(true);
-        todosRadio.setText("Todos");
-        todosRadio.setColorCheck(new java.awt.Color(0, 102, 102));
-        todosRadio.setColorUnCheck(new java.awt.Color(102, 102, 102));
-
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -230,11 +230,7 @@ public class ListarTerapeutas extends javax.swing.JFrame {
                         .addComponent(rSButtonIconDos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rSButtonIconDos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(miGrupoRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(todosRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
+                        .addGap(325, 325, 325))
                     .addComponent(barra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -253,10 +249,7 @@ public class ListarTerapeutas extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSButtonIconDos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rSButtonIconDos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(miGrupoRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(todosRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(rSButtonIconDos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -391,6 +384,9 @@ public class ListarTerapeutas extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static void actualizarValores() {
+        miGrupoRadio.setVisible(false);
+        todosRadio.setVisible(false);
+        
         users.clear();
         barra.setVisible(true);
         String texto = nombreTxt.getText().isEmpty() ? "" : nombreTxt.getText();
