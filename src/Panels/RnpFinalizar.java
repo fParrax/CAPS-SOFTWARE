@@ -246,7 +246,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
     }//GEN-LAST:event_finalizarBtnActionPerformed
 
     private void terapeutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terapeutaBtnActionPerformed
-       new ListarTerapeutas(Index.getUser(),"newPaciente").setVisible(true);
+       new ListarTerapeutas("newPaciente").setVisible(true);
     }//GEN-LAST:event_terapeutaBtnActionPerformed
 
     private void modalidadComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modalidadComboItemStateChanged
@@ -302,12 +302,13 @@ boolean otro=false;
 
 
     
-    public static void setTerapeuta(Usuario userx){
-        terapeuta=userx;
+    public static void setTerapeuta(Usuario usuarioSeleccionado){
+        terapeuta=usuarioSeleccionado;
         terapeutaTxt.setText(terapeuta.getId()+"/"+terapeuta.getCodigo());
         nombreTerapeutaTxt.setText(terapeuta.getNombre());
         fechaCitaTxt.setVisible(true);
-        ventanaOriginal.setTerapeutaCita(userx);
+        ventanaOriginal.setTerapeutaCita(usuarioSeleccionado);
+        
     }
     public static Usuario getTerapeuta(){
         return terapeuta;

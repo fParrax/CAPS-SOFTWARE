@@ -272,12 +272,10 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonMouseExited
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea Cerrar Sesión?") == 0) {
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea Cerrar Sesión?","Cambiar de Usuario",JOptionPane.OK_CANCEL_OPTION) == 0) {
             new Login().setVisible(true);
             this.dispose();
         }
-
-
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void lbLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLinkMouseEntered

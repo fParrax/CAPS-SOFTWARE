@@ -50,6 +50,9 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
     private void initComponents() {
 
         grupoCiclo = new javax.swing.ButtonGroup();
+        radioCicloActual = new rojerusan.RSRadioButton();
+        radioTodos = new rojerusan.RSRadioButton();
+        jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new rojerusan.RSTableMetro();
         jButton1 = new javax.swing.JButton();
@@ -69,9 +72,32 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         totalSesionesLabel = new rojeru_san.rslabel.RSLabelBorderRound();
         alertaIcon = new RSMaterialComponent.RSButtonIconDos();
         alertaMensaje = new javax.swing.JLabel();
-        radioTodos = new rojerusan.RSRadioButton();
-        radioCicloActual = new rojerusan.RSRadioButton();
-        jButton5 = new javax.swing.JButton();
+
+        grupoCiclo.add(radioCicloActual);
+        radioCicloActual.setForeground(new java.awt.Color(0, 0, 0));
+        radioCicloActual.setText("Ciclo Actual");
+        radioCicloActual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        radioCicloActual.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                radioCicloActualStateChanged(evt);
+            }
+        });
+
+        grupoCiclo.add(radioTodos);
+        radioTodos.setForeground(new java.awt.Color(0, 0, 0));
+        radioTodos.setSelected(true);
+        radioTodos.setText("Todos");
+        radioTodos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_remove_32px_1.png"))); // NOI18N
+        jButton5.setToolTipText("Eliminar Paciente");
+        jButton5.setContentAreaFilled(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         setBackground(new java.awt.Color(220, 226, 218));
 
@@ -148,7 +174,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         jButton1.setText("Nota Evoluc.");
         jButton1.setToolTipText("Nueva Sesión / Nota evolución.");
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton1.setIconTextGap(0);
         jButton1.setMargin(new java.awt.Insets(2, 2, 2, 14));
@@ -161,7 +187,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_edit_32px_3.png"))); // NOI18N
         jButton2.setToolTipText("Editar datos del paciente");
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton2MouseEntered(evt);
@@ -179,7 +205,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_info_32px.png"))); // NOI18N
         jButton3.setToolTipText("visualizar detalles del paciente seleccionado");
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton3MouseEntered(evt);
@@ -197,7 +223,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_microsoft_excel_32px.png"))); // NOI18N
         jButton4.setToolTipText("Exportar Info de los pacientes a Excel");
         jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton4MouseEntered(evt);
@@ -215,7 +241,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_restore_32px_1.png"))); // NOI18N
         jButton7.setToolTipText("Actualizar valores");
         jButton7.setContentAreaFilled(false);
-        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -233,7 +259,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         srqBtn.setText(" SRQ18");
         srqBtn.setToolTipText("Agregar nueva Evaluación SRQ18");
         srqBtn.setContentAreaFilled(false);
-        srqBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        srqBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         srqBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         srqBtn.setIconTextGap(0);
         srqBtn.setMargin(new java.awt.Insets(2, 2, 2, 14));
@@ -247,7 +273,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         indiceBtn.setText("Indice B.");
         indiceBtn.setToolTipText("Agregar nueva Evaluación de Indice Bienestar");
         indiceBtn.setContentAreaFilled(false);
-        indiceBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        indiceBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         indiceBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         indiceBtn.setIconTextGap(0);
         indiceBtn.setMargin(new java.awt.Insets(2, 2, 2, 14));
@@ -310,32 +336,6 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
 
         alertaMensaje.setText("Paciente con intención Suicida");
 
-        grupoCiclo.add(radioTodos);
-        radioTodos.setForeground(new java.awt.Color(0, 0, 0));
-        radioTodos.setSelected(true);
-        radioTodos.setText("Todos");
-        radioTodos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        grupoCiclo.add(radioCicloActual);
-        radioCicloActual.setForeground(new java.awt.Color(0, 0, 0));
-        radioCicloActual.setText("Ciclo Actual");
-        radioCicloActual.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        radioCicloActual.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radioCicloActualStateChanged(evt);
-            }
-        });
-
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/icons8_remove_32px_1.png"))); // NOI18N
-        jButton5.setToolTipText("Eliminar Paciente");
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -382,21 +382,6 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                                 .addComponent(alertaMensaje)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(radioTodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(radioCicloActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton5)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,11 +407,12 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(srqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(indiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(indiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -438,21 +424,6 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(radioTodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(radioCicloActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton5)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

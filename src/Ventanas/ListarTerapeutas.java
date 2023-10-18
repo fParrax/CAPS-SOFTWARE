@@ -20,7 +20,6 @@ import rojerusan.RSNotifyFade;
 public class ListarTerapeutas extends javax.swing.JFrame {
 
     static DefaultTableModel modelo;
-    static Usuario user = new Usuario();
     static ArrayList<Usuario> users = new ArrayList();
     static String uso = "";
 
@@ -31,10 +30,9 @@ public class ListarTerapeutas extends javax.swing.JFrame {
         new Thread(ListarTerapeutas::actualizarValores).start();
     }
 
-    public ListarTerapeutas(Usuario user, String uso) {
+    public ListarTerapeutas(String uso) {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
-        this.user = user;
         this.uso = uso;
         barra.setVisible(false);
         actualizarValores();
@@ -321,14 +319,19 @@ public class ListarTerapeutas extends javax.swing.JFrame {
             } else {
                 int idTerapeuta = Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString());
 
-                for (Usuario user : users) {
-                    if ( Float.compare(user.getId(), idTerapeuta) == 0) {
-                        if (uso.equalsIgnoreCase("newPaciente")) {
-                            RnpFinalizar.setTerapeuta(user);
-                            this.dispose();
-                        }
-                    }
+                Usuario seleccionado = users.stream()
+                        .filter(t-> Float.compare(t.getId(), idTerapeuta) == 0)
+                        .findFirst()
+                        .orElse(new Usuario());
+                if (uso.equalsIgnoreCase("newPaciente")) {
+                    RnpFinalizar.setTerapeuta(seleccionado);
+
                 }
+                if (uso.equalsIgnoreCase("HistorialPaciente")) {
+                    
+                }
+                
+            this.dispose();   
             }
         }
     }//GEN-LAST:event_tablaMouseClicked
@@ -403,12 +406,14 @@ public class ListarTerapeutas extends javax.swing.JFrame {
         modelo.setRowCount(0);
 
         for (Usuario user : users) {
-
-            if (user.getNombre().contains(texto) || user.getCodigo().contains(texto)) {
-                modelo.addRow(new Object[]{
-                    user.getId(), user.getCodigo(), user.getNombre(), user.getEstado()
-                });
+            if (user.getCargo().equalsIgnoreCase("terapeuta")) {
+                if (user.getNombre().contains(texto) || user.getCodigo().contains(texto)) {
+                    modelo.addRow(new Object[]{
+                        user.getId(), user.getCodigo(), user.getNombre(), user.getEstado()
+                    });
+                }
             }
+
         }
         barra.setVisible(false);
     }

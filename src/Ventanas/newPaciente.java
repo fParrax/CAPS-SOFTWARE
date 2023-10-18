@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
 
 import Clases.CondicionMigratoria;
@@ -43,10 +39,7 @@ import javax.swing.table.DefaultTableModel;
 import rojeru_san.complementos.RSUtilities;
 import rojerusan.RSNotifyFade;
 
-/**
- *
- * @author Family
- */
+
 public class newPaciente extends javax.swing.JFrame {
 
     public int pagina = 1;
@@ -228,7 +221,7 @@ public class newPaciente extends javax.swing.JFrame {
 
         titulo3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         titulo3.setText("4. SRQ Inicial y Observaciones");
-        titulo3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titulo3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 titulo3MouseClicked(evt);
@@ -237,7 +230,7 @@ public class newPaciente extends javax.swing.JFrame {
 
         titulo2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         titulo2.setText("3. Información de Vulnerabilidad");
-        titulo2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titulo2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 titulo2MouseClicked(evt);
@@ -246,7 +239,7 @@ public class newPaciente extends javax.swing.JFrame {
 
         titulo1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         titulo1.setText("2. Datos Personales");
-        titulo1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titulo1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 titulo1MouseClicked(evt);
@@ -255,7 +248,7 @@ public class newPaciente extends javax.swing.JFrame {
 
         titulo4.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         titulo4.setText("1. Modalidad y Fin.");
-        titulo4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        titulo4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titulo4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 titulo4MouseClicked(evt);
@@ -334,7 +327,7 @@ public class newPaciente extends javax.swing.JFrame {
             .addComponent(panelMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollContenido, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1204,11 +1197,8 @@ public class newPaciente extends javax.swing.JFrame {
         ocupacion = RnpPag2.txtOcupacion.getText();
         subOcupacion=RnpPag2.txtSubOcupacion.getText();
         
-        int idTerapeuta=0;
         
-        idTerapeuta = RnpPag4.terapeuta.getId()<0
-                ? 0
-                : RnpPag4.terapeuta.getId();
+        
 
         if (tipo.equalsIgnoreCase("nuevo")) {
             String nombreCompleto = RnpPag1.nombresTxt.getText() + " " + RnpPag1.apellidosTxt.getText();
@@ -1222,7 +1212,7 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente, modalidad, detalleDerivadox,
                     RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
                     cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
-                    otroNivelEducativo, ocupacion,subOcupacion,idTerapeuta);
+                    otroNivelEducativo, ocupacion,subOcupacion,terapeutaAsignado.getId());
 
             if (srq18.getIdsrq() >= 0) {
                 int evsr = new SRQ18().newSRQ18(idPacientex, Index.getUser().getId(), srq18.getLugar(),
@@ -1263,7 +1253,6 @@ public class newPaciente extends javax.swing.JFrame {
             this.dispose();
 
         } else {
-            System.out.println("Editando");
             int respuesta = paciente.updatePaciente(
                     paciente.getId(),
                     RnpPag1.nombresTxt.getText(),
@@ -1288,16 +1277,36 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag3.observacionesTxt.getText(),
                     proyecto,
                     RnpPag3.preocupacionTxt.getText(),
-                    RnpPag3.accionesTxt.getText(), codigoPaciente,
-                    modalidad, detalleDerivadox, RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
-                    cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
-                    otroNivelEducativo, ocupacion,subOcupacion);
-            System.out.println("R: "+respuesta);
+                    RnpPag3.accionesTxt.getText(),
+                    codigoPaciente,
+                    modalidad,
+                    detalleDerivadox,
+                    RnpPag1.txtDetalleTelefonoOpcional.getText(),
+                    RnpPag2.txtContactoRedSoporte.getText(),
+                    cantidadGrupoFamiliar,
+                    rbSeguro,
+                    txtOtroSeguro,
+                    ingresoPeru,
+                    rbTrabajo,
+                    txtTrabajo,
+                    nivelEducativo,
+                    otroNivelEducativo,
+                    ocupacion,
+                    subOcupacion,
+                    terapeutaAsignado.getId()
+            );
+            
             if (respuesta > 0) {
                 new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Actualización de Datos",
                         RnpPag3.observacionesTxt.getText(), hoy, "Activo");
-                new rojerusan.RSNotifyFade("Actualización Exitosa", "Datos actualizados correctamentes.", 5,
-                        RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.SUCCESS).setVisible(true);
+                new rojerusan.RSNotifyFade(
+                        "Actualización Exitosa",
+                        "Datos actualizados correctamentes.",
+                        5,
+                        RSNotifyFade.PositionNotify.BottomRight,
+                        RSNotifyFade.TypeNotify.SUCCESS
+                ).setVisible(true);
+                
                 pnp.resetearBusqueda();
                 this.dispose();
             } else {

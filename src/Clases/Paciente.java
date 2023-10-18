@@ -158,7 +158,7 @@ public class Paciente {
         return lista;
     }
 
-      public ArrayList ListarPacienteconNotasEvolucion() {
+    public ArrayList ListarPacienteconNotasEvolucion() {
         ArrayList<Paciente> lista = new ArrayList();
 
         sql = "call `sp.getNotaEvolucion` ()";
@@ -213,6 +213,7 @@ public class Paciente {
 
         return lista;
     }
+      
     public int newPaciente(String nombrex, String apellidosx, String tipoDocumentox, String dnix, String generox, String fechaNacimientox, int totalSesiones,
             String telefonox,String telefonoOpcionalx, String correox, String nacionalidadx, String condicionMigratoriax, String departamentox, String provinciax, String distritox,
             String grupoVulnerablex, String discapacidadx, String redSoportex, String nombreRedSoportex, String srqIngresox, String observacionx,
@@ -332,6 +333,7 @@ public class Paciente {
         return chartPanel;
 
     }
+    
     public ChartPanel getGraficoSesiones() {
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -370,6 +372,7 @@ public class Paciente {
         return chartPanel;
 
     }
+    
     public ChartPanel getGraficoPacientexGeneroyAno(String generox, String fecha01, String fecha02) {
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -425,6 +428,7 @@ public class Paciente {
         return chartPanel;
 
     }
+    
     public ChartPanel getGraficoPacientexProyectoyAno(String proyectox, String fecha01, String fecha02) {
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -524,8 +528,6 @@ public class Paciente {
 
     }
 
-
-
     public ChartPanel getGraficoPacientexGrupoVulnerableyAno(String grupox, String fecha01, String fecha02) {
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -581,6 +583,7 @@ public class Paciente {
         return chartPanel;
 
     }
+    
     public ArrayList getPacientexFechaCreacion(String fechax) {
         ArrayList<Paciente> lista = new ArrayList();
 
@@ -611,7 +614,8 @@ public class Paciente {
 
         return lista;
     }
-public ArrayList getPacientexFechaCreacion(String fecha01, String fecha02) {
+    
+    public ArrayList getPacientexFechaCreacion(String fecha01, String fecha02) {
         ArrayList<Paciente> lista = new ArrayList();
 
         sql = "call `sp.getPacientesxRangoFecha` (?,?)";
@@ -669,7 +673,8 @@ public ArrayList getPacientexFechaCreacion(String fecha01, String fecha02) {
 
         return lista;
     }
-public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01, String fecha02) {
+    
+    public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01, String fecha02) {
         ArrayList<Paciente> lista = new ArrayList();
 
         sql = "call `sp.getPacientesxRangoySexo` (?,?,?)";
@@ -701,6 +706,7 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
 
         return lista;
     }
+
     public ArrayList getPacientexNombre(String valorx) {
         ArrayList<Paciente> lista = new ArrayList();
 
@@ -988,7 +994,6 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
             String detalleDerivadox,
             String detalleOtroTelefonox,
             String contactoRedSoportex,
-            
             String cantidadGrupoFamiliar,
             String rbSeguro,
             String txtOtroSeguro,
@@ -998,10 +1003,12 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
             String nivelEducativo,
             String otroNivelEducativo,
             String ocupacion,
-            String subOcupacion) {
+            String subOcupacion,
+            int idTerapeutax
+    ) {
         int valor = 0;
         sql = "call  `sp.UpdatePaciente` (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?)";
+                + "?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
             pst = con.prepareCall(sql);
             pst.setInt(1, idx);
@@ -1045,6 +1052,7 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
             pst.setString(38,otroNivelEducativo);
             pst.setString(39,ocupacion);
             pst.setString(40,subOcupacion);
+            pst.setInt(41,idTerapeutax);
             valor = pst.executeUpdate();
         } catch (Exception e) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
@@ -1053,6 +1061,24 @@ public ArrayList getPacientexFechaCreacionyGenero(String generox,String fecha01,
             cerrar();
         }
         return valor;
+    }
+    
+    public boolean updateTerapeuta(int idTerapeuta, int idPaciente){
+        try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+            sql = "call `sp.UpdateTerapeutaPaciente` (?,?)";
+            pst=con.prepareCall(sql);
+            pst.setInt(1,idTerapeuta);
+            pst.setInt(2, idPaciente);
+            pst.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+            return false;
+        } finally {
+            cerrar();
+        }
+        
     }
 public int updatePaciente2() {
         int valor = 0;
@@ -1108,6 +1134,7 @@ public int updatePaciente2() {
         }
         return valor;
     }
+
     public ArrayList getPacientedeTerapeuta(int idTerapeutax, String valorx, String fecha01, String fecha02) {
         ArrayList<Paciente> listax = new ArrayList();
         listax.clear();
