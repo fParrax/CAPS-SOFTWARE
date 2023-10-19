@@ -15,6 +15,7 @@ import Ventanas.newPaciente;
 import Ventanas.tipoSRQ;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -709,6 +710,17 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                 */
                 // pacientes = (ArrayList) new Paciente().getPacientedeTerapeuta(Index.getUser().getId(), "", fecha01, fecha02).clone();
                 pacientes = (ArrayList) new Paciente().ListarPacienteconRegistros().clone();
+                
+                if (Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra")) {
+                    pacientes = (ArrayList) pacientes.stream()
+                            .filter(
+                                    t -> Float.compare(
+                                            t.getIdTerapeuta(),
+                                            Index.user.getId()
+                                    ) == 0
+                            ).collect(Collectors.toList());
+                }
+                
                 llenarTabla();
                 actualizarIndicadores();
 

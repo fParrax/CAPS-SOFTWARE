@@ -40,6 +40,12 @@ public class RnpFinalizar extends javax.swing.JPanel {
         derivadoCombo.setVisible(false);
         this.ventanaOriginal=p;
     }
+    private void validarOpciones(){
+        if(Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra") ){
+            radio2.setVisible(false);
+            terapeutaBtn.setVisible(false);
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -236,7 +242,6 @@ public class RnpFinalizar extends javax.swing.JPanel {
 
     private void finalizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarBtnActionPerformed
        String validacion = ventanaOriginal.validarDatos();
-        System.out.println("Validación final de campos:\n "+validacion);
         if(validacion.equals("")){
             ventanaOriginal.actualizarResumen();
            ventanaOriginal.registrarPaciente();

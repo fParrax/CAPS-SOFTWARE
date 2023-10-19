@@ -1297,6 +1297,24 @@ public class newPaciente extends javax.swing.JFrame {
             );
             
             if (respuesta > 0) {
+                new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (RnpPag4.radio1.isSelected()) {
+                        new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Agregado a Lista de Espera",
+                                RnpPag3.observacionesTxt.getText(), hoy, "Activo");
+                    } else {
+                        String fechaAsignadax = new SimpleDateFormat("yyyy-MM-dd").format(RnpPag4.fechaCitaTxt.getDatoFecha());
+                        int idTerapeutaAsignado = Integer.parseInt(RnpPag4.terapeutaTxt.getText().substring(0, 2));
+
+                        new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), idTerapeutaAsignado, "Agregado a Cita con Terapeuta",
+                                RnpPag3.observacionesTxt.getText(), fechaAsignadax, "Activo");
+                        String datos = " Saludos, se le informa que se le ha asignado una cita con el paciente " + paciente.getNombreCompleto() + " para la fecha: " + fechaAsignadax;
+                        new Mail().enviarCorreo(terapeutaAsignado.getCorreo(), "Cita Asignada", datos);
+                    }
+
+                }
+            }).start();
                 new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Actualización de Datos",
                         RnpPag3.observacionesTxt.getText(), hoy, "Activo");
                 new rojerusan.RSNotifyFade(

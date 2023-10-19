@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -692,8 +693,17 @@ public class panelNewPaciente extends javax.swing.JPanel {
             @Override
             public void run() {
                 pacientes = (ArrayList) new Paciente().ListarPacienteconRegistros().clone();
+                if (Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra")) {
+                    pacientes = (ArrayList) pacientes.stream()
+                            .filter(
+                                    t -> Float.compare(
+                                            t.getIdTerapeuta(),
+                                            Index.user.getId()
+                                    ) == 0
+                            ).collect(Collectors.toList());
+                }
                 llenarTabla();
-                setIndicadores();
+                    setIndicadores();
             }
         }).start();
 

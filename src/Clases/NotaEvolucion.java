@@ -128,7 +128,7 @@ public class NotaEvolucion {
                         rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
                         rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
                         rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
-                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre")));
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"),rs.getInt("idTerapeutaAsignado")));
                 
                 usuario.setId(rs.getInt("id"));
                 usuario.setDni(rs.getString("dni"));
@@ -174,7 +174,7 @@ public class NotaEvolucion {
                         rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
                         rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
                         rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
-                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"));
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"),rs.getInt("idTerapeutaAsignado"));
                 
                 NotaEvolucion nota = new NotaEvolucion(
                 rs.getInt("idNota"),rs.getInt("idPacienteNota"),rs.getInt("idTerapeutaNota"),
