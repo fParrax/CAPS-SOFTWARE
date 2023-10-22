@@ -288,7 +288,10 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="9b" green="80" red="8a" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="            Inicio"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imgs/listaEspera.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="            Lista de Espera"/>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="grupoBtns"/>
         </Property>
@@ -297,9 +300,6 @@
         </Property>
         <Property name="colorLine" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
-        </Property>
-        <Property name="efecto" type="rojeru_san.rsbutton.RSButtonSelectedIcon$EFECTO" editor="org.netbeans.modules.form.editors.EnumEditor">
-          <Value id="RIPLE"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="17" style="1"/>

@@ -5,8 +5,12 @@
  */
 package Ventanas;
 
+import Clases.ListaEspera;
+import Clases.Mail;
 import Clases.Paciente;
 import Clases.RegistroPaciente;
+import Clases.Usuario;
+import Panels.panelListaEspera;
 import java.awt.Image;
 import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
@@ -19,15 +23,25 @@ import rojerusan.RSNotifyFade;
 public class AsignarCita extends javax.swing.JFrame {
 
     RegistroPaciente rp;
+    Usuario terapeuta= new Usuario();
     Paciente paciente;
 
     public AsignarCita() {
         initComponents();
+        changeIcon();
     }
 
     public AsignarCita(RegistroPaciente rp, Paciente paciente) {
         initComponents();
         this.rp = rp;
+        this.paciente = paciente;
+        changeIcon();
+        iniciarDatos();
+    }
+    public AsignarCita(Usuario terapeuta, Paciente paciente) {
+        initComponents();
+        this.terapeuta = terapeuta;
+        cancelarBtn.setVisible(false);
         this.paciente = paciente;
         changeIcon();
         iniciarDatos();
@@ -46,8 +60,6 @@ public class AsignarCita extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nombrePacienteLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        estadoPacienteLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         fechaCita = new rojeru_san.rsdate.RSDateChooser();
@@ -96,17 +108,9 @@ public class AsignarCita extends javax.swing.JFrame {
         nombrePacienteLabel.setText("jLabel3");
         panelCentral.add(nombrePacienteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 73, -1, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jLabel3.setText("Situación del Paciente:");
-        panelCentral.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 114, -1, 30));
-
-        estadoPacienteLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        estadoPacienteLabel.setText("jLabel3");
-        panelCentral.add(estadoPacienteLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 114, -1, 30));
-
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel4.setText("Fecha a Asignar");
-        panelCentral.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 155, -1, 30));
+        panelCentral.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,12 +123,12 @@ public class AsignarCita extends javax.swing.JFrame {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        panelCentral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 50, 50));
+        panelCentral.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 50, 50));
 
         fechaCita.setFormatoFecha("dd-MM-yyyy");
         fechaCita.setFuente(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         fechaCita.setPlaceholder("Formato (DD-MM-YYYY)");
-        panelCentral.add(fechaCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 155, 190, 32));
+        panelCentral.add(fechaCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 190, 32));
 
         justificacionTxt.setColumns(20);
         justificacionTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -133,12 +137,12 @@ public class AsignarCita extends javax.swing.JFrame {
         justificacionTxt.setWrapStyleWord(true);
         jScrollPane1.setViewportView(justificacionTxt);
 
-        panelCentral.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 460, 90));
+        panelCentral.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 460, 110));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Justificación / Observación");
-        panelCentral.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 210, -1));
+        panelCentral.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 210, -1));
 
         posponerBtn.setText("Colocar / Posponer cita");
         posponerBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +150,7 @@ public class AsignarCita extends javax.swing.JFrame {
                 posponerBtnActionPerformed(evt);
             }
         });
-        panelCentral.add(posponerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
+        panelCentral.add(posponerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
 
         cancelarBtn.setBackground(new java.awt.Color(220, 51, 51));
         cancelarBtn.setText("Cancelar Cita");
@@ -156,7 +160,7 @@ public class AsignarCita extends javax.swing.JFrame {
                 cancelarBtnActionPerformed(evt);
             }
         });
-        panelCentral.add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 130, -1));
+        panelCentral.add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,11 +211,42 @@ public class AsignarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void posponerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_posponerBtnActionPerformed
-
-        rp.setEstadoRP("Pospuesta");
-        rp.setObservacionRP(rp.getObservacionRP() + " Motivo Cancelación: " + justificacionTxt.getText());
-        String observacionx = justificacionTxt.getText();
+String observacionx = justificacionTxt.getText();
         String fechaAsignada = new SimpleDateFormat("yyyy-MM-dd").format(fechaCita.getDatoFecha());
+        if(paciente.getId()>0){
+            
+             new RegistroPaciente().newRegistro(
+                                paciente.getId(),
+                                Index.getUser().getId(),
+                                terapeuta.getId(),
+                                "Agregado a Cita con Terapeuta",
+                                observacionx,
+                                fechaAsignada, "Activo"
+                        );
+            
+            if(new ListaEspera().liberarLista(paciente.getId(), terapeuta.getId())){
+                 String datos = " Saludos, se le informa que se le ha asignado una cita con el paciente " + paciente.getNombreCompleto() + " para la fecha: " + fechaAsignada;
+                 new Mail().enviarCorreo(
+                         terapeuta.getCorreo(),
+                         "Cita Asignada",
+                         datos
+                 );
+                 new rojerusan.RSNotifyFade(
+                        "Asignación Exitosa",
+                        "Se ha liberado de la lista de espera al paciente "+paciente.getNombreCompleto() + " y asignado a "+terapeuta.getNombre()+" como su "+terapeuta.getCargo(),
+                        5,
+                        RSNotifyFade.PositionNotify.BottomRight,
+                        RSNotifyFade.TypeNotify.SUCCESS
+                ).setVisible(true);
+                 
+                 this.dispose();
+                 panelListaEspera.resetearBusqueda();
+            }
+            
+        }else{
+           rp.setEstadoRP("Pospuesta");
+        rp.setObservacionRP(rp.getObservacionRP() + " Motivo Cancelación: " + justificacionTxt.getText());
+        
         if (rp.UpdateRegistro() > 0) {
             int rsp = new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(),
                     Index.getUser().getId(), "Asignación de Cita", observacionx, fechaAsignada, "Activo");
@@ -225,7 +260,13 @@ public class AsignarCita extends javax.swing.JFrame {
         } else {
             new rojerusan.RSNotifyFade("Oops! algo salió mal", "No pudimos eliminar la Cita, verifique su conexión a internet o en caso de persistir contacte al adm", 5,
                     RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.ERROR).setVisible(true);
+        } 
         }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_posponerBtnActionPerformed
 
     /**
@@ -266,11 +307,9 @@ public class AsignarCita extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojeru_san.rsbutton.RSButtonRoundEffect cancelarBtn;
-    private javax.swing.JLabel estadoPacienteLabel;
     private rojeru_san.rsdate.RSDateChooser fechaCita;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -284,7 +323,7 @@ public class AsignarCita extends javax.swing.JFrame {
 
     public void iniciarDatos() {
         nombrePacienteLabel.setText(paciente.getNombreCompleto());
-        estadoPacienteLabel.setText(rp.getAccionRP() + " - " + rp.getEstadoRP());
+        
 
         if (rp.getAccionRP().toLowerCase().contains("Lista de Espera")) {
             cancelarBtn.setText("Elim. de Lista");

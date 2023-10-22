@@ -220,11 +220,11 @@ public class panelIndexMenu extends javax.swing.JPanel {
         });
 
         btn7.setBackground(new java.awt.Color(138, 128, 155));
-        btn7.setText("            Inicio");
+        btn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/listaEspera.png"))); // NOI18N
+        btn7.setText("            Lista de Espera");
         grupoBtns.add(btn7);
         btn7.setColorHover(new java.awt.Color(165, 185, 172));
         btn7.setColorLine(new java.awt.Color(51, 51, 51));
-        btn7.setEfecto(rojeru_san.rsbutton.RSButtonSelectedIcon.EFECTO.RIPLE);
         btn7.setFont(new java.awt.Font("Segoe UI", 1, 17)); // NOI18N
         btn7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btn7.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -322,7 +322,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
                     .addComponent(btn7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn3, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                            .addComponent(btn3, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                             .addComponent(btn4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -722,10 +722,12 @@ public class panelIndexMenu extends javax.swing.JPanel {
         if (priv.equalsIgnoreCase("terapeuta") || priv.equalsIgnoreCase("psiquiatra")) {
             btn2.setVisible(true);
             btn12.setVisible(false);
+            btn7.setVisible(false);
         }
         
         if (priv.equalsIgnoreCase("trabajador social")) {
             btn3.setVisible(true);
+             btn7.setVisible(true);
         }
         
         String privx = priv.toLowerCase();
@@ -735,7 +737,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
         
         
         btn1.setVisible(false);
-        btn7.setVisible(false);
+        
         btn8.setVisible(false);
         
     }

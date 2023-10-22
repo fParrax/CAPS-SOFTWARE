@@ -710,8 +710,8 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                 */
                 // pacientes = (ArrayList) new Paciente().getPacientedeTerapeuta(Index.getUser().getId(), "", fecha01, fecha02).clone();
                 pacientes = (ArrayList) new Paciente().ListarPacienteconRegistros().clone();
-                
-                if (Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra")) {
+                System.out.println("Index.user.getPriv(): "+Index.user.getPriv());
+                if (Index.user.getCargo().equalsIgnoreCase("terapeuta") || Index.user.getCargo().equalsIgnoreCase("psiquiatra")) {
                     pacientes = (ArrayList) pacientes.stream()
                             .filter(
                                     t -> Float.compare(

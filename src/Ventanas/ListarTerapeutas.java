@@ -5,6 +5,7 @@
  */
 package Ventanas;
 
+import Clases.Paciente;
 import Clases.Usuario;
 import Panels.RnpFinalizar;
 import java.awt.event.KeyEvent;
@@ -20,6 +21,7 @@ import rojerusan.RSNotifyFade;
 public class ListarTerapeutas extends javax.swing.JFrame {
 
     static DefaultTableModel modelo;
+    Paciente paciente = new Paciente();
     static ArrayList<Usuario> users = new ArrayList();
     static String uso = "";
 
@@ -34,6 +36,15 @@ public class ListarTerapeutas extends javax.swing.JFrame {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         this.uso = uso;
+        barra.setVisible(false);
+        actualizarValores();
+
+    }
+    public ListarTerapeutas(String uso, Paciente paciente) {
+        initComponents();
+        modelo = (DefaultTableModel) tabla.getModel();
+        this.uso = uso;
+        this.paciente=paciente;
         barra.setVisible(false);
         actualizarValores();
 
@@ -316,14 +327,19 @@ public class ListarTerapeutas extends javax.swing.JFrame {
                         .filter(t-> Float.compare(t.getId(), idTerapeuta) == 0)
                         .findFirst()
                         .orElse(new Usuario());
+                
                 if (uso.equalsIgnoreCase("newPaciente")) {
                     RnpFinalizar.setTerapeuta(seleccionado);
 
-                }
+                }else
                 if (uso.equalsIgnoreCase("HistorialPaciente")) {
                     
+                }else
+                if (uso.equalsIgnoreCase("asignarTerapeuta")) {
+                    
+                     new AsignarCita(seleccionado,paciente).setVisible(true);
+                            
                 }
-                
             this.dispose();   
             }
         }
