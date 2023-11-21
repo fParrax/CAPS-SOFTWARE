@@ -12,31 +12,167 @@ import javax.swing.JOptionPane;
 
 
 public class ListaEspera {
-    int id,idPaciente,idTrabajadorSocial,terapeutaAsignado;
-    String estado,fechaModificacion;
-    String sql;
+    int id=-1,idPaciente,idTrabajadorSocial,terapeutaAsignado,usuarioModificacion;
+    String estado,fechaModificacion,sql;
+    Paciente paciente = new Paciente();
     PreparedStatement pst;
     java.sql.ResultSet rs;
 
     public ListaEspera() {
     }
-    public ListaEspera(int id, int idPaciente, int idTrabajadorSocial,String fechaModificacion,int terapeutaAsignado, String estado) {
+
+    public ListaEspera(int id, int idPaciente, int idTrabajadorSocial, String fechaModificacion, int usuarioModificacion,String estado) {
         this.id = id;
         this.idPaciente = idPaciente;
         this.idTrabajadorSocial = idTrabajadorSocial;
         this.estado = estado;
         this.fechaModificacion=fechaModificacion;
-        this.terapeutaAsignado=terapeutaAsignado;
+        this.usuarioModificacion=usuarioModificacion;
+        
     }
 
     
-   
-    
-    
-    
-    
+    public boolean insert(int idPaciente, int idTrabajadorSocial){
+         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+             sql = " call `sp.sp.InsertListaEspera` (?,?)";
+             pst = con.prepareCall(sql);
+             pst.setInt(1,idPaciente);
+             pst.setInt(2,idTrabajadorSocial);
+             pst.executeUpdate();
+             return true;
+         }catch (Exception e) {
+            Logger.getLogger(SRQ18.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+            return false;
+        } finally {
+            cerrar();
+        }
+    }
+    public boolean liberarLista(int idPaciente, int idTrabajadorSocial){
+         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+             sql = " call `sp.sp.LiberarListaEspera` (?,?)";
+             pst = con.prepareCall(sql);
+             pst.setInt(1,idPaciente);
+             pst.setInt(2,idTrabajadorSocial);
+             pst.executeUpdate();
+             return true;
+         }catch (Exception e) {
+            Logger.getLogger(SRQ18.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+            return false;
+        } finally {
+            cerrar();
+        }
+    }
+     public ListaEspera get(int idPaciente){
+         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+             sql = " call `sp.sp.getListaEspera` (?)";
+             pst = con.prepareCall(sql);
+             pst.setInt(1,idPaciente);
+             rs = pst.executeQuery();
+             ListaEspera resultado = new ListaEspera();
+             while(rs.next()){
+                 resultado = new ListaEspera(
+                        rs.getInt("idLista"),
+                        rs.getInt("idPaciente"),
+                        rs.getInt("idTrabajadorSocial"),
+                        rs.getString("fechaModificacion"),
+                        rs.getInt("usuarioModificacion"),
+                        rs.getString("estado")
+                        
+                );
+             }
+             return resultado;
+         }catch (Exception e) {
+            Logger.getLogger(SRQ18.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+            return new ListaEspera();
+        } finally {
+            cerrar();
+        }
+    }
+     public ArrayList<ListaEspera> Listar(){
+        ArrayList<ListaEspera> lista = new ArrayList();
+         try (Connection con = new ConectarCloudcPanel("comredsy_prueba").getCon()) {
+             sql = " call `sp.sp.getListarEspera` ()";
+             pst = con.prepareCall(sql);
+             rs = pst.executeQuery();
+             ListaEspera resultado = new ListaEspera();
+             while(rs.next()){
+                 resultado = new ListaEspera(
+                        rs.getInt("idLista"),
+                        rs.getInt("idPaciente"),
+                        rs.getInt("idTrabajadorSocial"),
+                        rs.getString("fechaModificacion"),
+                        rs.getInt("usuarioModificacion"),
+                        rs.getString("estado")
+                        
+                );
+                 resultado.setPaciente(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),
+                        rs.getString("dni"),rs.getString("tipoDocumento"), rs.getString("genero"),
+                        rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
+                       rs.getString("telefonoOpcional"), rs.getString("correo"), rs.getString("nacionalidad"),
+                        rs.getString("condicionMigratoria"), rs.getString("departamento"), rs.getString("provincia"), rs.getString("distrito"),
+                        rs.getString("grupoVulnerable"), rs.getString("discapacidad"), rs.getString("redSoporte"), rs.getString("nombreRedSoporte"),
+                        rs.getString("srqIngreso"), rs.getString("observacion"), rs.getString("proyecto"), rs.getString("motivoConsulta"), rs.getString("acciones"),
+                        rs.getInt("totalSesiones"),rs.getString("modalidad"),rs.getString("detalleDerivado"),
+                        rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
+                        rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
+                        rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),
+                         rs.getString("nombre"),rs.getInt("idTerapeutaAsignado"),rs.getInt("idTrabajadorSocial")
+                ));
+                 lista.add(resultado);
+             }
+            
+         }catch (Exception e) {
+            Logger.getLogger(SRQ18.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, "Error con el manejo de base de datos, contacte con el adm.\n" + e);
+        } finally {
+            cerrar();
+        }
+          return lista;
+    }
+
+     private void cerrar() {
+        try {
+            if (pst != null) {
+                pst.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SRQ18.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public int getId() {
         return id;
+    }
+
+    public int getUsuarioModificacion() {
+        return usuarioModificacion;
+    }
+
+    public void setUsuarioModificacion(int usuarioModificacion) {
+        this.usuarioModificacion = usuarioModificacion;
+    }
+
+    public String getFechaModificacion() {
+        return fechaModificacion;
+    }
+
+    public void setFechaModificacion(String fechaModificacion) {
+        this.fechaModificacion = fechaModificacion;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     public void setId(int id) {
@@ -67,13 +203,7 @@ public class ListaEspera {
         this.terapeutaAsignado = terapeutaAsignado;
     }
 
-    public String getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(String fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
+   
 
     public String getEstado() {
         return estado;
@@ -132,18 +262,5 @@ public class ListaEspera {
         return "ListaEspera{" + "id=" + id + ", idPaciente=" + idPaciente + ", idTrabajadorSocial=" + idTrabajadorSocial + ", estado=" + estado + '}';
     }
     
-    private void cerrar() {
-        try {
-            if (pst != null) {
-                pst.close();
-            }
-            if (rs != null) {
-                rs.close();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ListaEspera.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     
 }

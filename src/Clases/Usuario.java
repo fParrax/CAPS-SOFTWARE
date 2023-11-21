@@ -62,7 +62,7 @@ public class Usuario {
                 usuario.setCodigo(rs.getString("codigo"));
                 usuario.setClave(new EncriptadorAES().desencriptar(rs.getString("clave")));
                 usuario.setUsername(rs.getString("username"));
-                usuario.setPriv(rs.getString("priv"));
+                usuario.setPriv(rs.getString("cargo"));
                 usuario.setEstado(rs.getString("estado"));
                 usuario.setCargo(rs.getString("cargo"));
                 usuario.setFechaCreacion(rs.getString("fechaCreacion"));

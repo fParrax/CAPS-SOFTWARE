@@ -23,7 +23,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
     static newPaciente ventanaOriginal;
     public RnpFinalizar() {
         initComponents();
-        radio1.setSelected(true);
+        rbListaEspera.setSelected(true);
         terapeutaBtn.setVisible(false);
         terapeutaTxt.setVisible(false);
         nombreTerapeutaTxt.setVisible(false);
@@ -32,17 +32,20 @@ public class RnpFinalizar extends javax.swing.JPanel {
     }
     public RnpFinalizar(newPaciente p) {
         initComponents();
-        radio1.setSelected(true);
+        rbListaEspera.setSelected(true);
         terapeutaBtn.setVisible(false);
         terapeutaTxt.setVisible(false);
         nombreTerapeutaTxt.setVisible(false);
         fechaCitaTxt.setVisible(false);
         derivadoCombo.setVisible(false);
         this.ventanaOriginal=p;
+        
+        
+        
     }
     private void validarOpciones(){
         if(Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra") ){
-            radio2.setVisible(false);
+            rbDerivarToTerapeuta.setVisible(false);
             terapeutaBtn.setVisible(false);
         }
     }
@@ -55,8 +58,8 @@ public class RnpFinalizar extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         resumenLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        radio1 = new RSMaterialComponent.RSRadioButtonMaterial();
-        radio2 = new RSMaterialComponent.RSRadioButtonMaterial();
+        rbListaEspera = new RSMaterialComponent.RSRadioButtonMaterial();
+        rbDerivarToTerapeuta = new RSMaterialComponent.RSRadioButtonMaterial();
         terapeutaBtn = new rojeru_san.rsbutton.RSButtonRound();
         terapeutaTxt = new javax.swing.JLabel();
         finalizarBtn = new rojeru_san.rsbutton.RSButtonRound();
@@ -66,6 +69,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
         modalidadCombo = new rojerusan.RSComboBox();
         jSeparator1 = new javax.swing.JSeparator();
         derivadoCombo = new rojerusan.RSComboBox();
+        rbNothing = new RSMaterialComponent.RSRadioButtonMaterial();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resumen y Fin de Registro", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 13))); // NOI18N
@@ -82,22 +86,21 @@ public class RnpFinalizar extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Deseo:");
 
-        grupo1.add(radio1);
-        radio1.setSelected(true);
-        radio1.setText("Enviar Paciente a Lista de Espera");
-        radio1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        radio1.addChangeListener(new javax.swing.event.ChangeListener() {
+        grupo1.add(rbListaEspera);
+        rbListaEspera.setText("Enviar Paciente a Lista de Espera");
+        rbListaEspera.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        rbListaEspera.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radio1StateChanged(evt);
+                rbListaEsperaStateChanged(evt);
             }
         });
 
-        grupo1.add(radio2);
-        radio2.setText("Derivarlo directamente con un Terapeuta");
-        radio2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        radio2.addChangeListener(new javax.swing.event.ChangeListener() {
+        grupo1.add(rbDerivarToTerapeuta);
+        rbDerivarToTerapeuta.setText("Derivarlo directamente con un Terapeuta");
+        rbDerivarToTerapeuta.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        rbDerivarToTerapeuta.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                radio2StateChanged(evt);
+                rbDerivarToTerapeutaStateChanged(evt);
             }
         });
 
@@ -150,6 +153,16 @@ public class RnpFinalizar extends javax.swing.JPanel {
             }
         });
 
+        grupo1.add(rbNothing);
+        rbNothing.setSelected(true);
+        rbNothing.setText("Solo actualizar Datos");
+        rbNothing.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        rbNothing.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbNothingStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,13 +176,8 @@ public class RnpFinalizar extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addComponent(resumenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(radio1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addComponent(radio2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbDerivarToTerapeuta, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117)
                         .addComponent(terapeutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -191,7 +199,14 @@ public class RnpFinalizar extends javax.swing.JPanel {
                                 .addGap(12, 12, 12)
                                 .addComponent(derivadoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)
-                                .addComponent(finalizarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(finalizarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbNothing, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbListaEspera, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -201,15 +216,14 @@ public class RnpFinalizar extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(resumenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbListaEspera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbNothing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(radio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbDerivarToTerapeuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(terapeutaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -229,16 +243,16 @@ public class RnpFinalizar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void radio2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radio2StateChanged
-        terapeutaBtn.setVisible(radio2.isSelected());
-        terapeutaTxt.setVisible(radio2.isSelected());
-        nombreTerapeutaTxt.setVisible(radio2.isSelected());
+    private void rbDerivarToTerapeutaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbDerivarToTerapeutaStateChanged
+        terapeutaBtn.setVisible(rbDerivarToTerapeuta.isSelected());
+        terapeutaTxt.setVisible(rbDerivarToTerapeuta.isSelected());
+        nombreTerapeutaTxt.setVisible(rbDerivarToTerapeuta.isSelected());
         
-    }//GEN-LAST:event_radio2StateChanged
+    }//GEN-LAST:event_rbDerivarToTerapeutaStateChanged
 
-    private void radio1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_radio1StateChanged
+    private void rbListaEsperaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbListaEsperaStateChanged
         
-    }//GEN-LAST:event_radio1StateChanged
+    }//GEN-LAST:event_rbListaEsperaStateChanged
 
     private void finalizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarBtnActionPerformed
        String validacion = ventanaOriginal.validarDatos();
@@ -276,6 +290,10 @@ boolean otro=false;
       }
     }//GEN-LAST:event_derivadoComboItemStateChanged
 
+    private void rbNothingStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbNothingStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbNothingStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public rojerusan.RSComboBox derivadoCombo;
@@ -288,8 +306,9 @@ boolean otro=false;
     private javax.swing.JSeparator jSeparator1;
     public rojerusan.RSComboBox modalidadCombo;
     public static javax.swing.JLabel nombreTerapeutaTxt;
-    public static RSMaterialComponent.RSRadioButtonMaterial radio1;
-    public static RSMaterialComponent.RSRadioButtonMaterial radio2;
+    public static RSMaterialComponent.RSRadioButtonMaterial rbDerivarToTerapeuta;
+    public static RSMaterialComponent.RSRadioButtonMaterial rbListaEspera;
+    public static RSMaterialComponent.RSRadioButtonMaterial rbNothing;
     public javax.swing.JLabel resumenLabel;
     private rojeru_san.rsbutton.RSButtonRound terapeutaBtn;
     public static javax.swing.JLabel terapeutaTxt;
@@ -298,7 +317,7 @@ boolean otro=false;
     public static String validar(){
     String resultado="";
     
-    if(radio2.isSelected() && terapeuta.getId()<0){
+    if(rbDerivarToTerapeuta.isSelected() && terapeuta.getId()<0){
         resultado="\nDatos Faltantes en Pagina#4:\n-Seleccionar el Terapeuta al cual será designado el paciente o seleccione la opción de <Enviar Paciente a Lista de Espera>";
     }
     

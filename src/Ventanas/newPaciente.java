@@ -6,6 +6,7 @@ import Clases.Derivacion;
 import Clases.Generos;
 import Clases.GrupoVulnerable;
 import Clases.IndiceBienestar;
+import Clases.ListaEspera;
 import Clases.Mail;
 import Clases.NivelEducativo;
 import Clases.Paciente;
@@ -44,7 +45,7 @@ public class newPaciente extends javax.swing.JFrame {
 
     public int pagina = 1;
     Paciente paciente;
-    String tipo = "nuevo";
+    public String tipo = "nuevo";
     public RnpDatosPersonales RnpPag1 = new RnpDatosPersonales(this);
     public RnpInfoVulnerabilidad RnpPag2 = new RnpInfoVulnerabilidad();
     public RnpObservaciones RnpPag3 = new RnpObservaciones(this);
@@ -87,6 +88,10 @@ public class newPaciente extends javax.swing.JFrame {
         this.tipo = tipo;
         this.paciente = paciente;
         changeIcon();
+        
+        
+        
+        
         iniciar();
     }
 
@@ -743,7 +748,15 @@ public class newPaciente extends javax.swing.JFrame {
         
         new ScrollSens(scrollContenido, 50);
        
-        
+        if(tipo.equalsIgnoreCase("nuevo")){
+            RnpPag4.rbListaEspera.setSelected(true);
+            RnpPag4.rbNothing.setVisible(false);
+        }else{
+            RnpPag4.rbNothing.setSelected(true);
+        }
+        if(Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra")){
+            RnpPag4.rbDerivarToTerapeuta.setVisible(false);
+        }
         try {
             
             new Thread(this::setValorBarra).start();
@@ -995,45 +1008,45 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag4.derivadoCombo.setVisible(false);
                 }
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        paciente.setRegistros(
-                                (ArrayList) new RegistroPaciente().getRegistroxPaciente(paciente.getId()).clone());
-
-                        for (RegistroPaciente rp : paciente.getRegistros()) {
-                            if (rp.getAccionRP().contains("Lista de Espera")) {
-                                RnpPag4.radio1.setSelected(true);
-                                RnpPag4.terapeutaTxt.setVisible(false);
-                                RnpPag4.nombreTerapeutaTxt.setVisible(false);
-                                RnpPag4.fechaCitaTxt.setVisible(false);
-                                break;
-                            } else if (rp.getAccionRP().contains("Agregado a Cita con Terapeuta")) {
-                                RnpPag4.radio2.setSelected(true);
-                                RnpPag4.terapeutaTxt.setVisible(true);
-                                RnpPag4.nombreTerapeutaTxt.setVisible(true);
-                                RnpPag4.fechaCitaTxt.setVisible(false);
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Usuario terapeuta = new Usuario().buscarUsuarioxID(rp.getIdUsuarioAsignado());
-                                        RnpPag4.terapeutaTxt.setText(terapeuta.getCodigo());
-                                        RnpPag4.nombreTerapeutaTxt.setText(terapeuta.getNombre());
-                                        try {
-                                            RnpPag4.fechaCitaTxt.setDatoFecha(new SimpleDateFormat("dd-MM-yyyy").parse(rp.getFechaAsignada().replace("-", "/")));
-                                        } catch (ParseException ex) {
-                                            Logger.getLogger(newPaciente.class.getName()).log(Level.SEVERE, null, ex);
-                                            JOptionPane.showMessageDialog(rootPane, ex);
-                                        }
-
-                                    }
-                                }).start();
-                                RnpPag4.finalizarBtn.setText("Actualizar Datos.");
-                                break;
-                            }
-                        }
-                    }
-                }).start();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        paciente.setRegistros(
+//                                (ArrayList) new RegistroPaciente().getRegistroxPaciente(paciente.getId()).clone());
+//
+//                        for (RegistroPaciente rp : paciente.getRegistros()) {
+//                            if (rp.getAccionRP().contains("Lista de Espera")) {
+//                                RnpPag4.rbListaEspera.setSelected(true);
+//                                RnpPag4.terapeutaTxt.setVisible(false);
+//                                RnpPag4.nombreTerapeutaTxt.setVisible(false);
+//                                RnpPag4.fechaCitaTxt.setVisible(false);
+//                                break;
+//                            } else if (rp.getAccionRP().contains("Agregado a Cita con Terapeuta")) {
+//                                RnpPag4.rbDerivarToTerapeuta.setSelected(true);
+//                                RnpPag4.terapeutaTxt.setVisible(true);
+//                                RnpPag4.nombreTerapeutaTxt.setVisible(true);
+//                                RnpPag4.fechaCitaTxt.setVisible(false);
+//                                new Thread(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        Usuario terapeuta = new Usuario().buscarUsuarioxID(rp.getIdUsuarioAsignado());
+//                                        RnpPag4.terapeutaTxt.setText(terapeuta.getCodigo());
+//                                        RnpPag4.nombreTerapeutaTxt.setText(terapeuta.getNombre());
+//                                        try {
+//                                            RnpPag4.fechaCitaTxt.setDatoFecha(new SimpleDateFormat("dd-MM-yyyy").parse(rp.getFechaAsignada().replace("-", "/")));
+//                                        } catch (ParseException ex) {
+//                                            Logger.getLogger(newPaciente.class.getName()).log(Level.SEVERE, null, ex);
+//                                            JOptionPane.showMessageDialog(rootPane, ex);
+//                                        }
+//
+//                                    }
+//                                }).start();
+//                                RnpPag4.finalizarBtn.setText("Actualizar Datos.");
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }).start();
 
             }
         } catch (ParseException ex) {
@@ -1249,9 +1262,20 @@ public class newPaciente extends javax.swing.JFrame {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (RnpPag4.radio1.isSelected()) {
-                        new RegistroPaciente().newRegistro(idPacientex, Index.getUser().getId(), Index.getUser().getId(), "Agregado a Lista de Espera",
-                                RnpPag3.observacionesTxt.getText(), hoy, "Activo");
+                    if (RnpPag4.rbListaEspera.isSelected()) {
+                        new ListaEspera().insert(
+                                idPacientex,
+                                Index.user.getId()
+                        );
+                        new RegistroPaciente().newRegistro(
+                                idPacientex,
+                                Index.getUser().getId(),
+                                Index.getUser().getId(),
+                                "Agregado a Lista de Espera",
+                                RnpPag3.observacionesTxt.getText(),
+                                hoy,
+                                "Activo"
+                        );
                     } else {
                         String fechaAsignadax = new SimpleDateFormat("yyyy-MM-dd").format(RnpPag4.fechaCitaTxt.getDatoFecha());
                         int idTerapeutaAsignado = Integer.parseInt(RnpPag4.terapeutaTxt.getText().substring(0, 2));
@@ -1318,15 +1342,32 @@ public class newPaciente extends javax.swing.JFrame {
                 new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (RnpPag4.radio1.isSelected()) {
-                        new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Agregado a Lista de Espera",
-                                RnpPag3.observacionesTxt.getText(), hoy, "Activo");
+                    if (RnpPag4.rbListaEspera.isSelected()) {
+                        new ListaEspera().insert(
+                                paciente.getId(),
+                                Index.user.getId()
+                        );
+                        
+                        new RegistroPaciente().newRegistro(
+                                paciente.getId(),
+                                Index.getUser().getId(),
+                                Index.getUser().getId(),
+                                "Agregado a Lista de Espera",
+                                RnpPag3.observacionesTxt.getText(),
+                                hoy, "Activo"
+                        );
                     } else {
                         String fechaAsignadax = new SimpleDateFormat("yyyy-MM-dd").format(RnpPag4.fechaCitaTxt.getDatoFecha());
                         int idTerapeutaAsignado = Integer.parseInt(RnpPag4.terapeutaTxt.getText().substring(0, 2));
 
-                        new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), idTerapeutaAsignado, "Agregado a Cita con Terapeuta",
-                                RnpPag3.observacionesTxt.getText(), fechaAsignadax, "Activo");
+                        new RegistroPaciente().newRegistro(
+                                paciente.getId(),
+                                Index.getUser().getId(),
+                                idTerapeutaAsignado,
+                                "Agregado a Cita con Terapeuta",
+                                RnpPag3.observacionesTxt.getText(),
+                                fechaAsignadax, "Activo"
+                        );
                         String datos = " Saludos, se le informa que se le ha asignado una cita con el paciente " + paciente.getNombreCompleto() + " para la fecha: " + fechaAsignadax;
                         new Mail().enviarCorreo(terapeutaAsignado.getCorreo(), "Cita Asignada", datos);
                     }
