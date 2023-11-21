@@ -362,7 +362,7 @@ public class Usuario {
     }
 
     public String getPriv() {
-        return priv;
+        return this.cargo;
     }
 
     public void setPriv(String priv) {

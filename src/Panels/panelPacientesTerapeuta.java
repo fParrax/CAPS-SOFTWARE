@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package Panels;
 
 import Clases.NotaEvolucion;
@@ -20,10 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author parra
- */
+
 public class panelPacientesTerapeuta extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
@@ -73,6 +67,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         totalSesionesLabel = new rojeru_san.rslabel.RSLabelBorderRound();
         alertaIcon = new RSMaterialComponent.RSButtonIconDos();
         alertaMensaje = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         grupoCiclo.add(radioCicloActual);
         radioCicloActual.setForeground(new java.awt.Color(0, 0, 0));
@@ -337,6 +332,10 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
 
         alertaMensaje.setText("Paciente con intención Suicida");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 27)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Mis Pacientes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -381,13 +380,16 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                                 .addComponent(alertaIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(alertaMensaje)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(totalPacientesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -590,8 +592,19 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
     }//GEN-LAST:event_alertaIcon1ActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-       int fila = tabla.getSelectedRow();
-       alertaIcon.setVisible(false);
+
+        
+        
+         int fila = tabla.getSelectedRow();
+        if (evt.getClickCount() == 2 && fila >= 0) {
+            int idx = Integer.valueOf(tabla.getValueAt(fila, 0).toString());
+            for (Paciente paciente : pacientes) {
+                if (Float.compare(idx, paciente.getId()) == 0) {
+                    new VerHistorialPaciente(paciente, Index.getUser()).setVisible(true);
+                }
+            }
+        }else{
+             alertaIcon.setVisible(false);
         alertaMensaje.setVisible(false);
         alertaIcon1.setVisible(false);
         alertaMensaje1.setVisible(false);
@@ -619,6 +632,11 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                }
            }
        }
+        }
+        
+        
+        
+      
     }//GEN-LAST:event_tablaMouseClicked
 
     private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
@@ -665,6 +683,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
     private static javax.swing.JButton jButton5;
     private static javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private static rojerusan.RSRadioButton radioCicloActual;
     private static rojerusan.RSRadioButton radioTodos;
@@ -711,7 +730,9 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                 // pacientes = (ArrayList) new Paciente().getPacientedeTerapeuta(Index.getUser().getId(), "", fecha01, fecha02).clone();
                 pacientes = (ArrayList) new Paciente().ListarPacienteconRegistros().clone();
                 
-                if (Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra")) {
+                System.out.println("Pacientes: "+pacientes.size());
+                System.out.println("Index.user.getPriv(): "+Index.user.getPriv());
+                if (Index.user.getCargo().equalsIgnoreCase("terapeuta") || Index.user.getCargo().equalsIgnoreCase("psiquiatra")) {
                     pacientes = (ArrayList) pacientes.stream()
                             .filter(
                                     t -> Float.compare(
@@ -728,6 +749,15 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
 
             
             private void actualizarIndicadores() {
+                ArrayList<Paciente> pacientes = (ArrayList) new Paciente().ListarPacienteconNotasEvolucionBYTerapeuta(Index.user.getId()).clone();
+                
+                int contadorSesiones=0;
+                for(Paciente paciente:pacientes){
+                    contadorSesiones += paciente.getNotas().size();
+                }
+                 totalSesionesLabel.setText("Total Sesiones: "+contadorSesiones + "");
+                 totalPacientesLabel.setText("Total Pacientes: "+pacientes.size() + "");
+/*
                 ArrayList<NotaEvolucion> notas = (ArrayList) new NotaEvolucion().getNotasdePacientexRangoFecha(fecha01, fecha02).clone();
 
                 if (Index.getUser().getPriv().equalsIgnoreCase("administrador")) {
@@ -753,7 +783,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                     totalSesionesLabel.setText("Total Sesiones: "+sesiones + "");
                     totalPacientesLabel.setText("Total Pacientes: "+idPacientes.size() + "");
                 }
-
+                */
             }
 
         }).start();
@@ -799,7 +829,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                             paciente.getNombreTerapeuta(),
                             paciente.getSrqIngreso(),
                             svbg,
-                            paciente.getTotalSesiones()
+                            paciente.getNotas().size()
                         });
                     }
                 }

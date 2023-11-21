@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -128,7 +129,8 @@ public class NotaEvolucion {
                         rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
                         rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
                         rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
-                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"),rs.getInt("idTerapeutaAsignado")));
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),
+                        rs.getString("nombre"),rs.getInt("idTerapeutaAsignado"),rs.getInt("idTrabajdorSocial")));
                 
                 usuario.setId(rs.getInt("id"));
                 usuario.setDni(rs.getString("dni"));
@@ -174,7 +176,8 @@ public class NotaEvolucion {
                         rs.getString("detalleOtroTelefono"),rs.getString("contactoRedSoporte"),
                         rs.getString("cantidadGrupoFamiliar"),rs.getString("rbSeguro"),rs.getString("txtOtroSeguro"),rs.getString("ingresoPeru"),
                         rs.getString("rbTrabajo"),rs.getString("txtTrabajo"),rs.getString("nivelEducativo"),rs.getString("otroNivelEducativo"),
-                        rs.getString("ocupacion"),rs.getString("subOcupacion"),rs.getString("nombre"),rs.getInt("idTerapeutaAsignado"));
+                        rs.getString("ocupacion"),rs.getString("subOcupacion"),
+                        rs.getString("nombre"),rs.getInt("idTerapeutaAsignado"),rs.getInt("idTrabajdorSocial"));
                 
                 NotaEvolucion nota = new NotaEvolucion(
                 rs.getInt("idNota"),rs.getInt("idPacienteNota"),rs.getInt("idTerapeutaNota"),
@@ -433,6 +436,76 @@ public class NotaEvolucion {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 73 * hash + this.idNota;
+        hash = 73 * hash + this.idPacienteNota;
+        hash = 73 * hash + this.idTerapeutaNota;
+        hash = 73 * hash + Objects.hashCode(this.fechaNota);
+        hash = 73 * hash + Objects.hashCode(this.observacion);
+        hash = 73 * hash + Objects.hashCode(this.sintomas);
+        hash = 73 * hash + Objects.hashCode(this.relaciones);
+        hash = 73 * hash + Objects.hashCode(this.limites);
+        hash = 73 * hash + Objects.hashCode(this.ansiedad);
+        hash = 73 * hash + Objects.hashCode(this.manejoAgresion);
+        hash = 73 * hash + Objects.hashCode(this.funcionalidad);
+        hash = 73 * hash + Objects.hashCode(this.trabajoTerapeutico);
+        hash = 73 * hash + Objects.hashCode(this.estado);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NotaEvolucion other = (NotaEvolucion) obj;
+        if (this.idNota != other.idNota) {
+            return false;
+        }
+        if (this.idPacienteNota != other.idPacienteNota) {
+            return false;
+        }
+        if (this.idTerapeutaNota != other.idTerapeutaNota) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaNota, other.fechaNota)) {
+            return false;
+        }
+        if (!Objects.equals(this.observacion, other.observacion)) {
+            return false;
+        }
+        if (!Objects.equals(this.sintomas, other.sintomas)) {
+            return false;
+        }
+        if (!Objects.equals(this.relaciones, other.relaciones)) {
+            return false;
+        }
+        if (!Objects.equals(this.limites, other.limites)) {
+            return false;
+        }
+        if (!Objects.equals(this.ansiedad, other.ansiedad)) {
+            return false;
+        }
+        if (!Objects.equals(this.manejoAgresion, other.manejoAgresion)) {
+            return false;
+        }
+        if (!Objects.equals(this.funcionalidad, other.funcionalidad)) {
+            return false;
+        }
+        if (!Objects.equals(this.trabajoTerapeutico, other.trabajoTerapeutico)) {
+            return false;
+        }
+        return Objects.equals(this.estado, other.estado);
     }
     
     

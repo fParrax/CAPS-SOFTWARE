@@ -53,7 +53,7 @@ public class newPaciente extends javax.swing.JFrame {
     public IndiceBienestar indice = new IndiceBienestar();
     String codigoPaciente = "";
     static int resultadoSRQIngreso = 0;
-    static Usuario terapeutaAsignado;
+    static Usuario terapeutaAsignado = new Usuario();
     ArrayList<Paciente> pacientes = new ArrayList();
     panelNewPaciente pnp;
     JPanel pp = new JPanel();
@@ -137,6 +137,7 @@ public class newPaciente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new rojerusan.RSTableMetro();
         infoButton = new rojeru_san.rsbutton.RSButtonRoundEffect();
+        passwordTxt = new rojeru_san.rsfield.RSPassViewBD();
         jPanel3 = new javax.swing.JPanel();
         RbVertical = new rojerusan.RSRadioButton();
         RbHorizontal = new rojerusan.RSRadioButton();
@@ -398,6 +399,14 @@ public class newPaciente extends javax.swing.JFrame {
             }
         });
 
+        passwordTxt.setBackground(new java.awt.Color(164, 184, 172));
+        passwordTxt.setForeground(new java.awt.Color(246, 219, 212));
+        passwordTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordTxt.setBordeColorFocus(new java.awt.Color(246, 219, 212));
+        passwordTxt.setBotonColor(new java.awt.Color(246, 219, 212));
+        passwordTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        passwordTxt.setPlaceholder("Contraseña");
+
         javax.swing.GroupLayout panelCoincidenciaLayout = new javax.swing.GroupLayout(panelCoincidencia);
         panelCoincidencia.setLayout(panelCoincidenciaLayout);
         panelCoincidenciaLayout.setHorizontalGroup(
@@ -412,6 +421,10 @@ public class newPaciente extends javax.swing.JFrame {
                         .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(panelCoincidenciaLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(218, Short.MAX_VALUE))
         );
         panelCoincidenciaLayout.setVerticalGroup(
             panelCoincidenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,8 +432,10 @@ public class newPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -680,6 +695,7 @@ public class newPaciente extends javax.swing.JFrame {
     private javax.swing.JPanel panelCoincidencia;
     private javax.swing.JPanel panelLateral;
     private javax.swing.JPanel panelMenu;
+    private rojeru_san.rsfield.RSPassViewBD passwordTxt;
     private javax.swing.JScrollPane scrollContenido;
     private javax.swing.JLabel separador1;
     private javax.swing.JLabel separador2;
@@ -1023,8 +1039,10 @@ public class newPaciente extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(newPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(!tipo.equalsIgnoreCase("nuevo")){
+           codigoPaciente = paciente.getCodigo(); 
+        }
         
-        codigoPaciente = paciente.getCodigo();
         verVertical();
     }
 
@@ -1212,7 +1230,7 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente, modalidad, detalleDerivadox,
                     RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
                     cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
-                    otroNivelEducativo, ocupacion,subOcupacion,terapeutaAsignado.getId());
+                    otroNivelEducativo, ocupacion,subOcupacion,terapeutaAsignado.getId(),Index.getUser().getId());
 
             if (srq18.getIdsrq() >= 0) {
                 int evsr = new SRQ18().newSRQ18(idPacientex, Index.getUser().getId(), srq18.getLugar(),

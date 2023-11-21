@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
 
 import Clases.IndiceBienestar;
@@ -73,7 +69,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
 
         ocultarAlertas();
         
-        setExtendedState(MAXIMIZED_BOTH);
+       // setExtendedState(MAXIMIZED_BOTH);
         new Thread(this::llenarTablas).start();
     }
 
@@ -255,7 +251,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
 
         lbCambiarTerapeuta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbCambiarTerapeuta.setText("Cambiar Terapeuta");
-        lbCambiarTerapeuta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lbCambiarTerapeuta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lbCambiarTerapeuta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbCambiarTerapeutaMouseClicked(evt);
@@ -506,15 +502,15 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
         pnAlertaSRQLayout.setHorizontalGroup(
             pnAlertaSRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnAlertaSRQLayout.createSequentialGroup()
-                .addGroup(pnAlertaSRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnAlertaSRQLayout.createSequentialGroup()
-                        .addComponent(alertaIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(alertaMensaje))
+                .addGroup(pnAlertaSRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnAlertaSRQLayout.createSequentialGroup()
                         .addComponent(alertaIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(alertaMensaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(alertaMensaje3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnAlertaSRQLayout.createSequentialGroup()
+                        .addComponent(alertaIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(alertaMensaje)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnAlertaSRQLayout.setVerticalGroup(
@@ -562,7 +558,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
                         .addComponent(alertaIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(alertaMensaje1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
         pnAlertaIndiceLayout.setVerticalGroup(
             pnAlertaIndiceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,7 +611,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
                     .addComponent(jScrollPane5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnAlertaIndice, javax.swing.GroupLayout.PREFERRED_SIZE, 487, Short.MAX_VALUE)
+                    .addComponent(pnAlertaIndice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnAlertaSRQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

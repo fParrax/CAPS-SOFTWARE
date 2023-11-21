@@ -79,10 +79,10 @@ public Login(boolean isOpen) {
         panelCentral = new javax.swing.JPanel();
         rSPanelImage1 = new rojeru_san.rspanel.RSPanelImage();
         pnlDiseño = new javax.swing.JPanel();
+        passwordTxt = new rojeru_san.rsfield.RSPassViewBD();
         lbTitulo = new javax.swing.JLabel();
         iconPersonas = new RSMaterialComponent.RSButtonIconShadow();
         usernameTxt = new RSMaterialComponent.RSTextFieldMaterial();
-        passwordTxt = new RSMaterialComponent.RSTextFieldMaterial();
         ingresarBtn = new rojeru_san.rsbutton.RSButtonRound();
         txtCaptcha = new rojeru_san.rsfield.RSTextFullRound();
         lbAvisoGatcha = new javax.swing.JLabel();
@@ -101,6 +101,15 @@ public Login(boolean isOpen) {
 
         pnlDiseño.setOpaque(false);
         pnlDiseño.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        passwordTxt.setBackground(new java.awt.Color(164, 184, 172));
+        passwordTxt.setForeground(new java.awt.Color(246, 219, 212));
+        passwordTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        passwordTxt.setBordeColorFocus(new java.awt.Color(246, 219, 212));
+        passwordTxt.setBotonColor(new java.awt.Color(246, 219, 212));
+        passwordTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        passwordTxt.setPlaceholder("Contraseña");
+        pnlDiseño.add(passwordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         lbTitulo.setBackground(new java.awt.Color(246, 219, 212));
         lbTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -148,32 +157,6 @@ public Login(boolean isOpen) {
             }
         });
         pnlDiseño.add(usernameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
-
-        passwordTxt.setBackground(new java.awt.Color(164, 184, 172));
-        passwordTxt.setForeground(new java.awt.Color(255, 255, 255));
-        passwordTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        passwordTxt.setColorMaterial(new java.awt.Color(138, 128, 155));
-        passwordTxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        passwordTxt.setPhColor(new java.awt.Color(246, 219, 212));
-        passwordTxt.setPhIntensity(220);
-        passwordTxt.setPlaceholder("Contraseña");
-        passwordTxt.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                passwordTxtFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                passwordTxtFocusLost(evt);
-            }
-        });
-        passwordTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordTxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                passwordTxtKeyReleased(evt);
-            }
-        });
-        pnlDiseño.add(passwordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         ingresarBtn.setBackground(new java.awt.Color(138, 128, 155));
         ingresarBtn.setText("ACCESO");
@@ -293,7 +276,9 @@ public Login(boolean isOpen) {
         try {
             if(evt.getKeyCode() == KeyEvent.VK_PAGE_UP && (new tools().Obtener_mac().equals("e8-40-f2-05-ec-40") 
                     || new tools().Obtener_mac().equals("00-24-81-CC-7D-05")
-                    || new tools().Obtener_mac().equals("EC-F4-BB-4A-2E-B2"))){
+                    || new tools().Obtener_mac().equals("EC-F4-BB-4A-2E-B2")
+                    || new tools().Obtener_mac().equals("A0-A8-CD-72-ED-DB")
+                    )){
                 usernameTxt.setText("dev");
                 passwordTxt.setText(".");
                 txtCaptcha.setText(lbcaptcha.getText());
@@ -305,13 +290,6 @@ public Login(boolean isOpen) {
         }
     }//GEN-LAST:event_usernameTxtKeyReleased
 
-    private void passwordTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTxtKeyPressed
-    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ingresarBtn.doClick();
-        }
-        
-    }//GEN-LAST:event_passwordTxtKeyPressed
-
     private void ingresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarBtnActionPerformed
       new Thread(this::buscarUsuario).start();
     }//GEN-LAST:event_ingresarBtnActionPerformed
@@ -319,14 +297,6 @@ public Login(boolean isOpen) {
     private void usernameTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameTxtKeyTyped
        
     }//GEN-LAST:event_usernameTxtKeyTyped
-
-    private void passwordTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTxtKeyReleased
-       if(passwordTxt.getText().length()>0){
-           passwordTxt.setPlaceholder("");
-       }else{
-            passwordTxt.setPlaceholder("Contraseña");
-       }
-    }//GEN-LAST:event_passwordTxtKeyReleased
 
     private void usernameTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTxtFocusGained
      
@@ -341,18 +311,6 @@ public Login(boolean isOpen) {
             usernameTxt.setPlaceholder("Contraseña");
        }
     }//GEN-LAST:event_usernameTxtFocusLost
-
-    private void passwordTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTxtFocusLost
-      if(passwordTxt.getText().length()>0){
-          
-       }else{
-            passwordTxt.setPlaceholder("Contraseña");
-       }
-    }//GEN-LAST:event_passwordTxtFocusLost
-
-    private void passwordTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTxtFocusGained
-      passwordTxt.setPlaceholder("");
-    }//GEN-LAST:event_passwordTxtFocusGained
 
     private void txtCaptchaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaptchaKeyTyped
      if(txtCaptcha.getText().length()>4){
@@ -406,7 +364,7 @@ public Login(boolean isOpen) {
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JLabel lbcaptcha;
     private javax.swing.JPanel panelCentral;
-    private RSMaterialComponent.RSTextFieldMaterial passwordTxt;
+    private rojeru_san.rsfield.RSPassViewBD passwordTxt;
     private javax.swing.JPanel pnlDiseño;
     private rojeru_san.rspanel.RSPanelImage rSPanelImage1;
     private rojeru_san.rsfield.RSTextFullRound txtCaptcha;
