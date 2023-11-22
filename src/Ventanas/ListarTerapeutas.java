@@ -24,6 +24,7 @@ public class ListarTerapeutas extends javax.swing.JFrame {
     Paciente paciente = new Paciente();
     static ArrayList<Usuario> users = new ArrayList();
     static String uso = "";
+    Index index;
 
     public ListarTerapeutas() {
         initComponents();
@@ -32,18 +33,20 @@ public class ListarTerapeutas extends javax.swing.JFrame {
         new Thread(ListarTerapeutas::actualizarValores).start();
     }
 
-    public ListarTerapeutas(String uso) {
+    public ListarTerapeutas(Index index,String uso) {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         this.uso = uso;
+        this.index =index;
         barra.setVisible(false);
         actualizarValores();
 
     }
-    public ListarTerapeutas(String uso, Paciente paciente) {
+    public ListarTerapeutas(Index index,String uso, Paciente paciente) {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         this.uso = uso;
+        this.index =index;
         this.paciente=paciente;
         barra.setVisible(false);
         actualizarValores();
@@ -337,7 +340,7 @@ public class ListarTerapeutas extends javax.swing.JFrame {
                 }else
                 if (uso.equalsIgnoreCase("asignarTerapeuta")) {
                     
-                     new AsignarCita(seleccionado,paciente).setVisible(true);
+                     new AsignarCita(index,seleccionado,paciente).setVisible(true);
                             
                 }
             this.dispose();   

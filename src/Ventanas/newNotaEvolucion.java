@@ -31,6 +31,7 @@ public class newNotaEvolucion extends javax.swing.JFrame {
     Usuario terapeuta = new Usuario();
     String tipo = "";
     DefaultTableModel modelo;
+    Index index;
 
     public newNotaEvolucion() {
         initComponents();
@@ -47,7 +48,7 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         new Thread(this::iniciarValores).start();
     }
 
-    public newNotaEvolucion(Paciente paciente, Usuario terapeuta, String tipo) {
+    public newNotaEvolucion(Index index,Paciente paciente, String tipo) {
         initComponents();
         changeIcon();
         new PlaceHolder("Esperando valores", txtAlianzaTrabajo);
@@ -60,12 +61,13 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         new PlaceHolder("Esperando valores", txtSintomas);
         modelo = (DefaultTableModel) tablaNotas.getModel();
         this.paciente = paciente;
-        this.terapeuta = terapeuta;
+        this.terapeuta = index.getUser();
         this.tipo = tipo;
+        this.index =index;
         new Thread(this::iniciarValores).start();
     }
 
-    public newNotaEvolucion(Paciente paciente, Usuario terapeuta, NotaEvolucion nota, String tipo) {
+    public newNotaEvolucion(Index index,Paciente paciente, Usuario terapeuta, NotaEvolucion nota, String tipo) {
         initComponents();
         changeIcon();
         new PlaceHolder("Esperando valores", txtAlianzaTrabajo);
@@ -79,7 +81,8 @@ public class newNotaEvolucion extends javax.swing.JFrame {
         modelo = (DefaultTableModel) tablaNotas.getModel();
         this.nota = nota;
         this.paciente = paciente;
-        this.terapeuta = terapeuta;
+        this.index =index;
+        this.terapeuta = index.getUser();
         this.tipo = tipo;
 
         iniciarValores();
@@ -502,8 +505,8 @@ public class newNotaEvolucion extends javax.swing.JFrame {
                                     break;
                                 }
                             }
-                            new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(),
-                                    Index.getUser().getId(), "Nota de Evaluación", observacionx, hoy, "Activo");
+                            new RegistroPaciente().newRegistro(paciente.getId(), index.getUser().getId(),
+                                    index.getUser().getId(), "Nota de Evaluación", observacionx, hoy, "Activo");
 
                             dispose();
                         }
@@ -553,7 +556,7 @@ public class newNotaEvolucion extends javax.swing.JFrame {
 
     private void cambiarPacienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarPacienteBtnActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "¿Está seguro que desea asignar la Actual Nota de Evolución a otro Paciente?") == 0) {
-            new ListarPacientes(this, "Cambiar paciente notaEvolucion").setVisible(true);
+            new ListarPacientes(index,this, "Cambiar paciente notaEvolucion").setVisible(true);
         }
     }//GEN-LAST:event_cambiarPacienteBtnActionPerformed
 
@@ -564,7 +567,7 @@ public class newNotaEvolucion extends javax.swing.JFrame {
             int valor = Integer.parseInt(tablaNotas.getValueAt(fila, 0).toString());
             for (NotaEvolucion nota : paciente.getNotas()) {
                 if (Float.compare(valor, nota.getIdNota()) == 0) {
-                    new newNotaEvolucion(paciente, terapeuta, nota, "ver").setVisible(true);
+                    new newNotaEvolucion(index,paciente, terapeuta, nota, "ver").setVisible(true);
                     break;
                 }
             }

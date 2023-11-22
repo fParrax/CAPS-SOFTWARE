@@ -35,6 +35,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
     DefaultTableModel modeloSRQ;
     DefaultTableModel modeloIndiceBienestar;
     DefaultTableModel modeloNotaEvolucion;
+    Index index;
 
     public VerHistorialPaciente() {
         initComponents();
@@ -48,11 +49,12 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
 
     }
 
-    public VerHistorialPaciente(Paciente p, Usuario usuario) {
+    public VerHistorialPaciente(Index index,Paciente p) {
         initComponents();
         changeIcon();
         this.paciente = p;
-        this.terapeuta = usuario;
+        this.terapeuta = index.getUser();
+        this.index=index;
         modeloSRQ = (DefaultTableModel) tablaSRQ.getModel();
         modeloIndiceBienestar = (DefaultTableModel) tablaIndiceBienestar.getModel();
         modeloNotaEvolucion = (DefaultTableModel) tablaNotaEvolucion.getModel();
@@ -675,9 +677,9 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
         int fila = tablaSRQ.getSelectedRow();
         if (evt.getClickCount() == 2 && fila >= 0) {
             int srqID = Integer.parseInt(tablaSRQ.getValueAt(fila, 0).toString());
-            for (SRQ18 sr : paciente.getSrq18s()) {
-                if (Float.compare(srqID, sr.getId()) == 0) {
-                    new newSRQ18(paciente, sr, "ver").setVisible(true);
+            for (SRQ18 srq18 : paciente.getSrq18s()) {
+                if (Float.compare(srqID, srq18.getId()) == 0) {
+                    new newSRQ18(index,paciente, srq18, "ver").setVisible(true);
                 }
             }
 
@@ -690,7 +692,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
             int idx = Integer.parseInt(tablaNotaEvolucion.getValueAt(fila, 0).toString());
             for (NotaEvolucion nota : paciente.getNotas()) {
                 if (Float.compare(idx, nota.getIdNota()) == 0) {
-                    new newNotaEvolucion(paciente, terapeuta, nota, "ver").setVisible(true);
+                    new newNotaEvolucion(index,paciente, terapeuta, nota, "ver").setVisible(true);
                     break;
                 }
             }
@@ -704,7 +706,7 @@ public class VerHistorialPaciente extends javax.swing.JFrame {
             int id = Integer.parseInt(tablaIndiceBienestar.getValueAt(fila, 0).toString());
             for (IndiceBienestar ib : paciente.getIndices()) {
                 if (Float.compare(id, ib.getId()) == 0) {
-                    new newIndiceBienestar(paciente, terapeuta, ib).setVisible(true);
+                    new newIndiceBienestar(index,paciente, terapeuta, ib).setVisible(true);
                     break;
                 }
             }
@@ -818,7 +820,7 @@ verGrafico vgIndice = new verGrafico();
     private void lbCambiarTerapeutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbCambiarTerapeutaMouseClicked
         
         if(JOptionPane.showConfirmDialog(rootPane, "¿Seguro que desea Cambiar el Terapeuta?", "Cambiar Terapeuta", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
-            new ListarTerapeutas("HistorialPaciente").setVisible(true);
+            new ListarTerapeutas(index,"HistorialPaciente").setVisible(true);
         }
         
     }//GEN-LAST:event_lbCambiarTerapeutaMouseClicked

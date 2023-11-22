@@ -26,6 +26,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
     newSRQ18 newSrq;
     static IndiceBienestar indice = new IndiceBienestar();
     newPaciente ventanaOriginal;
+    Index index;
     
     public RnpObservaciones() {
         initComponents();
@@ -33,9 +34,10 @@ public class RnpObservaciones extends javax.swing.JPanel {
         newSrq = new newSRQ18();
     }
 
-    public RnpObservaciones(newPaciente pc) {
+    public RnpObservaciones(Index index,newPaciente pc) {
         initComponents();
         this.ventanaOriginal = pc;
+        this.index=index;
         alertaIcon1.setVisible(false);
         alertaMensaje1.setVisible(false);
         alertaIcon2.setVisible(false);
@@ -489,10 +491,10 @@ public class RnpObservaciones extends javax.swing.JPanel {
                newSrq.setExtendedState(0);
            }else{
                 if(ventanaOriginal.srq18.getSumatoria()>0){
-                    newSrq = new newSRQ18(ventanaOriginal, nombreCompleto, fnac, "Inicial",ventanaOriginal.srq18);
+                    newSrq = new newSRQ18(index,ventanaOriginal, nombreCompleto, fnac, "Inicial",ventanaOriginal.srq18);
                     newSrq.setVisible(true);
                 }else{
-                   newSrq = new newSRQ18(ventanaOriginal, nombreCompleto, fnac, "Inicial");
+                   newSrq = new newSRQ18(index,ventanaOriginal, nombreCompleto, fnac, "Inicial");
                newSrq.setVisible(true); 
                 }
                
@@ -513,7 +515,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
             if (newIndice.isVisible()){
                  newIndice.setExtendedState(0);
             }else{
-                newIndice = new newIndiceBienestar(paciente, Index.getUser(), "Inicial",ventanaOriginal,ventanaOriginal.indice);
+                newIndice = new newIndiceBienestar(index,paciente, "Inicial",ventanaOriginal,ventanaOriginal.indice);
                 newIndice.setVisible(true);
             }
             
@@ -546,7 +548,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
        paciente.setProvincia(RnpDatosPersonales.provinviaTxt.getSelectedItem().toString());
        paciente.setDistrito(RnpDatosPersonales.distritoTxt.getSelectedItem().toString());
        
-       new newSRQ18(paciente,srq18,"ver").setVisible(true);
+       new newSRQ18(index,paciente,srq18,"ver").setVisible(true);
     }//GEN-LAST:event_btnVerSrqActionPerformed
 
     private void alertaIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alertaIcon3ActionPerformed
@@ -559,7 +561,7 @@ public class RnpObservaciones extends javax.swing.JPanel {
        paciente.setNombres(RnpDatosPersonales.nombresTxt.getText());
        paciente.setApellidos(RnpDatosPersonales.apellidosTxt.getText());
        
-       new newIndiceBienestar(paciente,ventanaOriginal.indice).setVisible(true);
+       new newIndiceBienestar(index,paciente,ventanaOriginal.indice).setVisible(true);
     }//GEN-LAST:event_btnVerIndiceActionPerformed
 
 

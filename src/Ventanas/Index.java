@@ -33,7 +33,7 @@ public class Index extends javax.swing.JFrame {
     public static int max = 0;
     public static panelIndexMenu menu;
     ScrollSens ss;// = new ScrollSens(scrollMenu);
-    public static Usuario user = new Usuario();
+    public  Usuario user = new Usuario();
     public static ArrayList<String> ciclo;
     public static String fechaServidor = "";
 
@@ -56,7 +56,7 @@ public class Index extends javax.swing.JFrame {
             
         menu = new panelIndexMenu(user.getCargo(),this);
         scrollMenu.setViewportView(menu);
-        new Thread(Index::iniciarDatos).start();
+        new Thread(this::iniciarDatos).start();
     }
 
     public void changeIcon() {
@@ -373,15 +373,15 @@ try {
         }
     }
 
-    public static Usuario getUser() {
+    public  Usuario getUser() {
         return user;
     }
 
-    public static void setUser(Usuario user) {
-        Index.user = user;
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
-    private static void iniciarDatos() {
+    private void iniciarDatos() {
        // btnMax.doClick();
 
         versionLabel.setText("Versión Actual: " + new Propiedades().getMiVersion());

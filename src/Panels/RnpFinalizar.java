@@ -21,6 +21,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
      */
     public static Usuario terapeuta = new Usuario();
     static newPaciente ventanaOriginal;
+    Index index;
     public RnpFinalizar() {
         initComponents();
         rbListaEspera.setSelected(true);
@@ -30,7 +31,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
         fechaCitaTxt.setVisible(false);
         derivadoCombo.setVisible(false);
     }
-    public RnpFinalizar(newPaciente p) {
+    public RnpFinalizar(Index index,newPaciente p) {
         initComponents();
         rbListaEspera.setSelected(true);
         terapeutaBtn.setVisible(false);
@@ -39,12 +40,13 @@ public class RnpFinalizar extends javax.swing.JPanel {
         fechaCitaTxt.setVisible(false);
         derivadoCombo.setVisible(false);
         this.ventanaOriginal=p;
+        this.index=index;
         
         
         
     }
     private void validarOpciones(){
-        if(Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra") ){
+        if(index.getUser().getCargo().equalsIgnoreCase("terapeuta") || index.getUser().getCargo().equalsIgnoreCase("psiquiatra") ){
             rbDerivarToTerapeuta.setVisible(false);
             terapeutaBtn.setVisible(false);
         }
@@ -265,7 +267,7 @@ public class RnpFinalizar extends javax.swing.JPanel {
     }//GEN-LAST:event_finalizarBtnActionPerformed
 
     private void terapeutaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terapeutaBtnActionPerformed
-       new ListarTerapeutas("newPaciente").setVisible(true);
+       new ListarTerapeutas(index,"newPaciente").setVisible(true);
     }//GEN-LAST:event_terapeutaBtnActionPerformed
 
     private void modalidadComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_modalidadComboItemStateChanged

@@ -1,19 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
 
-import Clases.NotaEvolucion;
 import Clases.Paciente;
 import Clases.RegistroPaciente;
-import Panels.RnpFinalizar;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import rojerusan.RSNotifyFade;
 
 /**
  *
@@ -26,41 +17,46 @@ public class ListarPacientes extends javax.swing.JFrame {
     Paciente paciente = new Paciente();
     ArrayList<Paciente> pacientes = new ArrayList();
     String uso = "";
+    Index index;
 
     public ListarPacientes() {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         barra.setVisible(false);
+        this.index =index;
         new Thread(this::actualizarValores).start();
         panelDatos.setVisible(false);
     }
 
-    public ListarPacientes(Paciente paciente, String uso) {
+    public ListarPacientes(Index index,Paciente paciente, String uso) {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         this.paciente = paciente;
         this.uso = uso;
+        this.index =index;
         barra.setVisible(false);
         panelDatos.setVisible(false);
         actualizarValores();
 
     }
 
-    public ListarPacientes(newNotaEvolucion notaEvo, String uso) {
+    public ListarPacientes(Index index,newNotaEvolucion notaEvo, String uso) {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         this.uso = uso;
         this.notaEvo = notaEvo;
+        this.index =index;
         barra.setVisible(false);
         panelDatos.setVisible(false);
         actualizarValores();
 
     }
 
-    public ListarPacientes(String uso) {
+    public ListarPacientes(Index index,String uso) {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         this.uso = uso;
+        this.index =index;
         barra.setVisible(false);
         panelDatos.setVisible(false);
         actualizarValores();
@@ -476,7 +472,7 @@ public class ListarPacientes extends javax.swing.JFrame {
                         notaEvo.setPaciente(paciente);
                         break;
                     } else if (uso.equalsIgnoreCase("ver mi lista de espera")) {
-                        new newNotaEvolucion(paciente, Index.getUser(), "Primera Sesión").setVisible(true);
+                        new newNotaEvolucion(index,paciente, "Primera Sesión").setVisible(true);
                         break;
                     }
                 }
@@ -509,7 +505,7 @@ public class ListarPacientes extends javax.swing.JFrame {
                 for (RegistroPaciente rp : paciente.getRegistros()) {//Asignación de Cita
                     if (rp.getAccionRP().toLowerCase().contains("Lista de Espera")
                             && rp.getEstadoRP().equalsIgnoreCase("activo")
-                            && Float.compare(rp.getIdUsuarioAsignado(), Index.getUser().getId()) == 0) {
+                            && Float.compare(rp.getIdUsuarioAsignado(), index.getUser().getId()) == 0) {
 
                         break;
                     }
@@ -521,7 +517,7 @@ public class ListarPacientes extends javax.swing.JFrame {
                 for (RegistroPaciente rp : paciente.getRegistros()) {//Asignación de Cita
                     if (rp.getAccionRP().toLowerCase().contains("Asignación de Cita")
                             && rp.getEstadoRP().equalsIgnoreCase("activo")
-                            && Float.compare(rp.getIdUsuarioAsignado(), Index.getUser().getId()) == 0) {
+                            && Float.compare(rp.getIdUsuarioAsignado(), index.getUser().getId()) == 0) {
 
                         break;
                     }
@@ -614,7 +610,7 @@ public class ListarPacientes extends javax.swing.JFrame {
             //ListarPacienteconRegistros
         } else {
             pacientes = listaEsperaRadio.isSelected()
-                    ? (ArrayList) new Paciente().getPacientedeTerapeuta(Index.getUser().getId(), "", "1990/01/01", "2100/12/31").clone()
+                    ? (ArrayList) new Paciente().getPacientedeTerapeuta(index.getUser().getId(), "", "1990/01/01", "2100/12/31").clone()
                     : (ArrayList) new Paciente().getPacientexNombre("").clone();
 
         }
@@ -631,7 +627,7 @@ public class ListarPacientes extends javax.swing.JFrame {
                     for (RegistroPaciente rp : paciente.getRegistros()) {//Asignación de Cita
                         if (rp.getAccionRP().toLowerCase().contains("Lista de Espera")
                                 && rp.getEstadoRP().equalsIgnoreCase("activo")
-                                && Float.compare(rp.getIdUsuarioAsignado(), Index.getUser().getId()) == 0) {
+                                && Float.compare(rp.getIdUsuarioAsignado(), index.getUser().getId()) == 0) {
                             if (paciente.getNombreCompleto().contains(texto) || paciente.getCodigo().contains(texto)) {
                                 modelo.addRow(new Object[]{
                                     paciente.getId(), paciente.getCodigo(), paciente.getNombreCompleto(),
@@ -649,7 +645,7 @@ public class ListarPacientes extends javax.swing.JFrame {
                     for (RegistroPaciente rp : paciente.getRegistros()) {//Asignación de Cita
                         if (rp.getAccionRP().toLowerCase().contains("Asignación de Cita")
                                 && rp.getEstadoRP().equalsIgnoreCase("activo")
-                                && Float.compare(rp.getIdUsuarioAsignado(), Index.getUser().getId()) == 0) {
+                                && Float.compare(rp.getIdUsuarioAsignado(), index.getUser().getId()) == 0) {
                             if (paciente.getNombreCompleto().contains(texto) || paciente.getCodigo().contains(texto)) {
                                 modelo.addRow(new Object[]{
                                     paciente.getId(), paciente.getCodigo(), paciente.getNombreCompleto(),

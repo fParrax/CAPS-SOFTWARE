@@ -26,23 +26,26 @@ public class AsignarCita extends javax.swing.JFrame {
     Usuario terapeuta= new Usuario();
     Paciente paciente;
 
+    Index index;
     public AsignarCita() {
         initComponents();
         changeIcon();
     }
 
-    public AsignarCita(RegistroPaciente rp, Paciente paciente) {
+    public AsignarCita(Index index,RegistroPaciente rp, Paciente paciente) {
         initComponents();
         this.rp = rp;
         this.paciente = paciente;
+        this.index =index;
         changeIcon();
         iniciarDatos();
     }
-    public AsignarCita(Usuario terapeuta, Paciente paciente) {
+    public AsignarCita(Index index,Usuario terapeuta, Paciente paciente) {
         initComponents();
         this.terapeuta = terapeuta;
         cancelarBtn.setVisible(false);
         this.paciente = paciente;
+        this.index =index;
         changeIcon();
         iniciarDatos();
     }
@@ -217,7 +220,7 @@ String observacionx = justificacionTxt.getText();
             
              new RegistroPaciente().newRegistro(
                                 paciente.getId(),
-                                Index.getUser().getId(),
+                                index.getUser().getId(),
                                 terapeuta.getId(),
                                 "Agregado a Cita con Terapeuta",
                                 observacionx,
@@ -248,8 +251,8 @@ String observacionx = justificacionTxt.getText();
         rp.setObservacionRP(rp.getObservacionRP() + " Motivo Cancelación: " + justificacionTxt.getText());
         
         if (rp.UpdateRegistro() > 0) {
-            int rsp = new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(),
-                    Index.getUser().getId(), "Asignación de Cita", observacionx, fechaAsignada, "Activo");
+            int rsp = new RegistroPaciente().newRegistro(paciente.getId(), index.getUser().getId(),
+                    index.getUser().getId(), "Asignación de Cita", observacionx, fechaAsignada, "Activo");
             if (rsp > 0) {
 
                 new rojerusan.RSNotifyFade("Cita Asignada", " La cita fue asignada a la fecha asignada", 5,

@@ -33,10 +33,19 @@ public class panelNewPaciente extends javax.swing.JPanel {
     ArrayList<String> pacs = new ArrayList();
     ArrayList<RegistroPaciente> registros = new ArrayList();
     newPaciente np;
+    Index index;
     public panelNewPaciente() {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         tituloBoton.setVisible(false);
+        //new Thread(this::iniciar).start();
+        iniciar();
+    }
+    public panelNewPaciente(Index index) {
+        initComponents();
+        modelo = (DefaultTableModel) tabla.getModel();
+        tituloBoton.setVisible(false);
+        this.index=index;
         //new Thread(this::iniciar).start();
         iniciar();
     }
@@ -434,11 +443,11 @@ public class panelNewPaciente extends javax.swing.JPanel {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
         if(np == null){
-             np = new newPaciente(this);
+             np = new newPaciente(index,this);
         }
         
         if( !np.isShowing() || !np.isVisible()){
-            np = new newPaciente(this);
+            np = new newPaciente(index,this);
             np.setVisible(true);
         }else{
             np.setExtendedState(0);
@@ -453,7 +462,7 @@ public class panelNewPaciente extends javax.swing.JPanel {
             int idx = Integer.valueOf(tabla.getValueAt(fila, 0).toString());
             for (Paciente paciente : pacientes) {
                 if (Float.compare(idx, paciente.getId()) == 0) {
-                    new VerHistorialPaciente(paciente, Index.getUser()).setVisible(true);
+                    new VerHistorialPaciente(index,paciente).setVisible(true);
                     break;
                 }
             }
@@ -527,7 +536,7 @@ public class panelNewPaciente extends javax.swing.JPanel {
         } else {
             for (Paciente p : pacientes) {
                 if (Float.compare(p.getId(), Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString())) == 0) {
-                     new tipoSRQ(p,"indice").setVisible(true);
+                     new tipoSRQ(index,p,"indice").setVisible(true);
                     break;
                 }
             }
@@ -546,7 +555,7 @@ public class panelNewPaciente extends javax.swing.JPanel {
                             
                         //}
                     //}
-                    new tipoSRQ(p,"srq").setVisible(true);
+                    new tipoSRQ(index,p,"srq").setVisible(true);
                             break;
                     //new newSRQ18(p, "Inicial").setVisible(true);
                     //break;
@@ -604,7 +613,7 @@ public class panelNewPaciente extends javax.swing.JPanel {
             for (Paciente p : pacientes) {
                 int idTomado = Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString());
                 if (Float.compare(p.getId(), idTomado) == 0) {
-                    new newPaciente(p, "editar",this).setVisible(true);
+                    new newPaciente(index,p, "editar",this).setVisible(true);
                     break;
                 }
             }
@@ -618,7 +627,7 @@ public class panelNewPaciente extends javax.swing.JPanel {
             int idx = Integer.valueOf(tabla.getValueAt(fila, 0).toString());
             for (Paciente paciente : pacientes) {
                 if (Float.compare(idx, paciente.getId()) == 0) {
-                    new VerHistorialPaciente(paciente, Index.getUser()).setVisible(true);
+                    new VerHistorialPaciente(index,paciente).setVisible(true);
                 }
             }
         }
@@ -669,20 +678,20 @@ public class panelNewPaciente extends javax.swing.JPanel {
             @Override
             public void run() {
                 pacientes = (ArrayList) new Paciente().ListarPacienteconRegistros().clone();
-                if (Index.user.getCargo().equalsIgnoreCase("terapeuta") || Index.user.getCargo().equalsIgnoreCase("psiquiatra")) {
+                if (index.user.getCargo().equalsIgnoreCase("terapeuta") || index.user.getCargo().equalsIgnoreCase("psiquiatra")) {
                     pacientes = (ArrayList) pacientes.stream()
                             .filter(
                                     t -> Float.compare(
                                             t.getIdTerapeuta(),
-                                            Index.user.getId()
+                                            index.user.getId()
                                     ) == 0
                             ).collect(Collectors.toList());
-                }if (Index.user.getCargo().equalsIgnoreCase("trabajador social//BorrarLuego")) {
+                }if (index.user.getCargo().equalsIgnoreCase("trabajador social//BorrarLuego")) {
                     pacientes = (ArrayList) pacientes.stream()
                             .filter(
                                     t -> Float.compare(
                                             t.getIdTrabajadorSocial(),
-                                            Index.user.getId()
+                                            index.user.getId()
                                     ) == 0
                             ).collect(Collectors.toList());
                 }

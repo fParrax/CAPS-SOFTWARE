@@ -38,6 +38,9 @@ public class newSRQ18 extends javax.swing.JFrame {
     LocalDate fnac;
     LocalDate ahora = LocalDate.now();
     public SRQ18 mySRQ ;
+    Index index;
+    
+    
     public newSRQ18() {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
@@ -50,7 +53,7 @@ public class newSRQ18 extends javax.swing.JFrame {
         preguntas = new SRQ18Preguntas(this);
     }
     
-    public newSRQ18(Paciente paciente, String tipo) {
+    public newSRQ18(Index index,Paciente paciente, String tipo) {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.fondoPanel, 150);
@@ -61,6 +64,7 @@ public class newSRQ18 extends javax.swing.JFrame {
         ScrollSens ss = new ScrollSens(scrollContenido);
         this.paciente=paciente;
         this.tipo=tipo;
+        this.index =index;
         fnac = LocalDate.parse(paciente.getFechaNacimiento(),fmt);
         Period periodo = Period.between(fnac, ahora);
         
@@ -73,7 +77,7 @@ public class newSRQ18 extends javax.swing.JFrame {
         ini();
     }
     
-    public newSRQ18(newPaciente pc,String nombrePaciente,String fechaNac,String tipo) {
+    public newSRQ18(Index index,newPaciente pc,String nombrePaciente,String fechaNac,String tipo) {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.fondoPanel, 150);
@@ -81,26 +85,33 @@ public class newSRQ18 extends javax.swing.JFrame {
         changeIcon();
         preguntas = new SRQ18Preguntas(this);
         scrollContenido.setViewportView(preguntas);
-        ScrollSens ss = new ScrollSens(scrollContenido);
+        this.index =index;
         this.tipo=tipo;
+        this.ventanaAnterior=pc;
+        this.setTitle("Nueva Evaluación SRQ18( "+tipo+" ) para "+paciente.getNombreCompleto());
+        ScrollSens ss = new ScrollSens(scrollContenido);
+        
         fnac = LocalDate.parse(fechaNac,fmt);
         Period periodo = Period.between(fnac, ahora);
-        this.ventanaAnterior=pc;
+       
         pacienteLabel.setText(nombrePaciente);
         edadLabel.setText(periodo.getYears()+" Años");
         fechaLabel.setText(ahora+"");
-        this.setTitle("Nueva Evaluación SRQ18( "+tipo+" ) para "+paciente.getNombreCompleto());
+        
         lugarTxt.setText(pc.RnpPag1.departamentoTxt.getSelectedItem().toString()+", "+pc.RnpPag1.provinviaTxt.getSelectedItem().toString()+", "+pc.RnpPag1.distritoTxt.getSelectedItem().toString());
         generoLabel.setText(paciente.getGenero());
         ini();
     }
-    public newSRQ18(newPaciente pc,String nombrePaciente,String fechaNac,String tipo,SRQ18 srq18) {
+    public newSRQ18(Index index,newPaciente pc,String nombrePaciente,String fechaNac,String tipo,SRQ18 srq18) {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.fondoPanel, 150);
         //max();
         changeIcon();
         this.tipo=tipo;
+        this.index =index;
+        this.ventanaAnterior=pc;
+        this.setTitle("Nueva Evaluación SRQ18( "+tipo+" ) para "+paciente.getNombreCompleto());
         preguntas = new SRQ18Preguntas(this);
         mySRQ=srq18;
         if(!mySRQ.getRespuestas().isEmpty()){
@@ -114,24 +125,24 @@ public class newSRQ18 extends javax.swing.JFrame {
         
         fnac = LocalDate.parse(fechaNac,fmt);
         Period periodo = Period.between(fnac, ahora);
-        this.ventanaAnterior=pc;
+        
         pacienteLabel.setText(nombrePaciente);
         edadLabel.setText(periodo.getYears()+" Años");
         fechaLabel.setText(ahora+"");
-        this.setTitle("Nueva Evaluación SRQ18( "+tipo+" ) para "+paciente.getNombreCompleto());
         lugarTxt.setText(pc.RnpPag1.departamentoTxt.getSelectedItem().toString()+", "+pc.RnpPag1.provinviaTxt.getSelectedItem().toString()+", "+pc.RnpPag1.distritoTxt.getSelectedItem().toString());
         generoLabel.setText(paciente.getGenero());
         ini();
     }
-public newSRQ18(Paciente paciente,SRQ18 srqx, String tipo) {
+public newSRQ18(Index index,Paciente paciente,SRQ18 srqx, String tipo) {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
         RSUtilities.setOpacityComponent(this.fondoPanel, 150);
         //max();
         changeIcon();
         this.paciente=paciente;
-        mySRQ=srqx;
         this.tipo=tipo;
+        this.index =index;
+        mySRQ=srqx;
         preguntas = new SRQ18Preguntas(mySRQ,this);
         preguntas = new SRQ18Preguntas(this);
         tituloLabel.setText("Visualización de Evaluación SRQ (No Editable)");
@@ -543,7 +554,7 @@ public newSRQ18(Paciente paciente,SRQ18 srqx, String tipo) {
                 respuestas.add(preguntas.respuestas.get(16));respuestas.add(preguntas.respuestas.get(17));
                 
                 SRQ18 srq18x = new SRQ18(
-                0,0,Index.getUser().getId(),hoy,valorSi,lugarTxt.getText(),"Activo",tipo,respuestas,
+                0,0,index.getUser().getId(),hoy,valorSi,lugarTxt.getText(),"Activo",tipo,respuestas,
                 total,observacionx
                 );
                 srq18x.setRespuestas(respuestas);
@@ -552,11 +563,11 @@ public newSRQ18(Paciente paciente,SRQ18 srqx, String tipo) {
                         RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.SUCCESS).setVisible(true);
                     this.dispose();
             }else{
-                int rsp = new SRQ18().newSRQ18(paciente.getId(),Index.getUser().getId(), lugarTxt.getText(), valorSi, tipo, respuestas,total,observacionx);
+                int rsp = new SRQ18().newSRQ18(paciente.getId(),index.getUser().getId(), lugarTxt.getText(), valorSi, tipo, respuestas,total,observacionx);
             
             if(rsp>0){
-                 int rsp2 = new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Nuevo SRQ18 - "+tipo,
-                        observacionTxt.getText(), Index.fechaServidor, "Activo");
+                 int rsp2 = new RegistroPaciente().newRegistro(paciente.getId(), index.getUser().getId(), index.getUser().getId(), "Nuevo SRQ18 - "+tipo,
+                        observacionTxt.getText(), index.fechaServidor, "Activo");
                 if( rsp2>0){
                     new rojerusan.RSNotifyFade("SRQ REGISRADO", "Los datos fueron registrados con éxito", 5,
                         RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.SUCCESS).setVisible(true);
@@ -577,7 +588,7 @@ public newSRQ18(Paciente paciente,SRQ18 srqx, String tipo) {
             int srqID = Integer.parseInt(tablaSRQ.getValueAt(fila, 0).toString());
             for (SRQ18 sr : paciente.getSrq18s()) {
                 if (Float.compare(srqID, sr.getId()) == 0) {
-                    new newSRQ18(paciente, sr, "ver").setVisible(true);
+                    new newSRQ18(index,paciente, sr, "ver").setVisible(true);
                 }
             }
 

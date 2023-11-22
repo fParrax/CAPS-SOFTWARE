@@ -25,11 +25,27 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
     String fecha01 = "1990/01/01", fecha02 = "2100/12/31";
     ArrayList<Integer> pacs = new ArrayList();
     ArrayList<Paciente> pacientesTemp = new ArrayList();
+    Index index;
+    
     panelPacientesTerapeuta() {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         new Thread(this::iniciar).start();
         
+        alertaIcon.setVisible(false);
+        alertaMensaje.setVisible(false);
+        alertaIcon1.setVisible(false);
+        alertaMensaje1.setVisible(false);
+        tituloBoton.setVisible(false);
+        radioCicloActual.setVisible(false);
+        radioTodos.setVisible(false);
+        jButton5.setVisible(false);
+    }
+    panelPacientesTerapeuta(Index index) {
+        initComponents();
+        modelo = (DefaultTableModel) tabla.getModel();
+        new Thread(this::iniciar).start();
+        this.index=index;
         alertaIcon.setVisible(false);
         alertaMensaje.setVisible(false);
         alertaIcon1.setVisible(false);
@@ -436,7 +452,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         } else {
             for (Paciente p : pacientes) {
                 if (Float.compare(p.getId(), Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString())) == 0) {
-                    new tipoSRQ(p,"indice").setVisible(true);
+                    new tipoSRQ(index,p,"indice").setVisible(true);
                     break;
                 }
             }
@@ -456,7 +472,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
         } else {
             for (Paciente p : pacientes) {
                 if (p.getId() == Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString())) {
-                    new tipoSRQ(p,"srq").setVisible(true);
+                    new tipoSRQ(index,p,"srq").setVisible(true);
                     break;
                 }
             }
@@ -481,7 +497,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             for (Paciente p : pacientes) {
                 int idTomado = Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString());
                 if (Float.compare(p.getId(), idTomado) == 0) {
-                    new tipoSRQ(p,"nota").setVisible(true);
+                    new tipoSRQ(index,p,"nota").setVisible(true);
                     break;
                 }
             }
@@ -497,7 +513,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             for (Paciente p : pacientes) {
                 int idTomado = Integer.parseInt(tabla.getValueAt(tabla.getSelectedRow(), 0).toString());
                 if (Float.compare(p.getId(), idTomado) == 0) {
-                    new newPaciente(p, "editar").setVisible(true);
+                    new newPaciente(index,p, "editar").setVisible(true);
                     break;
                 }
             }
@@ -511,7 +527,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             int idx = Integer.valueOf(tabla.getValueAt(fila, 0).toString());
             for (Paciente paciente : pacientes) {
                 if (Float.compare(idx, paciente.getId()) == 0) {
-                    new VerHistorialPaciente(paciente, Index.getUser()).setVisible(true);
+                    new VerHistorialPaciente(index,paciente).setVisible(true);
                     break;
                 }
             }
@@ -600,7 +616,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
             int idx = Integer.valueOf(tabla.getValueAt(fila, 0).toString());
             for (Paciente paciente : pacientes) {
                 if (Float.compare(idx, paciente.getId()) == 0) {
-                    new VerHistorialPaciente(paciente, Index.getUser()).setVisible(true);
+                    new VerHistorialPaciente(index,paciente).setVisible(true);
                 }
             }
         }else{
@@ -697,13 +713,13 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
     public void iniciar() {
         resetearBusquedas();
         
-        if(Index.getUser().getPriv().toLowerCase().contains("terapeuta")&&Index.getUser().getSrqCheck().equalsIgnoreCase("si")){
+        if(index.getUser().getCargo().toLowerCase().contains("terapeuta") && index.getUser().getSrqCheck().equalsIgnoreCase("si")){
             srqBtn.setVisible(true);
         }else{
             srqBtn.setVisible(false);
         }
         
-        if(Index.getUser().getPriv().toLowerCase().contains("terapeuta")&&Index.getUser().getIndiceCheck().equalsIgnoreCase("si")){
+        if(index.getUser().getCargo().toLowerCase().contains("terapeuta") && index.getUser().getIndiceCheck().equalsIgnoreCase("si")){
             indiceBtn.setVisible(true);
         }else{
             indiceBtn.setVisible(false);
@@ -730,12 +746,12 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
                 // pacientes = (ArrayList) new Paciente().getPacientedeTerapeuta(Index.getUser().getId(), "", fecha01, fecha02).clone();
                 pacientes = (ArrayList) new Paciente().ListarPacienteconRegistros().clone();
                 
-                if (Index.user.getCargo().equalsIgnoreCase("terapeuta") || Index.user.getCargo().equalsIgnoreCase("psiquiatra")) {
+                if (index.user.getCargo().equalsIgnoreCase("terapeuta") || index.user.getCargo().equalsIgnoreCase("psiquiatra")) {
                     pacientes = (ArrayList) pacientes.stream()
                             .filter(
                                     t -> Float.compare(
                                             t.getIdTerapeuta(),
-                                            Index.user.getId()
+                                            index.user.getId()
                                     ) == 0
                             ).collect(Collectors.toList());
                 }
@@ -747,7 +763,7 @@ public class panelPacientesTerapeuta extends javax.swing.JPanel {
 
             
             private void actualizarIndicadores() {
-                ArrayList<Paciente> pacientes = (ArrayList) new Paciente().ListarPacienteconNotasEvolucionBYTerapeuta(Index.user.getId()).clone();
+                ArrayList<Paciente> pacientes = (ArrayList) new Paciente().ListarPacienteconNotasEvolucionBYTerapeuta(index.user.getId()).clone();
                 
                 int contadorSesiones=0;
                 for(Paciente paciente:pacientes){

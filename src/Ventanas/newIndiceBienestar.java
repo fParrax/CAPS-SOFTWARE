@@ -21,6 +21,7 @@ public class newIndiceBienestar extends javax.swing.JFrame {
     String tipo;
     IndiceBienestar ib;
     newPaciente ventanaAnterior;
+    Index index;
     public newIndiceBienestar() {
         initComponents();
         changeIcon();
@@ -32,7 +33,7 @@ public class newIndiceBienestar extends javax.swing.JFrame {
         respuestas.add(0);
     }
 
-    public newIndiceBienestar(Paciente paciente, Usuario terapeuta, String tipo) {
+    public newIndiceBienestar(Index index,Paciente paciente, String tipo) {
         initComponents();
         changeIcon();
         new PlaceHolder("Ingrese una observación si la requiere (campo opcional)", observacionTxt);
@@ -42,13 +43,14 @@ public class newIndiceBienestar extends javax.swing.JFrame {
         respuestas.add(0);
         respuestas.add(0);
         this.paciente = paciente;
-        this.terapeuta = terapeuta;
+        this.index =index;
+        this.terapeuta = index.getUser();
         this.tipo = tipo;
         nombrePacienteLabel.setText(paciente.getNombreCompleto());
         jLabel22.setVisible(false);
         jLabel23.setVisible(false);
     }
-    public newIndiceBienestar(Paciente paciente, Usuario terapeuta, String tipo,newPaciente np,IndiceBienestar ib) {
+    public newIndiceBienestar(Index index,Paciente paciente, String tipo,newPaciente np,IndiceBienestar ib) {
         initComponents();
         changeIcon();
         new PlaceHolder("Ingrese una observación si la requiere (campo opcional)", observacionTxt);
@@ -58,16 +60,17 @@ public class newIndiceBienestar extends javax.swing.JFrame {
         respuestas.add(0);
         respuestas.add(0);
         this.paciente = paciente;
-        this.terapeuta = terapeuta;
+        this.terapeuta = index.getUser();
         this.tipo = tipo;
         this.ib=ib;
+        this.index =index;
         this.ventanaAnterior=np;
         nombrePacienteLabel.setText(paciente.getNombreCompleto());
         jLabel22.setVisible(false);
         jLabel23.setVisible(false);
         llenarIndice();
     }
-public newIndiceBienestar(Paciente paciente, Usuario terapeuta, IndiceBienestar ib) {
+public newIndiceBienestar(Index index,Paciente paciente, Usuario terapeuta, IndiceBienestar ib) {
         initComponents();
         changeIcon();
         new PlaceHolder("Ingrese una observación si la requiere (campo opcional)", observacionTxt);
@@ -76,6 +79,7 @@ public newIndiceBienestar(Paciente paciente, Usuario terapeuta, IndiceBienestar 
         respuestas.add(0);
         respuestas.add(0);
         respuestas.add(0);
+        this.index =index;
         this.paciente = paciente;
         this.terapeuta = terapeuta;
         this.tipo = tipo;
@@ -85,7 +89,7 @@ public newIndiceBienestar(Paciente paciente, Usuario terapeuta, IndiceBienestar 
         observacionTxt.setEditable(false);
         llenarIndice();
     }
-public newIndiceBienestar(Paciente paciente,IndiceBienestar ib) {
+public newIndiceBienestar(Index index,Paciente paciente,IndiceBienestar ib) {
         initComponents();
         changeIcon();
         respuestas.add(0);
@@ -1576,7 +1580,7 @@ public newIndiceBienestar(Paciente paciente,IndiceBienestar ib) {
                         RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.SUCCESS).setVisible(true);
                         dispose();
             }else{
-            int respuesta = new IndiceBienestar().newIndice(paciente.getId(), Index.getUser().getId(),
+            int respuesta = new IndiceBienestar().newIndice(paciente.getId(), index.getUser().getId(),
                     obs, "Activo", respuestas.get(0), respuestas.get(1), respuestas.get(2),
                     respuestas.get(3), respuestas.get(4));
             if (respuesta > 0) {
@@ -1584,8 +1588,8 @@ public newIndiceBienestar(Paciente paciente,IndiceBienestar ib) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        int rsp2 = new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Nuevo Indice Bienestar - " + tipo,
-                        observacionTxt.getText(), Index.fechaServidor, "Activo");
+                        int rsp2 = new RegistroPaciente().newRegistro(paciente.getId(), index.getUser().getId(), index.getUser().getId(), "Nuevo Indice Bienestar - " + tipo,
+                        observacionTxt.getText(), index.fechaServidor, "Activo");
                         
                         new rojerusan.RSNotifyFade("Registro Exitoso", "Indice de Bienestar registrado correctamente.", 5,
                         RSNotifyFade.PositionNotify.BottomRight, RSNotifyFade.TypeNotify.SUCCESS).setVisible(true);

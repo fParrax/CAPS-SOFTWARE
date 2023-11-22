@@ -48,8 +48,8 @@ public class newPaciente extends javax.swing.JFrame {
     public String tipo = "nuevo";
     public RnpDatosPersonales RnpPag1 = new RnpDatosPersonales(this);
     public RnpInfoVulnerabilidad RnpPag2 = new RnpInfoVulnerabilidad();
-    public RnpObservaciones RnpPag3 = new RnpObservaciones(this);
-    public RnpFinalizar RnpPag4 = new RnpFinalizar(this);
+    public RnpObservaciones RnpPag3;
+    public RnpFinalizar RnpPag4;
     public SRQ18 srq18 = new SRQ18();
     public IndiceBienestar indice = new IndiceBienestar();
     String codigoPaciente = "";
@@ -58,28 +58,32 @@ public class newPaciente extends javax.swing.JFrame {
     ArrayList<Paciente> pacientes = new ArrayList();
     panelNewPaciente pnp;
     JPanel pp = new JPanel();
+    Index index;
 
     public newPaciente() {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
         setExtendedState(MAXIMIZED_BOTH);
+        
         //max();
         changeIcon();
         iniciar();
     }
 
-    public newPaciente(panelNewPaciente pnp) {
+    public newPaciente(Index index,panelNewPaciente pnp) {
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
         setExtendedState(MAXIMIZED_BOTH);
+        RnpPag3 = new RnpObservaciones(index,this);
+        RnpPag4 = new RnpFinalizar(index,this);
         this.pnp=pnp;
+        this.index =index;
         //max();
         changeIcon();
         iniciar();
     }
-//panelNewPaciente
 
-    public newPaciente(Paciente paciente, String tipo) {
+    public newPaciente(Index index,Paciente paciente, String tipo) {
 
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
@@ -87,6 +91,9 @@ public class newPaciente extends javax.swing.JFrame {
         //max();
         this.tipo = tipo;
         this.paciente = paciente;
+        this.index =index;
+        RnpPag3 = new RnpObservaciones(index,this);
+        RnpPag4 = new RnpFinalizar(index,this);
         changeIcon();
         
         
@@ -95,7 +102,7 @@ public class newPaciente extends javax.swing.JFrame {
         iniciar();
     }
 
-    public newPaciente(Paciente paciente, String tipo, panelNewPaciente pnp) {
+    public newPaciente(Index index,Paciente paciente, String tipo, panelNewPaciente pnp) {
 
         initComponents();
         RSUtilities.setOpaqueWindow(this, false);
@@ -104,6 +111,8 @@ public class newPaciente extends javax.swing.JFrame {
         this.tipo = tipo;
         this.paciente = paciente;
         this.pnp = pnp;
+        RnpPag3 = new RnpObservaciones(index,this);
+        RnpPag4 = new RnpFinalizar(index,this);
         changeIcon();
         iniciar();
     }
@@ -592,7 +601,7 @@ public class newPaciente extends javax.swing.JFrame {
             int idx = Integer.valueOf(tabla.getValueAt(fila, 0).toString());
             for (Paciente paciente : pacientes) {
                 if (Float.compare(idx, paciente.getId()) == 0) {
-                    new VerHistorialPaciente(paciente, Index.getUser()).setVisible(true);
+                    new VerHistorialPaciente(index,paciente).setVisible(true);
                     break;
                 }
             }
@@ -754,7 +763,7 @@ public class newPaciente extends javax.swing.JFrame {
         }else{
             RnpPag4.rbNothing.setSelected(true);
         }
-        if(Index.user.getPriv().equalsIgnoreCase("terapeuta") || Index.user.getPriv().equalsIgnoreCase("psiquiatra")){
+        if(index.user.getCargo().equalsIgnoreCase("terapeuta") || index.user.getCargo().equalsIgnoreCase("psiquiatra")){
             RnpPag4.rbDerivarToTerapeuta.setVisible(false);
         }
         try {
@@ -1243,19 +1252,19 @@ public class newPaciente extends javax.swing.JFrame {
                     RnpPag3.preocupacionTxt.getText(), RnpPag3.accionesTxt.getText(), codigoPaciente, modalidad, detalleDerivadox,
                     RnpPag1.txtDetalleTelefonoOpcional.getText(),RnpPag2.txtContactoRedSoporte.getText(),
                     cantidadGrupoFamiliar, rbSeguro, txtOtroSeguro, ingresoPeru, rbTrabajo, txtTrabajo, nivelEducativo,
-                    otroNivelEducativo, ocupacion,subOcupacion,terapeutaAsignado.getId(),Index.getUser().getId());
+                    otroNivelEducativo, ocupacion,subOcupacion,terapeutaAsignado.getId(),index.getUser().getId());
 
             if (srq18.getIdsrq() >= 0) {
-                int evsr = new SRQ18().newSRQ18(idPacientex, Index.getUser().getId(), srq18.getLugar(),
+                int evsr = new SRQ18().newSRQ18(idPacientex, index.getUser().getId(), srq18.getLugar(),
                         srq18.getPuntajeSi(), "Inicial", srq18.getRespuestas(), srq18.getSumatoria(), srq18.getObservacionx());
-                new RegistroPaciente().newRegistro(idPacientex, Index.getUser().getId(), Index.getUser().getId(), "Nuevo SRQ - Inicial",
+                new RegistroPaciente().newRegistro(idPacientex, index.getUser().getId(), index.getUser().getId(), "Nuevo SRQ - Inicial",
                         srq18.getObservacionx(), hoy, "Activo");
             }
             if (indice.getId() >= 0) {
-                indice.newIndice(idPacientex, Index.getUser().getId(), indice.getObservacion(),
+                indice.newIndice(idPacientex, index.getUser().getId(), indice.getObservacion(),
                         indice.getEstado(), indice.getQ1(), indice.getQ2(), indice.getQ3(),
                         indice.getQ4(), indice.getQ5());
-                new RegistroPaciente().newRegistro(idPacientex, Index.getUser().getId(), Index.getUser().getId(), "Nuevo Indice Bienestar - Inicial",
+                new RegistroPaciente().newRegistro(idPacientex, index.getUser().getId(), index.getUser().getId(), "Nuevo Indice Bienestar - Inicial",
                         indice.getObservacion(), hoy, "Activo");
             }
 
@@ -1265,12 +1274,12 @@ public class newPaciente extends javax.swing.JFrame {
                     if (RnpPag4.rbListaEspera.isSelected()) {
                         new ListaEspera().insert(
                                 idPacientex,
-                                Index.user.getId()
+                                index.user.getId()
                         );
                         new RegistroPaciente().newRegistro(
                                 idPacientex,
-                                Index.getUser().getId(),
-                                Index.getUser().getId(),
+                                index.getUser().getId(),
+                                index.getUser().getId(),
                                 "Agregado a Lista de Espera",
                                 RnpPag3.observacionesTxt.getText(),
                                 hoy,
@@ -1280,7 +1289,7 @@ public class newPaciente extends javax.swing.JFrame {
                         String fechaAsignadax = new SimpleDateFormat("yyyy-MM-dd").format(RnpPag4.fechaCitaTxt.getDatoFecha());
                         int idTerapeutaAsignado = Integer.parseInt(RnpPag4.terapeutaTxt.getText().substring(0, 2));
 
-                        new RegistroPaciente().newRegistro(idPacientex, Index.getUser().getId(), idTerapeutaAsignado, "Agregado a Cita con Terapeuta",
+                        new RegistroPaciente().newRegistro(idPacientex, index.getUser().getId(), idTerapeutaAsignado, "Agregado a Cita con Terapeuta",
                                 RnpPag3.observacionesTxt.getText(), fechaAsignadax, "Activo");
                         String datos = " Saludos, se le informa que se le ha asignado una cita con el paciente " + nombreCompleto + " para la fecha: " + fechaAsignadax;
                         new Mail().enviarCorreo(terapeutaAsignado.getCorreo(), "Cita Asignada", datos);
@@ -1345,13 +1354,13 @@ public class newPaciente extends javax.swing.JFrame {
                     if (RnpPag4.rbListaEspera.isSelected()) {
                         new ListaEspera().insert(
                                 paciente.getId(),
-                                Index.user.getId()
+                                index.user.getId()
                         );
                         
                         new RegistroPaciente().newRegistro(
                                 paciente.getId(),
-                                Index.getUser().getId(),
-                                Index.getUser().getId(),
+                                index.getUser().getId(),
+                                index.getUser().getId(),
                                 "Agregado a Lista de Espera",
                                 RnpPag3.observacionesTxt.getText(),
                                 hoy, "Activo"
@@ -1362,7 +1371,7 @@ public class newPaciente extends javax.swing.JFrame {
 
                         new RegistroPaciente().newRegistro(
                                 paciente.getId(),
-                                Index.getUser().getId(),
+                                index.getUser().getId(),
                                 idTerapeutaAsignado,
                                 "Agregado a Cita con Terapeuta",
                                 RnpPag3.observacionesTxt.getText(),
@@ -1374,7 +1383,7 @@ public class newPaciente extends javax.swing.JFrame {
 
                 }
             }).start();
-                new RegistroPaciente().newRegistro(paciente.getId(), Index.getUser().getId(), Index.getUser().getId(), "Actualización de Datos",
+                new RegistroPaciente().newRegistro(paciente.getId(), index.getUser().getId(), index.getUser().getId(), "Actualización de Datos",
                         RnpPag3.observacionesTxt.getText(), hoy, "Activo");
                 new rojerusan.RSNotifyFade(
                         "Actualización Exitosa",

@@ -3,6 +3,7 @@ package Panels;
 
 import Clases.ListaEspera;
 import Clases.Paciente;
+import Ventanas.Index;
 import Ventanas.ListarTerapeutas;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -17,10 +18,16 @@ public class panelListaEspera extends javax.swing.JPanel {
 
     static DefaultTableModel modelo;
     static ArrayList<ListaEspera> lista = new ArrayList();
-
+    Index index;
     public panelListaEspera() {
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
+        new Thread(this::iniciar).start();
+    }
+    public panelListaEspera(Index index) {
+        initComponents();
+        modelo = (DefaultTableModel) tabla.getModel();
+        this.index=index;
         new Thread(this::iniciar).start();
     }
 
@@ -239,7 +246,7 @@ public class panelListaEspera extends javax.swing.JPanel {
                     .get()
                     .getPaciente();
             
-             new ListarTerapeutas("asignarTerapeuta",pacienteElejido).setVisible(true);
+             new ListarTerapeutas(index,"asignarTerapeuta",pacienteElejido).setVisible(true);
         }
     }//GEN-LAST:event_tablaMouseClicked
 
@@ -265,7 +272,7 @@ public class panelListaEspera extends javax.swing.JPanel {
                     ).findFirst()
                     .get()
                     .getPaciente();
-            new ListarTerapeutas("asignarTerapeuta",pacienteElejido).setVisible(true);
+            new ListarTerapeutas(index,"asignarTerapeuta",pacienteElejido).setVisible(true);
        }else{
            JOptionPane.showMessageDialog(panelDato01, "Seleccione al paciente");
        }

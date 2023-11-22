@@ -17,15 +17,18 @@ public class tipoSRQ extends javax.swing.JFrame {
 
     Paciente paciente;
     String tipo="";
+    Index index;
     public tipoSRQ() {
         initComponents();
         changeIcon();
     }
-public tipoSRQ(Paciente paciente, String tipo) {
+public tipoSRQ(Index index,Paciente paciente, String tipo) {
         initComponents();
         changeIcon();
         this.paciente=paciente;
         this.tipo=tipo;
+        this.index=index;
+        
         tituloLabel.setText(tipo.equalsIgnoreCase("srq")
                 ?"Seleccione el tipo de SRQ"
                 :tipo.equalsIgnoreCase("indice")
@@ -149,13 +152,13 @@ public tipoSRQ(Paciente paciente, String tipo) {
 
     private void rSButtonRoundEffect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonRoundEffect1ActionPerformed
         if(tipo.equalsIgnoreCase("srq")){
-            new newSRQ18(paciente, "Proceso").setVisible(true);
+            new newSRQ18(index,paciente, "Proceso").setVisible(true);
         this.dispose();
        }else if(tipo.equalsIgnoreCase("indice")){
-           new newIndiceBienestar(paciente, Index.getUser(), "Proceso").setVisible(true);
+           new newIndiceBienestar(index,paciente, "Proceso").setVisible(true);
            this.dispose();  
        }else if(tipo.equalsIgnoreCase("nota")){
-           new newNotaEvolucion(paciente, Index.getUser(), "Proceso").setVisible(true);
+           new newNotaEvolucion(index,paciente,  "Proceso").setVisible(true);
             this.dispose();
        }
         
@@ -164,13 +167,13 @@ public tipoSRQ(Paciente paciente, String tipo) {
 
     private void rSButtonRoundEffect2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonRoundEffect2ActionPerformed
        if(tipo.equalsIgnoreCase("srq")){
-         new newSRQ18(paciente, "Final").setVisible(true);
+         new newSRQ18(index,paciente, "Final").setVisible(true);
         this.dispose();  
        }else if(tipo.equalsIgnoreCase("indice")){
-           new newIndiceBienestar(paciente, Index.getUser(), "Final").setVisible(true);
+           new newIndiceBienestar(index,paciente,  "Final").setVisible(true);
            this.dispose();  
        }else if(tipo.equalsIgnoreCase("nota")){
-           new newNotaEvolucion(paciente, Index.getUser(), "Final").setVisible(true);
+           new newNotaEvolucion(index,paciente,  "Final").setVisible(true);
             this.dispose();
        }
         
@@ -178,13 +181,13 @@ public tipoSRQ(Paciente paciente, String tipo) {
 
     private void rSButtonRoundEffect3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonRoundEffect3ActionPerformed
          if(tipo.equalsIgnoreCase("srq")){
-         new newSRQ18(paciente, "Inicio").setVisible(true);
+         new newSRQ18(index,paciente, "Inicio").setVisible(true);
         this.dispose();  
        }else if(tipo.equalsIgnoreCase("indice")){
-           new newIndiceBienestar(paciente, Index.getUser(), "Inicio").setVisible(true);
+           new newIndiceBienestar(index,paciente, "Inicio").setVisible(true);
            this.dispose();  
        }else if(tipo.equalsIgnoreCase("nota")){
-           new newNotaEvolucion(paciente, Index.getUser(), "Inicio").setVisible(true);
+           new newNotaEvolucion(index,paciente,  "Inicio").setVisible(true);
             this.dispose();
        }
     }//GEN-LAST:event_rSButtonRoundEffect3ActionPerformed
