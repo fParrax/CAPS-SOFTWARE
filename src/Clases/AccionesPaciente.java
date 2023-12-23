@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AccionesPaciente {
-
+//
     int id,idPaciente,idTerapeuta;
     String valor, estado,fecha;
 
