@@ -17,7 +17,7 @@ import java.io.File;
 public class panelIndexMenu extends javax.swing.JPanel {
 
     static String priv = "";
-    static panelPacientesTerapeuta pct = new panelPacientesTerapeuta();
+    static panelPacientesTerapeuta pct;
     public static panelNewPaciente pnp;
     static panelVerUsuarios pvu = new panelVerUsuarios();
     static ParametrosPanel pp;
@@ -40,11 +40,13 @@ public class panelIndexMenu extends javax.swing.JPanel {
             @Override
             public void run() {
                 pp = new ParametrosPanel();
+                pct = new panelPacientesTerapeuta(index);
+                 iniciarMenu();
             }
         }).start();
         
         
-        iniciarMenu();
+       
          
     }
 
@@ -702,7 +704,7 @@ public class panelIndexMenu extends javax.swing.JPanel {
     }
 
     private void iniciarMenu() {
-        pnp = new panelNewPaciente();;
+        pnp = new panelNewPaciente(index);;
         btn1.setVisible(false);    
         
         btn1.doClick();

@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 public class ListaEspera {
     int id=-1,idPaciente,idTrabajadorSocial,terapeutaAsignado,usuarioModificacion;
     String estado,fechaModificacion,sql;
-    Paciente paciente = new Paciente();
+    ArrayList<Paciente> paciente = new ArrayList();
+//    Paciente paciente = new Paciente();
     PreparedStatement pst;
     java.sql.ResultSet rs;
 
@@ -108,7 +109,7 @@ public class ListaEspera {
                         rs.getString("estado")
                         
                 );
-                 resultado.setPaciente(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),
+                 resultado.addPaciente(new Paciente(rs.getInt("id"), rs.getString("codigo"), rs.getString("nombres"), rs.getString("apellidos"),
                         rs.getString("dni"),rs.getString("tipoDocumento"), rs.getString("genero"),
                         rs.getString("fechaCreacion"), rs.getString("fechaNacimiento"), rs.getString("telefono"),
                        rs.getString("telefonoOpcional"), rs.getString("correo"), rs.getString("nacionalidad"),
@@ -155,6 +156,14 @@ public class ListaEspera {
         return usuarioModificacion;
     }
 
+    public ArrayList<Paciente> getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(ArrayList<Paciente> paciente) {
+        this.paciente = paciente;
+    }
+ 
     public void setUsuarioModificacion(int usuarioModificacion) {
         this.usuarioModificacion = usuarioModificacion;
     }
@@ -167,12 +176,8 @@ public class ListaEspera {
         this.fechaModificacion = fechaModificacion;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void addPaciente(Paciente p){
+        paciente.add(p);
     }
 
     public void setId(int id) {

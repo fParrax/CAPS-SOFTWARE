@@ -240,11 +240,11 @@ public class panelListaEspera extends javax.swing.JPanel {
             Paciente pacienteElejido = lista.stream()
                     .filter(
                             t-> Float.compare(
-                                    t.getPaciente().getId()
+                                    t.getPaciente().get(0).getId()
                                     ,idPaciente)==0
                     ).findFirst()
                     .get()
-                    .getPaciente();
+                    .getPaciente().get(0);
             
              new ListarTerapeutas(index,"asignarTerapeuta",pacienteElejido).setVisible(true);
         }
@@ -267,11 +267,11 @@ public class panelListaEspera extends javax.swing.JPanel {
            Paciente pacienteElejido = lista.stream()
                     .filter(
                             t-> Float.compare(
-                                    t.getPaciente().getId()
+                                    t.getPaciente().get(0).getId()
                                     ,idPaciente)==0
                     ).findFirst()
                     .get()
-                    .getPaciente();
+                    .getPaciente().get(0);
             new ListarTerapeutas(index,"asignarTerapeuta",pacienteElejido).setVisible(true);
        }else{
            JOptionPane.showMessageDialog(panelDato01, "Seleccione al paciente");
@@ -320,14 +320,14 @@ public class panelListaEspera extends javax.swing.JPanel {
 
         String txt2 = buscarTxt.getText().isEmpty() ? "" : buscarTxt.getText().toLowerCase();
         for (ListaEspera listado  : lista) {
-            if ((listado.getPaciente().getCodigo().toLowerCase().contains(txt2) 
-                    || listado.getPaciente().getNombreCompleto().toLowerCase().contains(txt2)) 
+            if ((listado.getPaciente().get(0). getCodigo().toLowerCase().contains(txt2) 
+                    || listado.getPaciente().get(0).getNombreCompleto().toLowerCase().contains(txt2)) 
                     
                ){//validarPaciente(paciente)
                 modelo.addRow(new Object[]{
-                    listado.getPaciente().getId(),
-                    listado.getPaciente().getNombreCompleto(),
-                    listado.getPaciente().getDni(),
+                    listado.getPaciente().get(0).getId(),
+                    listado.getPaciente().get(0).getNombreCompleto(),
+                    listado.getPaciente().get(0).getDni(),
                     listado.getFechaModificacion()
                 });
             }
